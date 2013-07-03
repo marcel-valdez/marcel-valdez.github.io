@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Tutorial de NUnit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Marcel Valdez">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+<link href='/assets/stylesheets/bootstrap.min-88238289010db19359d2181e634e95cd.css' type='text/css' rel='stylesheet' media='all'>
+<link href='/assets/stylesheets/style-e81fa375b231bedf6cb2dbc6653570cc.css' type='text/css' rel='stylesheet' media='all'>
+<link href='/assets/stylesheets/google_prettify/sons-of-obsidian-afb0925bfa2d994f17dab93e13fbf999.css' type='text/css' rel='stylesheet' media='all'>
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">Software [Over]Engineering</a>
+          <ul class="nav">
+              
+                <li><a href="/archive">Archive</a></li>
+              
+              
+                <li><a href="/tags">Tags</a></li>
+              
+              
+                <li><a href="/categories">Categories</a></li>
+              
+              
+                <li><a href="/pages">Pages</a></li>
+              
+              
+                <li><a href="/about">About Me</a></li>
+              
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+
+<div class="page-header">
+  <h1>Tutorial de NUnit </h1>
+</div>
+
+<div class="row-fluid post-full">
+  <div class="span12">
+    <div class="date">
+      <span>2012-12-18</strong>
+    </div>
+    <div class="content">
+      <h2 id="toc_0">1.1 ¿Cómo funciona NUnit?</h2>
+
+<p>Las pruebas de NUnit pueden ser escritas en cualquier lenguaje de .NET
+que tenga soporte para la clase Attribute. Las pruebas NUnit se definen
+por medio de atributos, aserciones y posiblemente con la ayuda de una
+variable de contexto de pruebas. Todos estos conceptos serán explicados
+en secciones posteriores.</p>
+
+<p>Los <a href="http://nunit.org/index.php?p=attributes&amp;r=2.6.1">Atributos</a> indican
+qué clases son de pruebas, e igualmente identifican los métodos de
+prueba, así mismo, los atributos también pueden modificar el
+comportamiento de una prueba en varias maneras.</p>
+
+<p>Las
+<a href="http://nunit.org/index.php?p=assertions&amp;r=2.6.1">Aserciones</a> prueban un
+valor resultante contra una o más
+<a href="http://nunit.org/index.php?p=constraintModel&amp;r=2.6.1">Condiciones</a>, si
+el resultado cumple con todas las condiciones, la prueba se considera
+exitosa, de lo contrario se considera fallida.</p>
+
+<p>El código de usuario en una prueba, puede adquirir información sobre la
+prueba y el ambiente en que ejecuta, por medio de la variable de
+<a href="http://nunit.org/index.php?p=testContext&amp;r=2.6.1">Contexto de Pruebas</a>.</p>
+
+<p>Todo el código de este tutorial lo puedes encontrar en:
+<a href="http://github.com/marcel-valdez/tutorial_nunit">github</a></p>
+
+<h2 id="toc_1">1.2 Cómo preparar el ambiente para utilizar NUnit</h2>
+
+<p>Existen múltiples formas de preparar tu ambiente de desarrollo Visual
+Studio 2010 para utilizar NUnit, pero aquí se te describirá una forma
+sencilla y práctica de hacerlo.</p>
+
+<h3 id="toc_2">Paso 1.</h3>
+
+<p> Inicia Visual Studio 2010</p>
+
+<h3 id="toc_3">Paso 2.</h3>
+
+<p>Crea una solución vacía de Visual Studio 2010.</p>
+
+<h4 id="toc_4">Subpaso 1</h4>
+
+<p>Entra a la pantalla de nuevo proyecto.</p>
+
+<h4 id="toc_5">Subpaso 2</h4>
+
+<p>Escoge crear una solución en blanco llamada tutorial_nunit</p>
+
+<p><img src="/assets/media/image17.png" alt=""></p>
+
+<h4 id="toc_6">Subpaso 3</h4>
+
+<p>Te debería presentar esta estructura de proyecto.</p>
+
+<p><img src="/assets/media/image19.png" alt=""></p>
+
+<h3 id="toc_7">Paso 3.</h3>
+
+<p> Agrega un proyecto C# del tipo librería, llamado: Bank</p>
+
+<h4 id="toc_8">Subpaso 4</h4>
+
+<p>Entra a la pantalla para agregar un proyecto a la solución.</p>
+
+<p><img src="/assets/media/image20.png" alt=""></p>
+
+<h4 id="toc_9">Subpaso 5</h4>
+
+<p>Agrega el proyecto del tipo librería de clases con el nombre
+Bank</p>
+
+<p><img src="/assets/media/image03.png" alt=""></p>
+
+<h4 id="toc_10">Subpaso 6</h4>
+
+<p>Pantalla resultante de la creación del proyecto.</p>
+
+<h2 id="toc_11"><img src="/assets/media/image01.png" alt=""></h2>
+
+<h3 id="toc_12">Paso 4.</h3>
+
+<p>Agrega una clase llamada Account al proyecto.</p>
+
+<h4 id="toc_13">Subpaso 7</h4>
+
+<p>Entra al menú de creación de clases.</p>
+
+<p><img src="/assets/media/image07.png" alt=""></p>
+
+<h4 id="toc_14">Subpaso 8</h4>
+
+<p>Crea la clase llamada Account</p>
+
+<p><img src="/assets/media/image05.png" alt=""></p>
+
+<h4 id="toc_15">Subpaso 9</h4>
+
+<p>Pantalla resultante de la creación de la clase Account</p>
+
+<p><img src="/assets/media/image10.png" alt=""></p>
+
+<p> </p>
+
+<h3 id="toc_16">Paso 5.</h3>
+
+<p>Agrega el código en:
+<a href="https://gist.github.com/3441171">https://gist.github.com/3441171</a> a la
+clase Account.</p>
+
+<pre><code>namespace Bank
+{
+    using System;
+ 
+    public class Account
+    {
+        public void Deposit(decimal amount)
+        {
+            balance += amount;
+        }
+                                                                     
+        public void Withdraw(decimal amount)
+        {
+            balance -= amount;
+        }
+ 
+        public void TransferFunds(Account destination, decimal amount)
+        {
+            throw new NotImplementedException();
+        }
+ 
+        public decimal Balance
+        {
+            get;
+            private set;
+        }
+    }
+}
+</code></pre>
+
+<p> </p>
+
+<h3 id="toc_17">Paso 6.</h3>
+
+<p> Agrega un proyecto de pruebas NUnit para ser ejecutado como
+programa de consola.</p>
+
+<p>La forma más sencilla y práctica para hacer esto, es utilizando una de
+las plantillas NUnit en línea, que contienen un proyecto pre configurado
+para ser ejecutado como un programa de consola que ejercitará las
+pruebas unitarias. Hacer esto, es de lo más sencillo.</p>
+
+<h4 id="toc_18">Subpaso 10</h4>
+
+<p>Entra a la pantalla para agregar un proyecto a la solución.</p>
+
+<p><img src="/assets/media/image20.png" alt=""></p>
+
+<h4 id="toc_19">Subpaso 11</h4>
+
+<p>En la categoría de “Online Templates” haz una búsqueda por
+NUnit, y selecciona NUnit Test Application y ponle de nombre de
+proyecto: Bank.UnitTest</p>
+
+<p><img src="/assets/media/image26.png" alt=""></p>
+
+<h4 id="toc_20">Subpaso 12</h4>
+
+<p>Estructura resultante de la creación del proyecto de pruebas.</p>
+
+<p><img src="/assets/media/image27.png" alt=""></p>
+
+<p> </p>
+
+<h3 id="toc_21">Paso 7.</h3>
+
+<p>Renombra la clase TestFixture a AccountTest</p>
+
+<p><img src="/assets/media/image28.png" alt=""></p>
+
+<h3 id="toc_22">Paso 8.</h3>
+
+<p>Agrega el código de:
+<a href="https://gist.github.com/3441375">https://gist.github.com/3441375</a> a la
+prueba unitaria.</p>
+
+<pre><code>namespace Bank.UnitTest
+{
+     using System;
+     using NUnit.Framework;
+ 
+     [TestFixture] // El atributo TestFixture identifica a esta clase como una clase de pruebas
+     public class AccountTest
+     {
+         [Test] // El atributo Test identifica a este método como una prueba unitaria
+         public void TransferFunds()
+         {
+             Account source = new Account();
+             source.Deposit(200m);
+             Account destination = new Account();
+             destination.Deposit(150m);
+ 
+             source.TransferFunds(destination, 100m);
+ 
+             // Las aserciones se realizan por medio de la clase estática Assert
+             // En este caso se trata de una aserción de igualdad por medio del método
+             // estático AreEqual([valor esperado], [valor obtenido])
+             Assert.AreEqual(250m, destination.Balance);
+             Assert.AreEqual(100m, source.Balance);
+         }
+     }
+}
+</code></pre>
+
+<p> </p>
+
+<h3 id="toc_23">Paso 9.</h3>
+
+<p>La prueba unitaria aún no funciona, y el proyecto de pruebas no
+compila, esto se debe a que el proyecto de pruebas necesita una
+referencia al proyecto C# de la clase de librerías. Debes agregar una
+referencia al proyecto de librerías.</p>
+
+<h4 id="toc_24">Subpaso 13</h4>
+
+<p>Entrar a la pantalla de manejo de referencias.</p>
+
+<h2 id="toc_25"><img src="/assets/media/image31.png" alt=""></h2>
+
+<h4 id="toc_26">Subpaso 14</h4>
+
+<p>Agregas la referencia al proyecto Bank.</p>
+
+<p><img src="/assets/media/image32.png" alt=""></p>
+
+<p> </p>
+
+<h3 id="toc_27">Paso 10.</h3>
+
+<p>El proyecto de pruebas unitarias ya funciona correctamente,
+para ejecutarlo necesitas abrir la línea de comandos. En Windows 7, esto
+lo logras presionando el botón de inicio, y escribiendo cmd [enter]</p>
+
+<p><img src="/assets/media/image33.png" alt=""></p>
+
+<h4 id="toc_28">Subpaso 15</h4>
+
+<p>En la línea de comandos, entras al directorio del proyecto de
+pruebas.</p>
+
+<p><img src="/assets/media/image34.png" alt=""></p>
+
+<h4 id="toc_29">Subpaso 16</h4>
+
+<p>Ejecutas las pruebas unitarias con la instrucción:
+bin\debug\bank.unittest.exe</p>
+
+<p><img src="/assets/media/image29.png" alt=""></p>
+
+<p>Como puedes observar, al ejecutar el programa Bank.UnitTest.exe, este
+invoca NUnit quién a su vez, invoca la prueba unitaria que definimos
+anteriormente, dándonos detalles sobre el error encontrado.</p>
+
+<p> </p>
+
+<h2 id="toc_30">1.2.1 Cómo instalar Visual NUnit</h2>
+
+<p>Ejecutar las pruebas unitarias con la línea de comandos es una forma
+efectiva de hacerlo, ya que funcionará prácticamente en cualquier
+PC-Windows que encuentres, pues solamente dependes de la línea de
+comandos y la aplicación compilada, pero existen formas más cómodas de
+ejecutar las pruebas unitarias, esto normalmente se hace por medio de lo
+que se le llaman “Test Runners”, de estos hay varios, entre ellos están:
+<a href="http://testdriven.net">TestDriven.net</a>®™,
+<a href="http://devexpress.com/coderush">CodeRush</a>® de DevExpress™,
+<a href="http://www.jetbrains.com/resharper">ReSharper</a>® de JetBrains™, todos
+ellos son de paga para uso profesional.</p>
+
+<p>        Existe otra opción gratuita y simple, se trata de una extensión
+de visual studio para ejecutar pruebas de NUnit: Visual NUnit. Para
+instalarlo, sigue las instrucciones a continuación:</p>
+
+<p> </p>
+
+<h3 id="toc_31">Paso 1.</h3>
+
+<p> Instala la extensión de Visual Studio.</p>
+
+<h4 id="toc_32">Subpaso 17</h4>
+
+<p>Entra al manejador de extensiones.</p>
+
+<p><img src="/assets/media/image30.png" alt=""></p>
+
+<p> </p>
+
+<h4 id="toc_33">Subpaso 18</h4>
+
+<p>Haz una búsqueda en la Galería en línea por Visual NUnit</p>
+
+<p><img src="/assets/media/image18.png" alt=""></p>
+
+<h4 id="toc_34">Subpaso 19</h4>
+
+<p>Presiona ‘Download’ para iniciar la instalación.</p>
+
+<p><img src="/assets/media/image14.png" alt=""></p>
+
+<p> </p>
+
+<h4 id="toc_35">Subpaso 20</h4>
+
+<p>Al finalizar la instalación, continua presionando ‘Install’</p>
+
+<p><img src="/assets/media/image16.png" alt=""></p>
+
+<h4 id="toc_36">Subpaso 21</h4>
+
+<p>En la sección inferior del manejador de extensiones de dará
+la opción de reiniciar VS 2010, hazlo.</p>
+
+<p><img src="/assets/media/image12.png" alt=""></p>
+
+<h4 id="toc_37">Subpaso 22</h4>
+
+<p>Después de reiniciar VS 2010, abre la ventana de Visual NUnit
+o presiona Ctrl + F7</p>
+
+<p><img src="/assets/media/image13.png" alt=""></p>
+
+<h4 id="toc_38">Subpaso 23</h4>
+
+<p>Esto abrirá la pantalla de Visual NUnit, donde debes elegir
+el proyecto de Bank.UnitTest.</p>
+
+<p><img src="/assets/media/image24.png" alt=""></p>
+
+<h4 id="toc_39">Subpaso 24</h4>
+
+<p>Ahora presiona Run, y esto ejecutará todas las pruebas
+unitarias del proyecto Bank.UnitTest, si eliges Namespace y/o Fixture,
+puedes filtrar qué pruebas deseas ejecutar; en nuestro caso, solamente
+tenemos una prueba.</p>
+
+<p><img src="/assets/media/image25.png" alt=""></p>
+
+<h4 id="toc_40">Subpaso 25</h4>
+
+<p>Si haces doble clic sobre la prueba que falló, puedes entrar
+a ver los detalles del error, donde te informará la línea de código
+donde ocurrió el error.</p>
+
+<p><img src="/assets/media/image22.png" alt=""></p>
+
+<p> </p>
+
+<h2 id="toc_41">1.3.1 Haciendo que pase el caso de prueba unitario.</h2>
+
+<p>Ahora, corrige el método Bank.Account.TransferFunds(Account,
+decimal) para que pase la prueba unitaria, con el siguiente código:</p>
+
+<pre><code>public void TransferFunds(Account destination, decimal amount)
+{
+  this.balance -= amount;
+  destination.balance += amount;
+}
+</code></pre>
+
+<p>Ejecuta de nuevo las pruebas en el proyecto Bank.UnitTest:</p>
+
+<p><img src="/assets/media/image23.png" alt=""></p>
+
+<p>Ahora es exitosa la ejecución de las pruebas unitarias, como se muestra
+en la imagen anterior. Claro que el código anterior tiene errores, pues
+sabemos que si el objeto Account no tiene suficientes fondos para la
+transferencia, entonces no se le debería permitir realizar la
+transferencia. Agreguemos ese caso de prueba.</p>
+
+<p> </p>
+
+<h2 id="toc_42">1.3.2 Agregando otro caso de prueba</h2>
+
+<h3 id="toc_43">Paso 1.</h3>
+
+<p>Agrega el siguiente código a la clase de pruebas unitarias
+AccountTest:</p>
+
+<pre><code>[Test]
+public void TransferFundsWithInsufficientFunds()
+{
+  Account source = new Account();
+  source.Deposit(100m);
+  Account destination = new Account();
+
+  destination.Deposit(50m);
+  TestDelegate invalidTransfer = () =&gt; source.TransferFunds(destination, 101m);
+
+  Assert.Throws&lt;InsufficientFundsException&gt;(invalidTransfer);
+  Assert.That(source.Balance, Is.EqualTo(100m));
+  Assert.That(destination.Balance, Is.EqualTo(50m));
+}
+</code></pre>
+
+<p>Como podrás darte cuenta, aún no existe la clase
+InsufficientFundsException, ni tampoco tiene el comportamiento deseado
+aún el método Account.TransferFunds, pero aun así, primero escribimos la
+prueba para el comportamiento deseado, luego haremos la
+implementación del comportamiento . A este tipo de desarrollo de código
+se le llama <a href="http://en.wikipedia.org/wiki/Test-driven_development">Test Driven
+Development</a>.</p>
+
+<p> </p>
+
+<h3 id="toc_44">Paso 2.</h3>
+
+<p>Lo primero que haremos, será agregar la excepción
+InsufficientFundsException, para esto debes crear una nueva clase en el
+proyecto Bank. Ya vimos como se crean las clases en Visual Studio 2010,
+ahora crea una nueva clase que se llame InsufficientFundsException en el
+proyecto Bank, de tal manera que te quede la siguiente estructura de
+archivos:</p>
+
+<h2 id="toc_45"><img src="/assets/media/image21.png" alt=""></h2>
+
+<p> </p>
+
+<p>La clase InsufficientFundsException simplemente hereda de Exception, e
+implementa su constructor, no requiere pruebas:</p>
+
+<pre><code>namespace Bank
+{
+    using System;
+ 
+    public class InsufficientFundsException : Exception
+    {
+        public InsufficientFundsException(string message)
+            : base(message)
+        {            
+        }
+    }
+}
+</code></pre>
+
+<p> </p>
+
+<h3 id="toc_46">Paso 3.</h3>
+
+<p>Ahora debería compilar la prueba unitaria, pero igual sigue
+fallando, pues aún no se implementa el comportamiento en el método
+Account.TransferFunds, el método TransferFunds debe tener esta
+implementación:</p>
+
+<pre><code>public void TransferFunds(Account destination, decimal amount)
+{
+    if(this.Balance &lt; amount)
+    {
+        throw new InsufficientFundsException(“A ${0:0.00} transfer was requested, but the source account did not have enough balance.”);
+    }
+    this.Balance -= amount;
+    destination.Balance += amount;
+}
+</code></pre>
+
+<p> </p>
+
+<h3 id="toc_47">Paso 4.</h3>
+
+<p>De nuevo ejecuta las pruebas unitarias del proyecto
+Bank.UnitTest, y te debería de marcar todo en verde, la prueba ha
+pasado:</p>
+
+<h2 id="toc_48"><img src="/assets/media/image11.png" alt=""></h2>
+
+<p> </p>
+
+<h2 id="toc_49">1.4 Cómo hacer una prueba unitaria con NSubstitute</h2>
+
+<p>Digamos, que el banco en cuestión, el dueño del proyecto Bank, quiere
+agregar la capacidad de pagar y agregar facturas de servicios como agua,
+luz, cable, etcétera, directamente en el banco, por medio del código de
+la factura. Entonces, dadas estas características, utilizando
+<a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a> primero
+escribiremos las pruebas para cada funcionalidad.</p>
+
+<p> </p>
+
+<h3 id="toc_50">Paso 1.</h3>
+
+<p>Lo primero que debes hacer es crear un nuevo conjunto de casos
+de prueba para la funcionalidad de pago de servicios, para esto, se
+deben crear una clase, a la que llamaremos:
+ UtilitiesPaymentProcesorTest en el proyecto Bank.UnitTest, y la clase
+que implementará esta funcionalidad UtilitiesPaymentProcessor en el
+proyecto Bank. Al crear las clases, te debería quedar esta estructura de
+archivos:</p>
+
+<p><img src="/assets/media/image09.png" alt=""></p>
+
+<h3 id="toc_51">Paso 2.</h3>
+
+<p>Abre el archivo UtilitiesPaymentProcessorTest.cs, y agregamos
+los atributos de NUnit para que la considere una clase de pruebas:</p>
+
+<pre><code>namespace Bank.UnitTest
+{
+    using NUnit.Framework;
+ 
+    [TestFixture]
+    public class UtilitiesPaymentProcessorTest
+    {
+    }
+}
+</code></pre>
+
+<p> </p>
+
+<h3 id="toc_52">Paso 3.</h3>
+
+<p>Ahora debemos agregar e implementar uno de los casos de prueba,
+por lo menos debemos empezar con el caso de prueba para agregar facturas
+por pagar.</p>
+
+<pre><code>namespace Bank.UnitTest
+{
+    using NUnit.Framework;
+    using System.Collections.Generic;
+    using System.Reflection;
+ 
+    [TestFixture]
+    public class UtilitiesPaymentProcessorTest
+    {
+        [Test]
+        public void TestIfItCanAddBill()
+        {
+            // Se inicializan los objetos a utilizar
+            var utilitesAccount = new Account();
+            var target = new UtilitiesPaymentProcessor(utilitesAccount);
+            var fieldInfo = typeof(UtilitiesPaymentProcessor)
+                                .GetField(“bills”, BindingFlags.NonPublic | BindingFlags.Instance);
+            string billCode = “bill”;
+            int debt = 1;
+ 
+            // Se agrega la factura
+            target.AddBill(billCode, debt);
+ 
+            // Se obtienen las facturas del objeto
+            var bills = (IDictionary&lt;string, decimal&gt;)fieldInfo.GetValue(target);
+            // Se verifica que efectivamente se haya agregado la factura
+            Assert.That(bills.Keys, Contains.Item(billCode));
+            Assert.That(bills[billCode], Is.EqualTo(debt));
+        }
+    }
+}
+</code></pre>
+
+<p> </p>
+
+<p>Por el momento, este código ni siquiera compila, pues no existe el
+constructor ni el método para agregar facturas en
+UtilitiesPaymentProcessor. Agrega estos dos métodos en la clase
+UtilitesPaymentProcessor:</p>
+
+<pre><code>namespace Bank
+{
+    using System;
+ 
+    public class UtilitiesPaymentProcessor
+    {
+        private Account utilitiesAccount;
+ 
+        public UtilitiesPaymentProcessor(Account utilitiesAccount)
+        {         
+            this.utilitiesAccount = utilitiesAccount;         
+        }
+ 
+        public void AddBill(string billCode, decimal debt)
+        {
+            throw new NotImplementedException();
+        }   
+    }
+}
+</code></pre>
+
+<p>Ahora sí debería compilar el código, pero la prueba no pasa, pues
+solamente tira una excepción:</p>
+
+<p><img src="/assets/media/image08.png" alt=""></p>
+
+<p> </p>
+
+<p>Finalmente, implementamos el método AddBill en la clase
+UtilitiesPaymentProcessor:</p>
+
+<pre><code>namespace Bank
+{
+    using System;
+    using System.Collections.Generic;
+ 
+    public class UtilitiesPaymentProcessor
+    {
+        private Account utilitiesAccount;
+        private IDictionary&lt;string, decimal&gt; bills = new Dictionary&lt;string, decimal&gt;();
+ 
+        public UtilitiesPaymentProcessor(Account utilitiesAccount)
+        {         
+            this.utilitiesAccount = utilitiesAccount;         
+        }
+ 
+        public void AddBill(string billCode, decimal debt)
+        {
+            this.bills.Add(billCode, debt);
+        }
+    }
+}
+</code></pre>
+
+<p> </p>
+
+<p>Como especificamos en la prueba unitaria, se espera que la clase
+UtilitiesPaymentProcessor, tenga un diccionario con las facturas
+pendientes, que será donde se guarden las facturas y su saldo. Ahora,
+ejecutemos el caso de prueba para TestifItCanAddBill:</p>
+
+<p><img src="/assets/media/image06.png" alt=""></p>
+
+<p>Todas las pruebas pasan de nuevo.</p>
+
+<p> </p>
+
+<h3 id="toc_53">Paso 4.</h3>
+
+<p>Pasemos al segundo caso de prueba, pagar la factura. Dado que
+una prueba unitaria no debe tener dependencias de otras unidades de
+código (otras clases), pues se convierte en una prueba frágil. No
+podemos probar código que dependa de los métodos de la clase Account,
+entonces ¿cómo se hace, sin tener que gastar cientos de líneas de código
+“<a href="http://en.wikipedia.org/wiki/Boilerplate_code">boilerplate</a>” para
+ejecutar una simple prueba unitaria? Por medio de
+<a href="http://en.wikipedia.org/wiki/Mock_object">mocks</a> y
+<a href="http://en.wikipedia.org/wiki/Method_stub">stubs</a>, no importa saber cuál
+es la diferencia entre estos, sino saber cuando se ocupa una forma de
+quitar dependencias a las pruebas, NUnit viene con una librería para
+hacer precisamente esto: NSubstitute y puedes descargar las librerías
+<a href="http://github.com/downloads/nsubstitute/NSubstitute/NSubstitute-1.4.3.0.zip">aquí</a>.</p>
+
+<p>Un detalle sobre mocking, es que requieren que las clases implementen
+interfaces, o tengan el denominador virtual en su definición de método,
+por esto agregaremos este denominador:</p>
+
+<pre><code>namespace Bank
+{
+    using System;
+ 
+    public class Account
+    {
+ 
+        public virtual void Deposit(decimal amount)
+        {
+            Balance += amount;
+        }
+ 
+        public virtual void Withdraw(decimal amount)
+        {
+            Balance -= amount;
+        }
+ 
+        public virtual void TransferFunds(Account destination, decimal amount)
+        {
+            if(this.Balance &lt; amount)
+            {
+                throw new InsufficientFundsException(“A ${0:0.00} transfer was requested, but the source account did not have enough balance.”);
+            }
+ 
+            this.Balance -= amount;
+            destination.Balance += amount;
+        }
+ 
+        public virtual decimal Balance
+        {
+            get;
+            private set;
+        }
+    }
+}
+</code></pre>
+
+<p> </p>
+
+<p>Ahora ejecuta todas las pruebas unitarias de nuevo, para verificar que
+este cambio no haya afectado la funcionalidad previamente implementada.</p>
+
+<p><img src="/assets/media/image04.png" alt=""></p>
+
+<p>Esta es precisamente una de las principales ventajas de tener pruebas
+unitarias exhaustivas, porque podemos verificar que cambios hecho al
+código no provoquen nuevos errores, esto no es factible hacer
+manualmente siquiera en un programa de tamaño mediano, pero para un
+proyecto con pruebas unitarias exhaustivas, esto no representa un reto,
+ni siquiera se considera problema, al contrario, se considera ventaja.</p>
+
+<pre><code>[Test]
+public void TestIfItCanPayBill()
+{
+    // Se inicializan los mocks
+    var utilitesAccount = Substitute.For&lt;Account&gt;();
+    var payerAccount = Substitute.For&lt;Account&gt;();
+    payerAccount.Balance.Returns(20);
+    utilitesAccount.Balance.Returns(0);
+ 
+    // Se inicializa el objeto a probar
+    var target = new UtilitiesPaymentProcessor(utilitesAccount);
+    string billCode = “bill”;
+    decimal debt = 10;
+    decimal leftOver = 1;
+    IDictionary&lt;string, decimal&gt; bills = GetBills(target);
+    bills.Add(billCode, debt);
+ 
+    // Se ejercita el código bajo prueba
+    decimal actualLeftOver = target.PayBill(billCode, payerAccount, debt - leftOver);
+ 
+    // Verificar que el método haya funcionado correctamente
+    // Prueba de Caja negra
+    Assert.That(bills[billCode], Is.EqualTo(actualLeftOver));
+    // Prueba de Caja blanca o transparente
+    // Se especifica que se debe transferir fondos del deudor al acreedor.
+    payerAccount.Received().TransferFunds(utilitesAccount, debt - leftOver);
+    utilitesAccount.DidNotReceive().TransferFunds(Arg.Any&lt;Account&gt;(), Arg.Any&lt;decimal&gt;());
+}
+</code></pre>
+
+<p>Por el momento, no compila la prueba. Se agregó el método GetBills en la
+clase UtilitiesPaymentProcessorTest, para obtener la instancia bills del
+objeto UtilitiesPaymentProcessor para evitar duplicación de código, ya
+que esto mismo ya se hacía en la prueba anterior:</p>
+
+<pre><code>private static IDictionary&lt;string, decimal&gt; GetBills(UtilitiesPaymentProcessor target)
+{
+    var fieldInfo = typeof(UtilitiesPaymentProcessor)
+                        .GetField(“bills”, BindingFlags.NonPublic | BindingFlags.Instance);
+ 
+    var bills = (IDictionary&lt;string, decimal&gt;)fieldInfo.GetValue(target);
+ 
+    return bills;
+}
+</code></pre>
+
+<p>Ahora, se implementa la funcionalidad en el objeto
+UtilitiesPaymentProcessor:</p>
+
+<pre><code>public decimal PayBill(string billCode, Account payer, decimal payment)
+{
+    payer.TransferFunds(utilitiesAccount, payment);
+    this.bills[billCode] -= payment;
+ 
+    return this.bills[billCode];
+}
+</code></pre>
+
+<p> </p>
+
+<p>Ejercicios:</p>
+
+<p>Tal vez te diste cuenta que el método PayBill tiene defectos: </p>
+
+<ul>
+<li>¿Qué pasa si se desea pagar más de lo que se debe?</li>
+<li>¿Qué pasa si el billCode no existe? </li>
+<li>¿Qué pasa si el pago es por una cantidad negativa o 0? </li>
+<li>¿Qué pasa si el parámetro payer es nulo? </li>
+</ul>
+
+<p>Escribe estos 4 casos de prueba y la implementación en código que los corrija.</p>
+
+<h2 id="toc_54">1.5 Cómo hacer una prueba de integración.</h2>
+
+<p>Como se mencionó al principio, la prueba de integración verificará que
+la interacción entre los elementos sea correcta, y que provean el
+resultado deseado, un ejemplo de esto, sería verificar que el pago de
+facturas se haga correctamente cuando se utilicen las instancias no-mock
+de los objetos.
+ </p>
+
+<p>Crea otro proyecto de pruebas, igual al de pruebas unitarias, pero
+llámale Bank.IntegrationTest, la estructura resultante debería ser la
+siguiente:</p>
+
+<p><img src="/assets/media/image02.png" alt=""></p>
+
+<p> </p>
+
+<p>Ahora modifica el nombre del archivo TestFixture a
+UtilitiesPayment_Account_Test.cs e introduce el código:</p>
+
+<pre><code>namespace Bank.IntegrationTest
+{
+    using NUnit.Framework;
+    [TestFixture]
+   public class UtilitiesPayment\_Account\_Test
+   {
+       [Test]
+       public void TestAnAccountCanPayABillThroughPaymentProcessor()
+       {
+           // Arrange
+           string billCode = “bill”;
+           int initialPayerBalance = 100;
+           int initialDebt = 50;
+           int payment = 40;
+           int expectedDebtBalance = initialDebt - payment;
+           int expectedPayerBalance = initialPayerBalance - payment;
+        
+           var utilitiesAccount = new Account();
+           var payerAccount = new Account();
+           payerAccount.Deposit(initialPayerBalance);
+           var processor = new UtilitiesPaymentProcessor(utilitiesAccount);
+            // Act
+           processor.AddBill(billCode, initialDebt);
+           decimal debtBalance = processor.PayBill(billCode, payerAccount, payment);
+            // Assert
+           Assert.That(debtBalance, Is.EqualTo(expectedDebtBalance));
+           Assert.That(utilitiesAccount.Balance, Is.EqualTo(payment));
+           Assert.That(payerAccount.Balance, Is.EqualTo(expectedPayerBalance));
+       }
+   }
+}
+</code></pre>
+
+<p> </p>
+
+<p>Finalmente, ejecuta esta prueba, y deberías verla pasando adecuadamente:</p>
+
+<p><img src="/assets/media/image00.png" alt=""></p>
+
+<p> </p>
+
+<h2 id="toc_55">2. Conclusión</h2>
+
+<p>Ahora estás listo para salir al mundo a crear programas de alta calidad
+por medio de suites de pruebas unitarias e integración. Se recomienda
+que leas sobre cómo automatizar las pruebas de aceptación con
+herramientas como: <a href="http://white.codeplex.com/">White</a>,
+Selenium, <a href="http://robot">Robot</a>, <a href="http://www.ranorex.com/">Ranorex</a> e
+<a href="http://ivonna.biz/">Ivonna.</a></p>
+
+    </div>
+    <ul class="tag_box inline">
+      <li><i class="icon-folder-open"></i></li>
+      <li>
+        <a href="/categories#testing-ref">testing <span>1</span></a>
+      </li>
+      <li>
+        <a href="/categories#nunit-ref">nunit <span>1</span></a>
+      </li>
+      <li>
+        <a href="/categories#programming-ref">programming <span>3</span></a>
+      </li>
+    </ul>
+    <ul class="tag_box inline">
+      <li><i class="icon-tags"></i></li>
+    </ul>
+    <hr>
+    <div class="pagination">
+      <ul>
+          <li class="prev"><a href="/notepad%2B%2B/winrbdi-syntax-on-notepad%2B%2B" title="WinRBDI Syntax on Notepad++">&larr; Previous</a></li>
+
+          <li><a href="/archive">Archive</a></li>
+
+          <li class="next"><a href="/software-design/introducing-dependency-locator" title="Introducing Dependency Locator">Next &rarr;</a></li>
+      </ul>
+    </div>
+    <hr>
+    <div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'software_overengineering'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  </div>
+</div>
+
+
+      </div>
+
+      <hr>
+      <div class="footer">
+        <p>&copy; Marcel Valdez 2013
+          with help from <a href="http://ruhoh.com" target="_blank" title="The Definitive Technical Blogging Framework">ruhoh</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- Google Prettify -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
+<script>
+  var pres = document.getElementsByTagName("pre");
+  for (var i=0; i < pres.length; ++i) {
+    pres[i].className = "prettyprint linenums";
+  }
+  prettyPrint();
+</script>
+<!-- end Google Prettify -->
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37621869-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,1275 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+  <channel>
+    <title>Software [Over]Engineering</title>
+    <link>http://marcel.bowlitz.com</link>
+    <pubDate>2013-07-02 23:00:43 -0400</pubDate>
+    <item>
+      <title>Eclipse: Zoom in on text with Ctrl+</title>
+      <link>http://marcel.bowlitz.com/tips/eclipse-zoom-in-on-text-with-ctrl%2B</link>
+      <pubDate>2013-01-28</pubDate>
+      <description>&lt;p&gt;This is quick post to inform people how to get zoom in and out of text in eclipse, since alot of coders want it, but it is not easily found.&lt;/p&gt;
+
+&lt;p&gt;Well, &lt;strong&gt;here is your holy grail&lt;/strong&gt;: There is a project from a guy called &amp;#39;tarlog&amp;#39; that made a plugin for eclipse at this, you can find information about it in  &lt;a href="http://stackoverflow.com/questions/6948374/how-to-change-font-size-quickly-in-eclipse/7816385#7816385"&gt;this StackOverflow question&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;It has some other features for eclipse, amongst which is Ctrl++ and Ctrl+- to change the font size, it&amp;#39;s frickin&amp;#39; awesome.&lt;/p&gt;
+
+&lt;p&gt;Happy coding!&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Custom resources in Visual Studio Test projects</title>
+      <link>http://marcel.bowlitz.com/continuous-integration/custom-resources-in-visual-studio-test-projects</link>
+      <pubDate>2013-01-24</pubDate>
+      <description>&lt;p&gt;Many times, you need custom resources for your test projects, and these resources might be needed in several test projects.  &lt;/p&gt;
+
+&lt;p&gt;Now, you could simply copy all of these resources (files) to all your projects and &amp;#39;include them&amp;#39; in the .csproj file, but you know this would break DRY principle, which is a &lt;a href="http://en.wikipedia.org/wiki/Don&amp;#x27;t_repeat_yourself"&gt;good idea to abide to&lt;/a&gt;.  &lt;/p&gt;
+
+&lt;p&gt;Anyway, normally if you want to copy a resource to the output directory you do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  &amp;lt;Target Name=&amp;quot;CopyResources&amp;quot; DependsOnTargets=&amp;quot;Build&amp;quot;&amp;gt;
+    &amp;lt;Exec Command=&amp;quot;CALL ..\my\resources\generator.bat $(OutputPath)&amp;quot; /&amp;gt;
+  &amp;lt;/Target&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Note: I am assuming you have a script that generates resources and then puts them on a path you give it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;When you build your solution in your computer and execute the tests with some of the major test runners, it might work, but not with all of them; and it might fail in some cloud hosted environments, like for example AppHarbor.  &lt;/p&gt;
+
+&lt;p&gt;The solution is simple, instead of using &lt;code&gt;$(OutputPath)&lt;/code&gt;, use &lt;code&gt;$(OutDir)&lt;/code&gt;, and this will work in local and hosted environments.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  &amp;lt;Target Name=&amp;quot;CopyResources&amp;quot; DependsOnTargets=&amp;quot;Build&amp;quot;&amp;gt;
+    &amp;lt;Exec Command=&amp;quot;CALL ..\my\resources\generator.bat $(OutDir)&amp;quot; /&amp;gt;
+  &amp;lt;/Target&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    <item>
+      <title>IronRuby and the Dreaded Method not found error</title>
+      <link>http://marcel.bowlitz.com/ironruby/ironruby-and-the-dreaded-method-not-found-error</link>
+      <pubDate>2013-01-12</pubDate>
+      <description>&lt;p&gt;This post is related to this &lt;a href="http://stackoverflow.com/q/13392178/697862"&gt;StackOverflow question&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt;: This is fixed in the master branch if IronLanguages repo, check the footer &lt;a href="#note"&gt;note&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Maybe you&amp;#39;ve had it, and maybe not, but if you have, then you know how horrible it is when IronRuby gives you this totally unrelated error, for no apparent reason:&lt;/p&gt;
+
+&lt;p&gt;To put things in context imagine you create a very basic IronRuby application, a very simple Ruby script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;obj = Object.new
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then Boom! You get something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Method not found: &amp;#39;Microsoft.Scripting.Actions.Calls.OverloadInfo[] 
+Microsoft.Scripting.Actions.Calls.ReflectionOverloadInfo.CreateArray
+(System.Reflection.MemberInfo[])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;WTF is going on? It seems IronRuby 1.1.3 came with a strange bug where you can&amp;#39;t call Object.new even though if you run ir.exe it says System::Object clearly has a .new class method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;IronRuby 1.1.3.0 on .NET 4.0.30319.17929
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+&amp;gt;&amp;gt;&amp;gt; Object.methods
+=&amp;gt; [:Equals, :ReferenceEquals, :allocate, :clr_constructor, :clr_ctor, :clr_new, :new, ...]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I myself don&amp;#39;t really understand where does thig bug come from, given that IronRuby &lt;em&gt;does&lt;/em&gt; find the .new() method, but I found a simple workaround:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class System::Object
+  def initialize
+  end
+end
+
+obj = Object.new
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run this code, and the world makes sense again. Prepend those 4 lines to any IronRuby project (including the samples) and everything will work correctly.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id="note"&gt;&lt;/a&gt; &lt;strong&gt;NOTE&lt;/strong&gt;: Although this change does fix many applications, it does not fix others, like rubygems. This Object.new bug is fixed in the most recent version of IronRuby that you can get from the &lt;a href="https://github.com/IronLanguages/main/"&gt;IronRuby github repo&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Introducing Dependency Locator</title>
+      <link>http://marcel.bowlitz.com/software-design/introducing-dependency-locator</link>
+      <pubDate>2012-12-18</pubDate>
+      <description>&lt;h2 id="toc_0"&gt;&lt;a href="#what-is-dependency-locator"&gt;&lt;/a&gt;What is Dependency Locator?&lt;/h2&gt;
+
+&lt;p&gt;Dependency Locator is an implementation of the Service Locator pattern
+with a twist (aren&amp;#39;t they all?). Dependency Locator uses a C# API for
+setting up dependencies (no more hundreds of XML configuration for your
+dependencies).&lt;/p&gt;
+
+&lt;h2 id="toc_1"&gt;&lt;a href="#features"&gt;&lt;/a&gt;Features&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;  Fluent C# API for Dependency configuration&lt;/li&gt;
+&lt;li&gt;  It can setup Singletons&lt;/li&gt;
+&lt;li&gt;  It can setup Configuration values&lt;/li&gt;
+&lt;li&gt;  It can setup Lazy evaluated Dependencies, Singletons or
+Configuration values&lt;/li&gt;
+&lt;li&gt;  It can setup Named dependencies&lt;/li&gt;
+&lt;li&gt;  It understands generic interfaces and implementations&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="toc_2"&gt;&lt;a href="#what-are-its-advantages"&gt;&lt;/a&gt;What are its advantages?&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;  Almost no XML configuration (the example given here is your
+template, you just have to change 1 line)&lt;/li&gt;
+&lt;li&gt;  Uninvasive changes necessary to refactor out dependencies&lt;/li&gt;
+&lt;li&gt;  Can be used for integration testing, by setting up a combination of
+dummy and real implementations under test&lt;/li&gt;
+&lt;li&gt;  Promotes the use of modularity in the system structure&lt;/li&gt;
+&lt;li&gt;  Its perfect for refactoring legacy code&lt;/li&gt;
+&lt;li&gt;  Its perfect for making legacy code more testable&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="toc_3"&gt;&lt;a href="#where-can-i-find-it"&gt;&lt;/a&gt;Where can I find it?&lt;/h2&gt;
+
+&lt;p&gt;You can find it at Github,
+&lt;a href="http://github.com/marcel-valdez/dependency-locator" title="Git repository for Dependency Locator"&gt;HERE&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="toc_4"&gt;&lt;a href="#story-of-example-usage"&gt;&lt;/a&gt;Story of Example Usage&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: Removed all usings and code that is not pertinent to this
+example. Let&amp;#39;s say John has an application where you have a View, Model
+and Controller as such:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* The Account Controller */
+namespace Bank.Controllers {
+    using Bank.Models;
+
+    public class AccountController : Controller {
+        private readonly DataContext db = new DataContext();
+
+        public ActionResult Details(int id) {
+            Accounts account = db.Accounts.Find(id);
+
+            if (account == null) {
+                return HttpNotFound();
+            }
+
+            return View(account);
+        }
+
+        /* Rest of the code... */
+    }
+}
+
+/* The Account Details view*/
+@model Bank.Model
+
+@{
+    ViewBag.Title = &amp;quot;My balance&amp;quot;;
+}
+
+&amp;lt;h2&amp;gt;Account Details&amp;lt;/h2&amp;gt;
+
+&amp;lt;p&amp;gt;
+    @Html.LabelFor(model =&amp;gt; model.AccountHolder, &amp;quot;Account Holder: &amp;quot;);
+    @Html.LabelFor(model =&amp;gt; model.AccountNumber, &amp;quot;Account Number: &amp;quot;);
+    @Html.LabelFor(model =&amp;gt; model.Balance, &amp;quot;Balance: &amp;quot;);
+&amp;lt;/p&amp;gt;
+
+/* The Account model */
+namespace Bank.Models {
+    public class Account {
+        public string AccountHolder { get; set; }
+
+        public decimal Balance { get; private set; }
+
+        public int AccountNumber { get; set; }
+
+        public void Deposit(decimal money) {
+            if (money &amp;lt;= 0) throw new  Exception(&amp;quot;Can&amp;#39;t deposit less than or equal to $0.00&amp;quot;);
+            this.Balance += money;
+        }
+
+        public void Withdraw(decimal money) {
+            if (money &amp;lt;= 0) throw new  Exception(&amp;quot;Can&amp;#39;t withdraw less than or equal to $0.00&amp;quot;);
+            this.Balance -= money;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You may have noticed that the View could call at any point in time:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;model.Deposit(9999);
+or
+model.Withdraw(9999);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The View has no need and should not use any of these methods. It is a
+mistake for it to have access to those methods, and should not be
+visible to the view. So Dave notices this design smell, and wants to add
+a ViewModel, so the View uses a reduced interface of the Model, but he
+doesn&amp;#39;t want to move around any of the model code because he is too lazy
+(which is good!) to modify someone else&amp;#39;s code. &lt;/p&gt;
+
+&lt;p&gt;But his Boss tells the team: The size of the ASP.NET MVC website project is getting too big and unwieldly, from now on, any new classes that aren&amp;#39;t Views, Models or Controllers &#xA0;must be placed in separate C# library projects. &lt;/p&gt;
+
+&lt;p&gt;So Dave creates a new C# Library project called Bank.ViewModels and adds the following ViewModel:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace Bank.ViewModels {
+    using Bank.Models;
+
+    public class AccountDetailsViewModel {
+        public AccountDetailsViewModel(Account account) {
+            this.AccountHolder = account.AccountHolder;
+            this.AccountNumber = account.AccountNumber;
+            this.Balance = account.Balance;
+        }
+
+        public string AccountHolder { get; private set; }
+
+        public int AccountNumber { get; private set; }
+
+        public decimal Balance { get; private set; }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dave procedes to add a reference to the ASP.Net MVC Website Project
+because there is where the model is, but when he tries to add a
+reference from the ASP.Net MVC Website project to the Bank.ViewModels,
+catastrophe happens!  &lt;/p&gt;
+
+&lt;p&gt;He cannot because a circular dependency would
+occur:&lt;br&gt;
+&lt;code&gt;Bank.ViewModels depends on --&amp;gt; -- Bank depends on --&amp;gt;
+Bank.ViewModels&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Aha! But Dave is a smart guy and he knows that in these
+cases he has to use the Inversion of Control principle, so he creates
+ANOTHER project, that will contain the public interfaces of the
+ViewModels project. So he goes ahead and creates a new C# library
+project called Bank.ViewModel.Interfaces:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace Bank.ViewModels.Interfaces {
+    public interface IAccountDetailsViewModel {
+        string AccountHolder { get; }
+        int AccountNumber { get; }
+        decimal Balance { get; }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dave also procedes to change the definition of the
+AccountDetailsViewModel:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace Bank.ViewModels {
+    using Bank.Models;
+    using Bank.ViewModels.Interfaces;
+
+    public class AccountDetailsViewModel: IAccountDetailsViewModel {
+        /* Rest of the code */
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So now, all Dave has to do is add a dependency on the ASP.Net Website to
+the Bank.ViewModels.Interfaces library, and change the View so it uses
+the ViewModel interface, and not the concrete implementation:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@model Bank.ViewModels.Interfaces.IAccountDetailsViewModel
+
+@{
+    ViewBag.Title = &amp;quot;My balance&amp;quot;;
+}
+
+&amp;lt;h2&amp;gt;Account Details&amp;lt;/h2&amp;gt;
+
+&amp;lt;p&amp;gt;
+    @Html.LabelFor(model =&amp;gt; model.AccountHolder, &amp;quot;Account Holder: &amp;quot;);
+    @Html.LabelFor(model =&amp;gt; model.AccountNumber, &amp;quot;Account Number: &amp;quot;);
+    @Html.LabelFor(model =&amp;gt; model.Balance, &amp;quot;Balance: &amp;quot;);
+&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, the controller has to provide the View with the &lt;em&gt;interface&lt;/em&gt; of the
+ViewModel, but as we know, one cannot just &amp;quot;instantiate&amp;quot; an interface,
+it needs to call the constructor, &lt;em&gt;here&lt;/em&gt; is where &lt;em&gt;DependencyLocator&lt;/em&gt;
+comes into play. In order for Dave to setup this dependency, all he has
+to do are 2 things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;  In the Bank.ViewModels project he has to add a new class for setting
+up the dependencies it provides as such:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- --&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace Bank.ViewModels {
+    using DependencyLocation;
+    using DependencyLocation.Setup;
+    using Bank.ViewModels.Intefaces;
+
+    public class Setup : IDependencySetup {
+
+        public void SetupDependencies(IDependencyConfigurator container, string prefix, string defaultKey) {
+            container.SetupDependency&amp;lt;IAccountDetailsViewModel, AccountDetailsViewModel&amp;gt;(defaultKey);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;  He has to tell the Dependency Locator it has to load that Setup
+class in the Bank.ViewModels project. This is done by creating a
+dependency.config file and calling the Dependency Loader during
+startup in the Global.asax file.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id="toc_5"&gt;Contents of dependency.config:&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot; ?&amp;gt;
+&amp;lt;configuration&amp;gt;
+  &amp;lt;configSections&amp;gt;
+    &amp;lt;sectionGroup name=&amp;quot;dependencyInjector&amp;quot;&amp;gt;
+      &amp;lt;section
+        name=&amp;quot;dependencyConfiguration&amp;quot;
+        type=&amp;quot;DependencyLocation.Configuration.DependencyConfiguration, DependencyLocator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&amp;quot;
+        allowLocation=&amp;quot;true&amp;quot;
+        allowDefinition=&amp;quot;Everywhere&amp;quot;
+      /&amp;gt;
+    &amp;lt;/sectionGroup&amp;gt;
+  &amp;lt;/configSections&amp;gt;
+
+  &amp;lt;dependencyInjector&amp;gt;
+    &amp;lt;dependencyConfiguration defaultKey=&amp;quot;default&amp;quot;&amp;gt;
+      &amp;lt;dependencies&amp;gt;
+        &amp;lt;add assemblyName=&amp;quot;Bank.ViewModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&amp;quot; namedInstancePrefix=&amp;quot;&amp;quot; /&amp;gt;
+      &amp;lt;/dependencies&amp;gt;
+    &amp;lt;/dependencyConfiguration&amp;gt;
+  &amp;lt;/dependencyInjector&amp;gt;
+&amp;lt;/configuration&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The assembly where the dependencies are setup doesn&amp;#39;t necessarily have
+to be the same one where the concrete implementations are provided. The
+assembly that sets up dependencies could be separate from interfaces and
+implementations. &lt;/p&gt;
+
+&lt;p&gt;The setup Assembly could be in charge of setting up N
+interface libraries with M implementation libraries. In such a case, the
+setup assembly would need references to all the interface and
+implementation libraries it sets up. The
+DependencyLoader will load any and all IDependencySetup implementors
+configured in the dependency.config file.&lt;/p&gt;
+
+&lt;h5 id="toc_6"&gt;Global.asax.cs contents:&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace Bank {
+    public class BankMvcApplication : System.Web.HttpApplication {
+        protected void Application_Start() {
+                DependencyLoader.Loader.LoadDependencies(&amp;quot;dependency.config&amp;quot;);
+
+                /* Rest of the Application_Start code */
+        }
+
+        /* Rest of the Global.asax.cs file */
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally, Dave modifies the Controller code to return a ViewModel instead
+of a Model:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace Bank.Controllers
+{
+    using Bank.ViewModels.Interfaces;
+    using Bank.Models;
+    using DependencyLocation;
+
+    public class AccountController : Controller {
+        private readonly DataContext db = new DataContext();
+
+        public ActionResult Details(int id) {
+            Accounts account = db.Accounts.Find(id);
+
+            if (account == null) {
+                return HttpNotFound();
+            }
+
+            /* 
+ * This will call the constructor for the concrete type setup for IAccountDetailsViewModel interface.
+ * Notice however, that it could just as well be a dummy implementation of the interface, useful for testing purposes.
+ */
+            return View(Dependency.Locator.Create&amp;lt;IAccountDetailsViewModel&amp;gt;(account));
+        }
+
+        /* Rest of the code... */
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Taddah! Now Dave has refactored the system to use IoC:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Without altering existing project structure&lt;/li&gt;
+&lt;li&gt;Without modifying much of the original code, notice we just: 
+
+&lt;ul&gt;
+&lt;li&gt;Modified 2 lines of executable code&lt;/li&gt;
+&lt;li&gt;Added 1 new line in Global.asax&lt;/li&gt;
+&lt;li&gt;Added 3 using statements. &lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;That&amp;#39;s the main advantage of DependencyLocator, it is not invasive at all, so its very useful for refactoring legacy code.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    <item>
+      <title>Tutorial de NUnit</title>
+      <link>http://marcel.bowlitz.com/testing/tutorial-de-nunit</link>
+      <pubDate>2012-12-18</pubDate>
+      <description>&lt;h2 id="toc_0"&gt;1.1 &#xBF;C&#xF3;mo funciona NUnit?&lt;/h2&gt;
+
+&lt;p&gt;Las pruebas de NUnit pueden ser escritas en cualquier lenguaje de .NET
+que tenga soporte para la clase Attribute. Las pruebas NUnit se definen
+por medio de atributos, aserciones y posiblemente con la ayuda de una
+variable de contexto de pruebas. Todos estos conceptos ser&#xE1;n explicados
+en secciones posteriores.&lt;/p&gt;
+
+&lt;p&gt;Los &lt;a href="http://nunit.org/index.php?p=attributes&amp;amp;r=2.6.1"&gt;Atributos&lt;/a&gt;&#xA0;indican
+qu&#xE9; clases son de pruebas, e igualmente identifican los m&#xE9;todos de
+prueba, as&#xED; mismo, los atributos tambi&#xE9;n pueden modificar el
+comportamiento de una prueba en varias maneras.&lt;/p&gt;
+
+&lt;p&gt;Las
+&lt;a href="http://nunit.org/index.php?p=assertions&amp;amp;r=2.6.1"&gt;Aserciones&lt;/a&gt;&#xA0;prueban un
+valor resultante contra una o m&#xE1;s
+&lt;a href="http://nunit.org/index.php?p=constraintModel&amp;amp;r=2.6.1"&gt;Condiciones&lt;/a&gt;, si
+el resultado cumple con todas las condiciones, la prueba se considera
+exitosa, de lo contrario se considera fallida.&lt;/p&gt;
+
+&lt;p&gt;El c&#xF3;digo de usuario en una prueba, puede adquirir informaci&#xF3;n sobre la
+prueba y el ambiente en que ejecuta, por medio de la variable de
+&lt;a href="http://nunit.org/index.php?p=testContext&amp;amp;r=2.6.1"&gt;Contexto de Pruebas&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Todo el c&#xF3;digo de este tutorial lo puedes encontrar en:
+&lt;a href="http://github.com/marcel-valdez/tutorial_nunit"&gt;github&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="toc_1"&gt;1.2 C&#xF3;mo preparar el ambiente para utilizar NUnit&lt;/h2&gt;
+
+&lt;p&gt;Existen m&#xFA;ltiples formas de preparar tu ambiente de desarrollo Visual
+Studio 2010 para utilizar NUnit, pero aqu&#xED; se te describir&#xE1; una forma
+sencilla y pr&#xE1;ctica de hacerlo.&lt;/p&gt;
+
+&lt;h3 id="toc_2"&gt;Paso 1.&lt;/h3&gt;
+
+&lt;p&gt;&#xA0;Inicia Visual Studio 2010&lt;/p&gt;
+
+&lt;h3 id="toc_3"&gt;Paso 2.&lt;/h3&gt;
+
+&lt;p&gt;Crea una soluci&#xF3;n vac&#xED;a de Visual Studio 2010.&lt;/p&gt;
+
+&lt;h4 id="toc_4"&gt;Subpaso 1&lt;/h4&gt;
+
+&lt;p&gt;Entra a la pantalla de nuevo proyecto.&lt;/p&gt;
+
+&lt;h4 id="toc_5"&gt;Subpaso 2&lt;/h4&gt;
+
+&lt;p&gt;Escoge crear una soluci&#xF3;n en blanco llamada tutorial_nunit&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image17.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_6"&gt;Subpaso 3&lt;/h4&gt;
+
+&lt;p&gt;Te deber&#xED;a presentar esta estructura de proyecto.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image19.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h3 id="toc_7"&gt;Paso 3.&lt;/h3&gt;
+
+&lt;p&gt;&#xA0;Agrega un proyecto C# del tipo librer&#xED;a, llamado: Bank&lt;/p&gt;
+
+&lt;h4 id="toc_8"&gt;Subpaso 4&lt;/h4&gt;
+
+&lt;p&gt;Entra a la pantalla para agregar un proyecto a la soluci&#xF3;n.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image20.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_9"&gt;Subpaso 5&lt;/h4&gt;
+
+&lt;p&gt;Agrega el proyecto del tipo librer&#xED;a de clases con el nombre
+Bank&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image03.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_10"&gt;Subpaso 6&lt;/h4&gt;
+
+&lt;p&gt;Pantalla resultante de la creaci&#xF3;n del proyecto.&lt;/p&gt;
+
+&lt;h2 id="toc_11"&gt;&lt;img src="/assets/media/image01.png" alt=""&gt;&lt;/h2&gt;
+
+&lt;h3 id="toc_12"&gt;Paso 4.&lt;/h3&gt;
+
+&lt;p&gt;Agrega una clase llamada Account&#xA0;al proyecto.&lt;/p&gt;
+
+&lt;h4 id="toc_13"&gt;Subpaso 7&lt;/h4&gt;
+
+&lt;p&gt;Entra al men&#xFA; de creaci&#xF3;n de clases.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image07.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_14"&gt;Subpaso 8&lt;/h4&gt;
+
+&lt;p&gt;Crea la clase llamada Account&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image05.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_15"&gt;Subpaso 9&lt;/h4&gt;
+
+&lt;p&gt;Pantalla resultante de la creaci&#xF3;n de la clase Account&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image10.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h3 id="toc_16"&gt;Paso 5.&lt;/h3&gt;
+
+&lt;p&gt;Agrega el c&#xF3;digo en:
+&lt;a href="https://gist.github.com/3441171"&gt;https://gist.github.com/3441171&lt;/a&gt;&#xA0;a la
+clase Account.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace&#xA0;Bank
+{
+&#xA0;&#xA0;&#xA0;&#xA0;using&#xA0;System;
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;class&#xA0;Account
+&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;void&#xA0;Deposit(decimal&#xA0;amount)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;balance&#xA0;+=&#xA0;amount;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;void&#xA0;Withdraw(decimal&#xA0;amount)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;balance&#xA0;-=&#xA0;amount;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;void&#xA0;TransferFunds(Account&#xA0;destination,&#xA0;decimal&#xA0;amount)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;throw&#xA0;new&#xA0;NotImplementedException();
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;decimal&#xA0;Balance
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;get;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;set;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;&#xA0;&#xA0;&#xA0;}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h3 id="toc_17"&gt;Paso 6.&lt;/h3&gt;
+
+&lt;p&gt;&#xA0;Agrega un proyecto de pruebas NUnit para ser ejecutado como
+programa de consola.&lt;/p&gt;
+
+&lt;p&gt;La forma m&#xE1;s sencilla y pr&#xE1;ctica para hacer esto, es utilizando una de
+las plantillas NUnit en l&#xED;nea, que contienen un proyecto pre configurado
+para ser ejecutado como un programa de consola que ejercitar&#xE1; las
+pruebas unitarias. Hacer esto, es de lo m&#xE1;s sencillo.&lt;/p&gt;
+
+&lt;h4 id="toc_18"&gt;Subpaso 10&lt;/h4&gt;
+
+&lt;p&gt;Entra a la pantalla para agregar un proyecto a la soluci&#xF3;n.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image20.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_19"&gt;Subpaso 11&lt;/h4&gt;
+
+&lt;p&gt;En la categor&#xED;a de &#x201C;Online Templates&#x201D; haz una b&#xFA;squeda por
+NUnit, y selecciona NUnit Test Application y ponle de nombre de
+proyecto: Bank.UnitTest&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image26.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_20"&gt;Subpaso 12&lt;/h4&gt;
+
+&lt;p&gt;Estructura resultante de la creaci&#xF3;n del proyecto de pruebas.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image27.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h3 id="toc_21"&gt;Paso 7.&lt;/h3&gt;
+
+&lt;p&gt;Renombra la clase TestFixture a AccountTest&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image28.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h3 id="toc_22"&gt;Paso 8.&lt;/h3&gt;
+
+&lt;p&gt;Agrega el c&#xF3;digo de:
+&lt;a href="https://gist.github.com/3441375"&gt;https://gist.github.com/3441375&lt;/a&gt;&#xA0;a la
+prueba unitaria.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace&#xA0;Bank.UnitTest
+{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;using&#xA0;System;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;using&#xA0;NUnit.Framework;
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;[TestFixture]&#xA0;//&#xA0;El&#xA0;atributo&#xA0;TestFixture&#xA0;identifica&#xA0;a&#xA0;esta&#xA0;clase&#xA0;como&#xA0;una&#xA0;clase&#xA0;de&#xA0;pruebas
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;class&#xA0;AccountTest
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;[Test]&#xA0;//&#xA0;El&#xA0;atributo&#xA0;Test&#xA0;identifica&#xA0;a&#xA0;este&#xA0;m&#xE9;todo&#xA0;como&#xA0;una&#xA0;prueba&#xA0;unitaria
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;void&#xA0;TransferFunds()
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Account&#xA0;source&#xA0;=&#xA0;new&#xA0;Account();
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;source.Deposit(200m);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Account&#xA0;destination&#xA0;=&#xA0;new&#xA0;Account();
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;destination.Deposit(150m);
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;source.TransferFunds(destination,&#xA0;100m);
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Las&#xA0;aserciones&#xA0;se&#xA0;realizan&#xA0;por&#xA0;medio&#xA0;de&#xA0;la&#xA0;clase&#xA0;est&#xE1;tica&#xA0;Assert
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;En&#xA0;este&#xA0;caso&#xA0;se&#xA0;trata&#xA0;de&#xA0;una&#xA0;aserci&#xF3;n&#xA0;de&#xA0;igualdad&#xA0;por&#xA0;medio&#xA0;del&#xA0;m&#xE9;todo
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;est&#xE1;tico&#xA0;AreEqual([valor&#xA0;esperado],&#xA0;[valor&#xA0;obtenido])
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Assert.AreEqual(250m,&#xA0;destination.Balance);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Assert.AreEqual(100m,&#xA0;source.Balance);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h3 id="toc_23"&gt;Paso 9.&lt;/h3&gt;
+
+&lt;p&gt;La prueba unitaria a&#xFA;n no funciona, y el proyecto de pruebas no
+compila, esto se debe a que el proyecto de pruebas necesita una
+referencia al proyecto C# de la clase de librer&#xED;as. Debes agregar una
+referencia al proyecto de librer&#xED;as.&lt;/p&gt;
+
+&lt;h4 id="toc_24"&gt;Subpaso 13&lt;/h4&gt;
+
+&lt;p&gt;Entrar a la pantalla de manejo de referencias.&lt;/p&gt;
+
+&lt;h2 id="toc_25"&gt;&lt;img src="/assets/media/image31.png" alt=""&gt;&lt;/h2&gt;
+
+&lt;h4 id="toc_26"&gt;Subpaso 14&lt;/h4&gt;
+
+&lt;p&gt;Agregas la referencia al proyecto Bank.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image32.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h3 id="toc_27"&gt;Paso 10.&lt;/h3&gt;
+
+&lt;p&gt;El proyecto de pruebas unitarias ya funciona correctamente,
+para ejecutarlo necesitas abrir la l&#xED;nea de comandos. En Windows 7, esto
+lo logras presionando el bot&#xF3;n de inicio, y escribiendo cmd [enter]&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image33.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_28"&gt;Subpaso 15&lt;/h4&gt;
+
+&lt;p&gt;En la l&#xED;nea de comandos, entras al directorio del proyecto de
+pruebas.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image34.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_29"&gt;Subpaso 16&lt;/h4&gt;
+
+&lt;p&gt;Ejecutas las pruebas unitarias con la instrucci&#xF3;n:
+bin\debug\bank.unittest.exe&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image29.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;Como puedes observar, al ejecutar el programa Bank.UnitTest.exe, este
+invoca NUnit qui&#xE9;n a su vez, invoca la prueba unitaria que definimos
+anteriormente, d&#xE1;ndonos detalles sobre el error encontrado.&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h2 id="toc_30"&gt;1.2.1 C&#xF3;mo instalar Visual NUnit&lt;/h2&gt;
+
+&lt;p&gt;Ejecutar las pruebas unitarias con la l&#xED;nea de comandos es una forma
+efectiva de hacerlo, ya que funcionar&#xE1; pr&#xE1;cticamente en cualquier
+PC-Windows que encuentres, pues solamente dependes de la l&#xED;nea de
+comandos y la aplicaci&#xF3;n compilada, pero existen formas m&#xE1;s c&#xF3;modas de
+ejecutar las pruebas unitarias, esto normalmente se hace por medio de lo
+que se le llaman &#x201C;Test Runners&#x201D;, de estos hay varios, entre ellos est&#xE1;n:
+&lt;a href="http://testdriven.net"&gt;TestDriven.net&lt;/a&gt;&#xAE;&#x2122;,
+&lt;a href="http://devexpress.com/coderush"&gt;CodeRush&lt;/a&gt;&#xAE; de DevExpress&#x2122;,
+&lt;a href="http://www.jetbrains.com/resharper"&gt;ReSharper&lt;/a&gt;&#xAE; de JetBrains&#x2122;, todos
+ellos son de paga para uso profesional.&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Existe otra opci&#xF3;n gratuita y simple, se trata de una extensi&#xF3;n
+de visual studio para ejecutar pruebas de NUnit: Visual NUnit. Para
+instalarlo, sigue las instrucciones a continuaci&#xF3;n:&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h3 id="toc_31"&gt;Paso 1.&lt;/h3&gt;
+
+&lt;p&gt;&#xA0;Instala la extensi&#xF3;n de Visual Studio.&lt;/p&gt;
+
+&lt;h4 id="toc_32"&gt;Subpaso 17&lt;/h4&gt;
+
+&lt;p&gt;Entra al manejador de extensiones.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image30.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h4 id="toc_33"&gt;Subpaso 18&lt;/h4&gt;
+
+&lt;p&gt;Haz una b&#xFA;squeda en la Galer&#xED;a en l&#xED;nea por Visual NUnit&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image18.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_34"&gt;Subpaso 19&lt;/h4&gt;
+
+&lt;p&gt;Presiona &#x2018;Download&#x2019; para iniciar la instalaci&#xF3;n.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image14.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h4 id="toc_35"&gt;Subpaso 20&lt;/h4&gt;
+
+&lt;p&gt;Al finalizar la instalaci&#xF3;n, continua presionando &#x2018;Install&#x2019;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image16.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_36"&gt;Subpaso 21&lt;/h4&gt;
+
+&lt;p&gt;En la secci&#xF3;n inferior del manejador de extensiones de dar&#xE1;
+la opci&#xF3;n de reiniciar VS 2010, hazlo.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image12.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_37"&gt;Subpaso 22&lt;/h4&gt;
+
+&lt;p&gt;Despu&#xE9;s de reiniciar VS 2010, abre la ventana de Visual NUnit
+o presiona Ctrl + F7&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image13.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_38"&gt;Subpaso 23&lt;/h4&gt;
+
+&lt;p&gt;Esto abrir&#xE1; la pantalla de Visual NUnit, donde debes elegir
+el proyecto de Bank.UnitTest.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image24.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_39"&gt;Subpaso 24&lt;/h4&gt;
+
+&lt;p&gt;Ahora presiona Run, y esto ejecutar&#xE1; todas las pruebas
+unitarias del proyecto Bank.UnitTest, si eliges Namespace y/o Fixture,
+puedes filtrar qu&#xE9; pruebas deseas ejecutar; en nuestro caso, solamente
+tenemos una prueba.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image25.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="toc_40"&gt;Subpaso 25&lt;/h4&gt;
+
+&lt;p&gt;Si haces doble clic sobre la prueba que fall&#xF3;, puedes entrar
+a ver los detalles del error, donde te informar&#xE1; la l&#xED;nea de c&#xF3;digo
+donde ocurri&#xF3; el error.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image22.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h2 id="toc_41"&gt;1.3.1 Haciendo que pase el caso de prueba unitario.&lt;/h2&gt;
+
+&lt;p&gt;Ahora, corrige el m&#xE9;todo Bank.Account.TransferFunds(Account,
+decimal)&#xA0;para que pase la prueba unitaria, con el siguiente c&#xF3;digo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public&#xA0;void&#xA0;TransferFunds(Account&#xA0;destination,&#xA0;decimal&#xA0;amount)
+{
+  this.balance&#xA0;-=&#xA0;amount;
+  destination.balance&#xA0;+=&#xA0;amount;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ejecuta de nuevo las pruebas en el proyecto Bank.UnitTest:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image23.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;Ahora es exitosa la ejecuci&#xF3;n de las pruebas unitarias, como se muestra
+en la imagen anterior. Claro que el c&#xF3;digo anterior tiene errores, pues
+sabemos que si el objeto Account&#xA0;no tiene suficientes fondos para la
+transferencia, entonces no se le deber&#xED;a permitir realizar la
+transferencia. Agreguemos ese caso de prueba.&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h2 id="toc_42"&gt;1.3.2 Agregando otro caso de prueba&lt;/h2&gt;
+
+&lt;h3 id="toc_43"&gt;Paso 1.&lt;/h3&gt;
+
+&lt;p&gt;Agrega el siguiente c&#xF3;digo a la clase de pruebas unitarias
+AccountTest:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Test]
+public&#xA0;void&#xA0;TransferFundsWithInsufficientFunds()
+{
+  Account&#xA0;source&#xA0;=&#xA0;new&#xA0;Account();
+  source.Deposit(100m);
+  Account&#xA0;destination&#xA0;=&#xA0;new&#xA0;Account();
+
+  destination.Deposit(50m);
+  TestDelegate&#xA0;invalidTransfer&#xA0;=&#xA0;()&#xA0;=&amp;gt;&#xA0;source.TransferFunds(destination,&#xA0;101m);
+
+  Assert.Throws&amp;lt;InsufficientFundsException&amp;gt;(invalidTransfer);
+  Assert.That(source.Balance,&#xA0;Is.EqualTo(100m));
+  Assert.That(destination.Balance,&#xA0;Is.EqualTo(50m));
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Como podr&#xE1;s darte cuenta, a&#xFA;n no existe la clase
+InsufficientFundsException, ni tampoco tiene el comportamiento deseado
+a&#xFA;n el m&#xE9;todo Account.TransferFunds, pero aun as&#xED;, primero escribimos la
+prueba&#xA0;para el comportamiento deseado, luego haremos la
+implementaci&#xF3;n&#xA0;del comportamiento . A este tipo de desarrollo de c&#xF3;digo
+se le llama &lt;a href="http://en.wikipedia.org/wiki/Test-driven_development"&gt;Test Driven
+Development&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h3 id="toc_44"&gt;Paso 2.&lt;/h3&gt;
+
+&lt;p&gt;Lo primero que haremos, ser&#xE1; agregar la excepci&#xF3;n
+InsufficientFundsException, para esto debes crear una nueva clase en el
+proyecto Bank. Ya vimos como se crean las clases en Visual Studio 2010,
+ahora crea una nueva clase que se llame InsufficientFundsException en el
+proyecto Bank,&#xA0;de tal manera que te quede la siguiente estructura de
+archivos:&lt;/p&gt;
+
+&lt;h2 id="toc_45"&gt;&lt;img src="/assets/media/image21.png" alt=""&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;p&gt;La clase InsufficientFundsException simplemente hereda de Exception, e
+implementa su constructor, no requiere pruebas:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace&#xA0;Bank
+{
+&#xA0;&#xA0;&#xA0;&#xA0;using&#xA0;System;
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;class&#xA0;InsufficientFundsException&#xA0;:&#xA0;Exception
+&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;InsufficientFundsException(string&#xA0;message)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;:&#xA0;base(message)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;&#xA0;&#xA0;&#xA0;}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h3 id="toc_46"&gt;Paso 3.&lt;/h3&gt;
+
+&lt;p&gt;Ahora deber&#xED;a compilar la prueba unitaria, pero igual sigue
+fallando, pues a&#xFA;n no se implementa el comportamiento en el m&#xE9;todo
+Account.TransferFunds, el m&#xE9;todo TransferFunds debe tener esta
+implementaci&#xF3;n:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public&#xA0;void&#xA0;TransferFunds(Account&#xA0;destination,&#xA0;decimal&#xA0;amount)
+{
+&#xA0;&#xA0;&#xA0;&#xA0;if(this.Balance&#xA0;&amp;lt;&#xA0;amount)
+&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;throw&#xA0;new&#xA0;InsufficientFundsException(&#x201C;A&#xA0;${0:0.00}&#xA0;transfer&#xA0;was&#xA0;requested,&#xA0;but&#xA0;the&#xA0;source&#xA0;account&#xA0;did&#xA0;not&#xA0;have&#xA0;enough&#xA0;balance.&#x201D;);
+&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;&#xA0;&#xA0;&#xA0;this.Balance&#xA0;-=&#xA0;amount;
+&#xA0;&#xA0;&#xA0;&#xA0;destination.Balance&#xA0;+=&#xA0;amount;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h3 id="toc_47"&gt;Paso 4.&lt;/h3&gt;
+
+&lt;p&gt;De nuevo ejecuta las pruebas unitarias del proyecto
+Bank.UnitTest, y te deber&#xED;a de marcar todo en verde, la prueba ha
+pasado:&lt;/p&gt;
+
+&lt;h2 id="toc_48"&gt;&lt;img src="/assets/media/image11.png" alt=""&gt;&lt;/h2&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h2 id="toc_49"&gt;1.4 C&#xF3;mo hacer una prueba unitaria con NSubstitute&lt;/h2&gt;
+
+&lt;p&gt;Digamos, que el banco en cuesti&#xF3;n, el due&#xF1;o del proyecto Bank, quiere
+agregar la capacidad de pagar y agregar facturas de servicios como agua,
+luz, cable, etc&#xE9;tera, directamente en el banco, por medio del c&#xF3;digo de
+la factura. Entonces, dadas estas caracter&#xED;sticas, utilizando
+&lt;a href="http://en.wikipedia.org/wiki/Test-driven_development"&gt;TDD&lt;/a&gt;&#xA0;primero
+escribiremos las pruebas para cada funcionalidad.&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h3 id="toc_50"&gt;Paso 1.&lt;/h3&gt;
+
+&lt;p&gt;Lo primero que debes hacer es crear un nuevo conjunto de casos
+de prueba para la funcionalidad de pago de servicios, para esto, se
+deben crear una clase, a la que llamaremos:
+&#xA0;UtilitiesPaymentProcesorTest&#xA0;en el proyecto Bank.UnitTest, y la clase
+que implementar&#xE1; esta funcionalidad UtilitiesPaymentProcessor&#xA0;en el
+proyecto Bank. Al crear las clases, te deber&#xED;a quedar esta estructura de
+archivos:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image09.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h3 id="toc_51"&gt;Paso 2.&lt;/h3&gt;
+
+&lt;p&gt;Abre el archivo UtilitiesPaymentProcessorTest.cs, y agregamos
+los atributos de NUnit para que la considere una clase de pruebas:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace&#xA0;Bank.UnitTest
+{
+&#xA0;&#xA0;&#xA0;&#xA0;using&#xA0;NUnit.Framework;
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;[TestFixture]
+&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;class&#xA0;UtilitiesPaymentProcessorTest
+&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h3 id="toc_52"&gt;Paso 3.&lt;/h3&gt;
+
+&lt;p&gt;Ahora debemos agregar e implementar uno de los casos de prueba,
+por lo menos debemos empezar con el caso de prueba para agregar facturas
+por pagar.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace&#xA0;Bank.UnitTest
+{
+&#xA0;&#xA0;&#xA0;&#xA0;using&#xA0;NUnit.Framework;
+&#xA0;&#xA0;&#xA0;&#xA0;using&#xA0;System.Collections.Generic;
+&#xA0;&#xA0;&#xA0;&#xA0;using&#xA0;System.Reflection;
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;[TestFixture]
+&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;class&#xA0;UtilitiesPaymentProcessorTest
+&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;[Test]
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;void&#xA0;TestIfItCanAddBill()
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Se&#xA0;inicializan&#xA0;los&#xA0;objetos&#xA0;a&#xA0;utilizar
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;var&#xA0;utilitesAccount&#xA0;=&#xA0;new&#xA0;Account();
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;var&#xA0;target&#xA0;=&#xA0;new&#xA0;UtilitiesPaymentProcessor(utilitesAccount);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;var&#xA0;fieldInfo&#xA0;=&#xA0;typeof(UtilitiesPaymentProcessor)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;.GetField(&#x201C;bills&#x201D;,&#xA0;BindingFlags.NonPublic&#xA0;|&#xA0;BindingFlags.Instance);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;string&#xA0;billCode&#xA0;=&#xA0;&#x201C;bill&#x201D;;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;int&#xA0;debt&#xA0;=&#xA0;1;
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Se&#xA0;agrega&#xA0;la&#xA0;factura
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;target.AddBill(billCode,&#xA0;debt);
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Se&#xA0;obtienen&#xA0;las&#xA0;facturas&#xA0;del&#xA0;objeto
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;var&#xA0;bills&#xA0;=&#xA0;(IDictionary&amp;lt;string,&#xA0;decimal&amp;gt;)fieldInfo.GetValue(target);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Se&#xA0;verifica&#xA0;que&#xA0;efectivamente&#xA0;se&#xA0;haya&#xA0;agregado&#xA0;la&#xA0;factura
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Assert.That(bills.Keys,&#xA0;Contains.Item(billCode));
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Assert.That(bills[billCode],&#xA0;Is.EqualTo(debt));
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;&#xA0;&#xA0;&#xA0;}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;p&gt;Por el momento, este c&#xF3;digo ni siquiera compila, pues no existe el
+constructor ni el m&#xE9;todo para agregar facturas en
+UtilitiesPaymentProcessor. Agrega estos dos m&#xE9;todos en la clase
+UtilitesPaymentProcessor:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace&#xA0;Bank
+{
+&#xA0;&#xA0;&#xA0;&#xA0;using&#xA0;System;
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;class&#xA0;UtilitiesPaymentProcessor
+&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;Account&#xA0;utilitiesAccount;
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;UtilitiesPaymentProcessor(Account&#xA0;utilitiesAccount)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;this.utilitiesAccount&#xA0;=&#xA0;utilitiesAccount;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;void&#xA0;AddBill(string&#xA0;billCode,&#xA0;decimal&#xA0;debt)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;throw&#xA0;new&#xA0;NotImplementedException();
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}&#xA0;&#xA0;&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ahora s&#xED; deber&#xED;a compilar el c&#xF3;digo, pero la prueba no pasa, pues
+solamente tira una excepci&#xF3;n:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image08.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;p&gt;Finalmente, implementamos el m&#xE9;todo AddBill&#xA0;en la clase
+UtilitiesPaymentProcessor:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace&#xA0;Bank
+{
+&#xA0;&#xA0;&#xA0;&#xA0;using&#xA0;System;
+&#xA0;&#xA0;&#xA0;&#xA0;using&#xA0;System.Collections.Generic;
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;class&#xA0;UtilitiesPaymentProcessor
+&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;Account&#xA0;utilitiesAccount;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;IDictionary&amp;lt;string,&#xA0;decimal&amp;gt;&#xA0;bills&#xA0;=&#xA0;new&#xA0;Dictionary&amp;lt;string,&#xA0;decimal&amp;gt;();
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;UtilitiesPaymentProcessor(Account&#xA0;utilitiesAccount)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;this.utilitiesAccount&#xA0;=&#xA0;utilitiesAccount;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;void&#xA0;AddBill(string&#xA0;billCode,&#xA0;decimal&#xA0;debt)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;this.bills.Add(billCode,&#xA0;debt);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;&#xA0;&#xA0;&#xA0;}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;p&gt;Como especificamos en la prueba unitaria, se espera que la clase
+UtilitiesPaymentProcessor, tenga un diccionario con las facturas
+pendientes, que ser&#xE1; donde se guarden las facturas y su saldo. Ahora,
+ejecutemos el caso de prueba para TestifItCanAddBill:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image06.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;Todas las pruebas pasan de nuevo.&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h3 id="toc_53"&gt;Paso 4.&lt;/h3&gt;
+
+&lt;p&gt;Pasemos al segundo caso de prueba, pagar la factura. Dado que
+una prueba unitaria no debe tener dependencias de otras unidades de
+c&#xF3;digo (otras clases), pues se convierte en una prueba fr&#xE1;gil. No
+podemos probar c&#xF3;digo que dependa de los m&#xE9;todos de la clase Account,
+entonces &#xBF;c&#xF3;mo se hace, sin tener que gastar cientos de l&#xED;neas de c&#xF3;digo
+&#x201C;&lt;a href="http://en.wikipedia.org/wiki/Boilerplate_code"&gt;boilerplate&lt;/a&gt;&#x201D; para
+ejecutar una simple prueba unitaria? Por medio de
+&lt;a href="http://en.wikipedia.org/wiki/Mock_object"&gt;mocks&lt;/a&gt;&#xA0;y
+&lt;a href="http://en.wikipedia.org/wiki/Method_stub"&gt;stubs&lt;/a&gt;, no importa saber cu&#xE1;l
+es la diferencia entre estos, sino saber cuando se ocupa una forma de
+quitar dependencias a las pruebas, NUnit viene con una librer&#xED;a para
+hacer precisamente esto: NSubstitute y puedes descargar las librer&#xED;as
+&lt;a href="http://github.com/downloads/nsubstitute/NSubstitute/NSubstitute-1.4.3.0.zip"&gt;aqu&#xED;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Un detalle sobre mocking, es que requieren que las clases implementen
+interfaces, o tengan el denominador virtual en su definici&#xF3;n de m&#xE9;todo,
+por esto agregaremos este denominador:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace&#xA0;Bank
+{
+&#xA0;&#xA0;&#xA0;&#xA0;using&#xA0;System;
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;class&#xA0;Account
+&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;virtual&#xA0;void&#xA0;Deposit(decimal&#xA0;amount)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Balance&#xA0;+=&#xA0;amount;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;virtual&#xA0;void&#xA0;Withdraw(decimal&#xA0;amount)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Balance&#xA0;-=&#xA0;amount;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;virtual&#xA0;void&#xA0;TransferFunds(Account&#xA0;destination,&#xA0;decimal&#xA0;amount)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if(this.Balance&#xA0;&amp;lt;&#xA0;amount)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;throw&#xA0;new&#xA0;InsufficientFundsException(&#x201C;A&#xA0;${0:0.00}&#xA0;transfer&#xA0;was&#xA0;requested,&#xA0;but&#xA0;the&#xA0;source&#xA0;account&#xA0;did&#xA0;not&#xA0;have&#xA0;enough&#xA0;balance.&#x201D;);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;this.Balance&#xA0;-=&#xA0;amount;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;destination.Balance&#xA0;+=&#xA0;amount;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;virtual&#xA0;decimal&#xA0;Balance
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;get;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;private&#xA0;set;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;&#xA0;&#xA0;&#xA0;}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;p&gt;Ahora ejecuta todas las pruebas unitarias de nuevo, para verificar que
+este cambio no haya afectado la funcionalidad previamente implementada.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image04.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;Esta es precisamente una de las principales ventajas de tener pruebas
+unitarias exhaustivas, porque podemos verificar que cambios hecho al
+c&#xF3;digo no provoquen nuevos errores, esto no es factible hacer
+manualmente siquiera en un programa de tama&#xF1;o mediano, pero para un
+proyecto con pruebas unitarias exhaustivas, esto no representa un reto,
+ni siquiera se considera problema, al contrario, se considera ventaja.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Test]
+public&#xA0;void&#xA0;TestIfItCanPayBill()
+{
+&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Se&#xA0;inicializan&#xA0;los&#xA0;mocks
+&#xA0;&#xA0;&#xA0;&#xA0;var&#xA0;utilitesAccount&#xA0;=&#xA0;Substitute.For&amp;lt;Account&amp;gt;();
+&#xA0;&#xA0;&#xA0;&#xA0;var&#xA0;payerAccount&#xA0;=&#xA0;Substitute.For&amp;lt;Account&amp;gt;();
+&#xA0;&#xA0;&#xA0;&#xA0;payerAccount.Balance.Returns(20);
+&#xA0;&#xA0;&#xA0;&#xA0;utilitesAccount.Balance.Returns(0);
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Se&#xA0;inicializa&#xA0;el&#xA0;objeto&#xA0;a&#xA0;probar
+&#xA0;&#xA0;&#xA0;&#xA0;var&#xA0;target&#xA0;=&#xA0;new&#xA0;UtilitiesPaymentProcessor(utilitesAccount);
+&#xA0;&#xA0;&#xA0;&#xA0;string&#xA0;billCode&#xA0;=&#xA0;&#x201C;bill&#x201D;;
+&#xA0;&#xA0;&#xA0;&#xA0;decimal&#xA0;debt&#xA0;=&#xA0;10;
+&#xA0;&#xA0;&#xA0;&#xA0;decimal&#xA0;leftOver&#xA0;=&#xA0;1;
+&#xA0;&#xA0;&#xA0;&#xA0;IDictionary&amp;lt;string,&#xA0;decimal&amp;gt;&#xA0;bills&#xA0;=&#xA0;GetBills(target);
+&#xA0;&#xA0;&#xA0;&#xA0;bills.Add(billCode,&#xA0;debt);
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Se&#xA0;ejercita&#xA0;el&#xA0;c&#xF3;digo&#xA0;bajo&#xA0;prueba
+&#xA0;&#xA0;&#xA0;&#xA0;decimal&#xA0;actualLeftOver&#xA0;=&#xA0;target.PayBill(billCode,&#xA0;payerAccount,&#xA0;debt&#xA0;-&#xA0;leftOver);
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Verificar&#xA0;que&#xA0;el&#xA0;m&#xE9;todo&#xA0;haya&#xA0;funcionado&#xA0;correctamente
+&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Prueba&#xA0;de&#xA0;Caja&#xA0;negra
+&#xA0;&#xA0;&#xA0;&#xA0;Assert.That(bills[billCode],&#xA0;Is.EqualTo(actualLeftOver));
+&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Prueba&#xA0;de&#xA0;Caja&#xA0;blanca&#xA0;o&#xA0;transparente
+&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Se&#xA0;especifica&#xA0;que&#xA0;se&#xA0;debe&#xA0;transferir&#xA0;fondos&#xA0;del&#xA0;deudor&#xA0;al&#xA0;acreedor.
+&#xA0;&#xA0;&#xA0;&#xA0;payerAccount.Received().TransferFunds(utilitesAccount,&#xA0;debt&#xA0;-&#xA0;leftOver);
+&#xA0;&#xA0;&#xA0;&#xA0;utilitesAccount.DidNotReceive().TransferFunds(Arg.Any&amp;lt;Account&amp;gt;(),&#xA0;Arg.Any&amp;lt;decimal&amp;gt;());
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Por el momento, no compila la prueba. Se agreg&#xF3; el m&#xE9;todo GetBills en la
+clase UtilitiesPaymentProcessorTest, para obtener la instancia bills&#xA0;del
+objeto UtilitiesPaymentProcessor&#xA0;para evitar duplicaci&#xF3;n de c&#xF3;digo, ya
+que esto mismo ya se hac&#xED;a en la prueba anterior:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;private&#xA0;static&#xA0;IDictionary&amp;lt;string,&#xA0;decimal&amp;gt;&#xA0;GetBills(UtilitiesPaymentProcessor&#xA0;target)
+{
+&#xA0;&#xA0;&#xA0;&#xA0;var&#xA0;fieldInfo&#xA0;=&#xA0;typeof(UtilitiesPaymentProcessor)
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;.GetField(&#x201C;bills&#x201D;,&#xA0;BindingFlags.NonPublic&#xA0;|&#xA0;BindingFlags.Instance);
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;var&#xA0;bills&#xA0;=&#xA0;(IDictionary&amp;lt;string,&#xA0;decimal&amp;gt;)fieldInfo.GetValue(target);
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;bills;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ahora, se implementa la funcionalidad en el objeto
+UtilitiesPaymentProcessor:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public&#xA0;decimal&#xA0;PayBill(string&#xA0;billCode,&#xA0;Account&#xA0;payer,&#xA0;decimal&#xA0;payment)
+{
+&#xA0;&#xA0;&#xA0;&#xA0;payer.TransferFunds(utilitiesAccount,&#xA0;payment);
+&#xA0;&#xA0;&#xA0;&#xA0;this.bills[billCode]&#xA0;-=&#xA0;payment;
+&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;return&#xA0;this.bills[billCode];
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;p&gt;Ejercicios:&lt;/p&gt;
+
+&lt;p&gt;Tal vez te diste cuenta que el m&#xE9;todo PayBill tiene defectos: &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&#xBF;Qu&#xE9; pasa si se desea pagar m&#xE1;s de lo que se debe?&lt;/li&gt;
+&lt;li&gt;&#xBF;Qu&#xE9; pasa si el billCode no existe? &lt;/li&gt;
+&lt;li&gt;&#xBF;Qu&#xE9; pasa si el pago es por una cantidad negativa o 0? &lt;/li&gt;
+&lt;li&gt;&#xBF;Qu&#xE9; pasa si el par&#xE1;metro payer es nulo? &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Escribe estos 4 casos de prueba y la implementaci&#xF3;n en c&#xF3;digo que los corrija.&lt;/p&gt;
+
+&lt;h2 id="toc_54"&gt;1.5 C&#xF3;mo hacer una prueba de integraci&#xF3;n.&lt;/h2&gt;
+
+&lt;p&gt;Como se mencion&#xF3; al principio, la prueba de integraci&#xF3;n verificar&#xE1; que
+la interacci&#xF3;n entre los elementos sea correcta, y que provean el
+resultado deseado, un ejemplo de esto, ser&#xED;a verificar que el pago de
+facturas se haga correctamente cuando se utilicen las instancias no-mock
+de los objetos.
+&#xA0;&lt;/p&gt;
+
+&lt;p&gt;Crea otro proyecto de pruebas, igual al de pruebas unitarias, pero
+ll&#xE1;male Bank.IntegrationTest, la estructura resultante deber&#xED;a ser la
+siguiente:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image02.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;p&gt;Ahora modifica el nombre del archivo TestFixture a
+UtilitiesPayment_Account_Test.cs e introduce el c&#xF3;digo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace&#xA0;Bank.IntegrationTest
+{
+&#xA0;&#xA0;&#xA0;&#xA0;using&#xA0;NUnit.Framework;
+&#xA0;&#xA0;&#xA0;&#xA0;[TestFixture]
+&#xA0;&#xA0;&#xA0;public&#xA0;class&#xA0;UtilitiesPayment\_Account\_Test
+&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;[Test]
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;public&#xA0;void&#xA0;TestAnAccountCanPayABillThroughPaymentProcessor()
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;{
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Arrange
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;string&#xA0;billCode&#xA0;=&#xA0;&#x201C;bill&#x201D;;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;int&#xA0;initialPayerBalance&#xA0;=&#xA0;100;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;int&#xA0;initialDebt&#xA0;=&#xA0;50;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;int&#xA0;payment&#xA0;=&#xA0;40;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;int&#xA0;expectedDebtBalance&#xA0;=&#xA0;initialDebt&#xA0;-&#xA0;payment;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;int&#xA0;expectedPayerBalance&#xA0;=&#xA0;initialPayerBalance&#xA0;-&#xA0;payment;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;var&#xA0;utilitiesAccount&#xA0;=&#xA0;new&#xA0;Account();
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;var&#xA0;payerAccount&#xA0;=&#xA0;new&#xA0;Account();
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;payerAccount.Deposit(initialPayerBalance);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;var&#xA0;processor&#xA0;=&#xA0;new&#xA0;UtilitiesPaymentProcessor(utilitiesAccount);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Act
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;processor.AddBill(billCode,&#xA0;initialDebt);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;decimal&#xA0;debtBalance&#xA0;=&#xA0;processor.PayBill(billCode,&#xA0;payerAccount,&#xA0;payment);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;Assert
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Assert.That(debtBalance,&#xA0;Is.EqualTo(expectedDebtBalance));
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Assert.That(utilitiesAccount.Balance,&#xA0;Is.EqualTo(payment));
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Assert.That(payerAccount.Balance,&#xA0;Is.EqualTo(expectedPayerBalance));
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+&#xA0;&#xA0;&#xA0;}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;p&gt;Finalmente, ejecuta esta prueba, y deber&#xED;as verla pasando adecuadamente:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/image00.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;&#xA0;&lt;/p&gt;
+
+&lt;h2 id="toc_55"&gt;2. Conclusi&#xF3;n&lt;/h2&gt;
+
+&lt;p&gt;Ahora est&#xE1;s listo para salir al mundo a crear programas de alta calidad
+por medio de suites de pruebas unitarias e integraci&#xF3;n. Se recomienda
+que leas sobre c&#xF3;mo automatizar las pruebas de aceptaci&#xF3;n con
+herramientas como: &lt;a href="http://white.codeplex.com/"&gt;White&lt;/a&gt;,
+Selenium,&#xA0;&lt;a href="http://robot"&gt;Robot&lt;/a&gt;, &lt;a href="http://www.ranorex.com/"&gt;Ranorex&lt;/a&gt; e
+&lt;a href="http://ivonna.biz/"&gt;Ivonna.&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+  </channel>
+</rss>

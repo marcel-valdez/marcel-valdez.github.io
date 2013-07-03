@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Introducing Dependency Locator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dependency Locator is an implementation of the Service Locator pattern with a twist.">
+    <meta name="author" content="Marcel Valdez">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+<link href='/assets/stylesheets/bootstrap.min-88238289010db19359d2181e634e95cd.css' type='text/css' rel='stylesheet' media='all'>
+<link href='/assets/stylesheets/style-e81fa375b231bedf6cb2dbc6653570cc.css' type='text/css' rel='stylesheet' media='all'>
+<link href='/assets/stylesheets/google_prettify/sons-of-obsidian-afb0925bfa2d994f17dab93e13fbf999.css' type='text/css' rel='stylesheet' media='all'>
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">Software [Over]Engineering</a>
+          <ul class="nav">
+              
+                <li><a href="/archive">Archive</a></li>
+              
+              
+                <li><a href="/tags">Tags</a></li>
+              
+              
+                <li><a href="/categories">Categories</a></li>
+              
+              
+                <li><a href="/pages">Pages</a></li>
+              
+              
+                <li><a href="/about">About Me</a></li>
+              
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+
+<div class="page-header">
+  <h1>Introducing Dependency Locator </h1>
+</div>
+
+<div class="row-fluid post-full">
+  <div class="span12">
+    <div class="date">
+      <span>2012-12-18</strong>
+    </div>
+    <div class="content">
+      <h2 id="toc_0"><a href="#what-is-dependency-locator"></a>What is Dependency Locator?</h2>
+
+<p>Dependency Locator is an implementation of the Service Locator pattern
+with a twist (aren&#39;t they all?). Dependency Locator uses a C# API for
+setting up dependencies (no more hundreds of XML configuration for your
+dependencies).</p>
+
+<h2 id="toc_1"><a href="#features"></a>Features</h2>
+
+<ul>
+<li>  Fluent C# API for Dependency configuration</li>
+<li>  It can setup Singletons</li>
+<li>  It can setup Configuration values</li>
+<li>  It can setup Lazy evaluated Dependencies, Singletons or
+Configuration values</li>
+<li>  It can setup Named dependencies</li>
+<li>  It understands generic interfaces and implementations</li>
+</ul>
+
+<h2 id="toc_2"><a href="#what-are-its-advantages"></a>What are its advantages?</h2>
+
+<ul>
+<li>  Almost no XML configuration (the example given here is your
+template, you just have to change 1 line)</li>
+<li>  Uninvasive changes necessary to refactor out dependencies</li>
+<li>  Can be used for integration testing, by setting up a combination of
+dummy and real implementations under test</li>
+<li>  Promotes the use of modularity in the system structure</li>
+<li>  Its perfect for refactoring legacy code</li>
+<li>  Its perfect for making legacy code more testable</li>
+</ul>
+
+<h2 id="toc_3"><a href="#where-can-i-find-it"></a>Where can I find it?</h2>
+
+<p>You can find it at Github,
+<a href="http://github.com/marcel-valdez/dependency-locator" title="Git repository for Dependency Locator">HERE</a></p>
+
+<h2 id="toc_4"><a href="#story-of-example-usage"></a>Story of Example Usage</h2>
+
+<p><em>Note</em>: Removed all usings and code that is not pertinent to this
+example. Let&#39;s say John has an application where you have a View, Model
+and Controller as such:</p>
+
+<pre><code>/* The Account Controller */
+namespace Bank.Controllers {
+    using Bank.Models;
+
+    public class AccountController : Controller {
+        private readonly DataContext db = new DataContext();
+
+        public ActionResult Details(int id) {
+            Accounts account = db.Accounts.Find(id);
+
+            if (account == null) {
+                return HttpNotFound();
+            }
+
+            return View(account);
+        }
+
+        /* Rest of the code... */
+    }
+}
+
+/* The Account Details view*/
+@model Bank.Model
+
+@{
+    ViewBag.Title = &quot;My balance&quot;;
+}
+
+&lt;h2&gt;Account Details&lt;/h2&gt;
+
+&lt;p&gt;
+    @Html.LabelFor(model =&gt; model.AccountHolder, &quot;Account Holder: &quot;);
+    @Html.LabelFor(model =&gt; model.AccountNumber, &quot;Account Number: &quot;);
+    @Html.LabelFor(model =&gt; model.Balance, &quot;Balance: &quot;);
+&lt;/p&gt;
+
+/* The Account model */
+namespace Bank.Models {
+    public class Account {
+        public string AccountHolder { get; set; }
+
+        public decimal Balance { get; private set; }
+
+        public int AccountNumber { get; set; }
+
+        public void Deposit(decimal money) {
+            if (money &lt;= 0) throw new  Exception(&quot;Can&#39;t deposit less than or equal to $0.00&quot;);
+            this.Balance += money;
+        }
+
+        public void Withdraw(decimal money) {
+            if (money &lt;= 0) throw new  Exception(&quot;Can&#39;t withdraw less than or equal to $0.00&quot;);
+            this.Balance -= money;
+        }
+    }
+}
+</code></pre>
+
+<p>You may have noticed that the View could call at any point in time:</p>
+
+<pre><code>model.Deposit(9999);
+or
+model.Withdraw(9999);
+</code></pre>
+
+<p>The View has no need and should not use any of these methods. It is a
+mistake for it to have access to those methods, and should not be
+visible to the view. So Dave notices this design smell, and wants to add
+a ViewModel, so the View uses a reduced interface of the Model, but he
+doesn&#39;t want to move around any of the model code because he is too lazy
+(which is good!) to modify someone else&#39;s code. </p>
+
+<p>But his Boss tells the team: The size of the ASP.NET MVC website project is getting too big and unwieldly, from now on, any new classes that aren&#39;t Views, Models or Controllers  must be placed in separate C# library projects. </p>
+
+<p>So Dave creates a new C# Library project called Bank.ViewModels and adds the following ViewModel:</p>
+
+<pre><code>namespace Bank.ViewModels {
+    using Bank.Models;
+
+    public class AccountDetailsViewModel {
+        public AccountDetailsViewModel(Account account) {
+            this.AccountHolder = account.AccountHolder;
+            this.AccountNumber = account.AccountNumber;
+            this.Balance = account.Balance;
+        }
+
+        public string AccountHolder { get; private set; }
+
+        public int AccountNumber { get; private set; }
+
+        public decimal Balance { get; private set; }
+    }
+}
+</code></pre>
+
+<p>Dave procedes to add a reference to the ASP.Net MVC Website Project
+because there is where the model is, but when he tries to add a
+reference from the ASP.Net MVC Website project to the Bank.ViewModels,
+catastrophe happens!  </p>
+
+<p>He cannot because a circular dependency would
+occur:<br>
+<code>Bank.ViewModels depends on --&gt; -- Bank depends on --&gt;
+Bank.ViewModels</code></p>
+
+<p>Aha! But Dave is a smart guy and he knows that in these
+cases he has to use the Inversion of Control principle, so he creates
+ANOTHER project, that will contain the public interfaces of the
+ViewModels project. So he goes ahead and creates a new C# library
+project called Bank.ViewModel.Interfaces:</p>
+
+<pre><code>namespace Bank.ViewModels.Interfaces {
+    public interface IAccountDetailsViewModel {
+        string AccountHolder { get; }
+        int AccountNumber { get; }
+        decimal Balance { get; }
+    }
+}
+</code></pre>
+
+<p>Dave also procedes to change the definition of the
+AccountDetailsViewModel:</p>
+
+<pre><code>namespace Bank.ViewModels {
+    using Bank.Models;
+    using Bank.ViewModels.Interfaces;
+
+    public class AccountDetailsViewModel: IAccountDetailsViewModel {
+        /* Rest of the code */
+    }
+}
+</code></pre>
+
+<p>So now, all Dave has to do is add a dependency on the ASP.Net Website to
+the Bank.ViewModels.Interfaces library, and change the View so it uses
+the ViewModel interface, and not the concrete implementation:</p>
+
+<pre><code>@model Bank.ViewModels.Interfaces.IAccountDetailsViewModel
+
+@{
+    ViewBag.Title = &quot;My balance&quot;;
+}
+
+&lt;h2&gt;Account Details&lt;/h2&gt;
+
+&lt;p&gt;
+    @Html.LabelFor(model =&gt; model.AccountHolder, &quot;Account Holder: &quot;);
+    @Html.LabelFor(model =&gt; model.AccountNumber, &quot;Account Number: &quot;);
+    @Html.LabelFor(model =&gt; model.Balance, &quot;Balance: &quot;);
+&lt;/p&gt;
+</code></pre>
+
+<p>Now, the controller has to provide the View with the <em>interface</em> of the
+ViewModel, but as we know, one cannot just &quot;instantiate&quot; an interface,
+it needs to call the constructor, <em>here</em> is where <em>DependencyLocator</em>
+comes into play. In order for Dave to setup this dependency, all he has
+to do are 2 things:</p>
+
+<ul>
+<li>  In the Bank.ViewModels project he has to add a new class for setting
+up the dependencies it provides as such:</li>
+</ul>
+
+<!-- -->
+
+<pre><code>namespace Bank.ViewModels {
+    using DependencyLocation;
+    using DependencyLocation.Setup;
+    using Bank.ViewModels.Intefaces;
+
+    public class Setup : IDependencySetup {
+
+        public void SetupDependencies(IDependencyConfigurator container, string prefix, string defaultKey) {
+            container.SetupDependency&lt;IAccountDetailsViewModel, AccountDetailsViewModel&gt;(defaultKey);
+        }
+    }
+}
+</code></pre>
+
+<ul>
+<li>  He has to tell the Dependency Locator it has to load that Setup
+class in the Bank.ViewModels project. This is done by creating a
+dependency.config file and calling the Dependency Loader during
+startup in the Global.asax file.</li>
+</ul>
+
+<h5 id="toc_5">Contents of dependency.config:</h5>
+
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+&lt;configuration&gt;
+  &lt;configSections&gt;
+    &lt;sectionGroup name=&quot;dependencyInjector&quot;&gt;
+      &lt;section
+        name=&quot;dependencyConfiguration&quot;
+        type=&quot;DependencyLocation.Configuration.DependencyConfiguration, DependencyLocator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot;
+        allowLocation=&quot;true&quot;
+        allowDefinition=&quot;Everywhere&quot;
+      /&gt;
+    &lt;/sectionGroup&gt;
+  &lt;/configSections&gt;
+
+  &lt;dependencyInjector&gt;
+    &lt;dependencyConfiguration defaultKey=&quot;default&quot;&gt;
+      &lt;dependencies&gt;
+        &lt;add assemblyName=&quot;Bank.ViewModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot; namedInstancePrefix=&quot;&quot; /&gt;
+      &lt;/dependencies&gt;
+    &lt;/dependencyConfiguration&gt;
+  &lt;/dependencyInjector&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<p>The assembly where the dependencies are setup doesn&#39;t necessarily have
+to be the same one where the concrete implementations are provided. The
+assembly that sets up dependencies could be separate from interfaces and
+implementations. </p>
+
+<p>The setup Assembly could be in charge of setting up N
+interface libraries with M implementation libraries. In such a case, the
+setup assembly would need references to all the interface and
+implementation libraries it sets up. The
+DependencyLoader will load any and all IDependencySetup implementors
+configured in the dependency.config file.</p>
+
+<h5 id="toc_6">Global.asax.cs contents:</h5>
+
+<pre><code>namespace Bank {
+    public class BankMvcApplication : System.Web.HttpApplication {
+        protected void Application_Start() {
+                DependencyLoader.Loader.LoadDependencies(&quot;dependency.config&quot;);
+
+                /* Rest of the Application_Start code */
+        }
+
+        /* Rest of the Global.asax.cs file */
+    }
+}
+</code></pre>
+
+<p>Finally, Dave modifies the Controller code to return a ViewModel instead
+of a Model:</p>
+
+<pre><code>namespace Bank.Controllers
+{
+    using Bank.ViewModels.Interfaces;
+    using Bank.Models;
+    using DependencyLocation;
+
+    public class AccountController : Controller {
+        private readonly DataContext db = new DataContext();
+
+        public ActionResult Details(int id) {
+            Accounts account = db.Accounts.Find(id);
+
+            if (account == null) {
+                return HttpNotFound();
+            }
+
+            /* 
+ * This will call the constructor for the concrete type setup for IAccountDetailsViewModel interface.
+ * Notice however, that it could just as well be a dummy implementation of the interface, useful for testing purposes.
+ */
+            return View(Dependency.Locator.Create&lt;IAccountDetailsViewModel&gt;(account));
+        }
+
+        /* Rest of the code... */
+    }
+}
+</code></pre>
+
+<p>Taddah! Now Dave has refactored the system to use IoC:</p>
+
+<ul>
+<li>Without altering existing project structure</li>
+<li>Without modifying much of the original code, notice we just: 
+
+<ul>
+<li>Modified 2 lines of executable code</li>
+<li>Added 1 new line in Global.asax</li>
+<li>Added 3 using statements. </li>
+</ul></li>
+<li>That&#39;s the main advantage of DependencyLocator, it is not invasive at all, so its very useful for refactoring legacy code.</li>
+</ul>
+
+    </div>
+    <ul class="tag_box inline">
+      <li><i class="icon-folder-open"></i></li>
+      <li>
+        <a href="/categories#software design-ref">software design <span>1</span></a>
+      </li>
+      <li>
+        <a href="/categories#programming-ref">programming <span>3</span></a>
+      </li>
+    </ul>
+    <ul class="tag_box inline">
+      <li><i class="icon-tags"></i></li>
+      <li>
+        <a href="/tags#modularity-ref">modularity <span>1</span></a>
+      </li>
+      <li>
+        <a href="/tags#design-ref">design <span>1</span></a>
+      </li>
+      <li>
+        <a href="/tags#IoC-ref">IoC <span>1</span></a>
+      </li>
+    </ul>
+    <hr>
+    <div class="pagination">
+      <ul>
+          <li class="prev"><a href="/testing/tutorial-de-nunit" title="Tutorial de NUnit">&larr; Previous</a></li>
+
+          <li><a href="/archive">Archive</a></li>
+
+          <li class="next"><a href="/ironruby/ironruby-and-the-dreaded-method-not-found-error" title="IronRuby and the Dreaded Method not found error">Next &rarr;</a></li>
+      </ul>
+    </div>
+    <hr>
+    <div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'software_overengineering'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  </div>
+</div>
+
+
+      </div>
+
+      <hr>
+      <div class="footer">
+        <p>&copy; Marcel Valdez 2013
+          with help from <a href="http://ruhoh.com" target="_blank" title="The Definitive Technical Blogging Framework">ruhoh</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- Google Prettify -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
+<script>
+  var pres = document.getElementsByTagName("pre");
+  for (var i=0; i < pres.length; ++i) {
+    pres[i].className = "prettyprint linenums";
+  }
+  prettyPrint();
+</script>
+<!-- end Google Prettify -->
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37621869-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    
+  </body>
+</html>
