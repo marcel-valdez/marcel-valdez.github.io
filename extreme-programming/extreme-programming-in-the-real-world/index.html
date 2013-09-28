@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Extreme Programming in the Real World</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Remdinder that Values and Principles guide Practices">
+    <meta name="author" content="Marcel Valdez">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+<link href='/assets/stylesheets/bootstrap.min-88238289010db19359d2181e634e95cd.css' type='text/css' rel='stylesheet' media='all'>
+<link href='/assets/stylesheets/style-e81fa375b231bedf6cb2dbc6653570cc.css' type='text/css' rel='stylesheet' media='all'>
+<link href='/assets/stylesheets/google_prettify/sons-of-obsidian-afb0925bfa2d994f17dab93e13fbf999.css' type='text/css' rel='stylesheet' media='all'>
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">Software [Over]Engineering</a>
+          <ul class="nav">
+              
+                <li><a href="/archive">Archive</a></li>
+              
+              
+                <li><a href="/tags">Tags</a></li>
+              
+              
+                <li><a href="/categories">Categories</a></li>
+              
+              
+                <li><a href="/pages">Pages</a></li>
+              
+              
+                <li><a href="/about">About Me</a></li>
+              
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+
+<div class="page-header">
+  <h1>Extreme Programming in the Real World </h1>
+</div>
+
+<div class="row-fluid post-full">
+  <div class="span12">
+    <div class="date">
+      <span>2013-09-07</strong>
+    </div>
+    <div class="content">
+      <p>This post is primarily to remind me of the concepts behind Extreme Programming. This post will help me remember that Extreme Programming is not just pair programming, TDD, reduced documentation, evolutionary design and reduced planning.</p>
+
+<p>XP practices are actually the <em>smallest</em> piece in the puzzle, the guiding values and principles are what made Kent Beck come up with those practices.</p>
+
+<p>(Human) Values <strong>=&gt;</strong> (Domain Specific) Principles <strong>=&gt;</strong> (Software Specific) Practices</p>
+
+<h3 id="toc_0">Values of Extreme Programming</h3>
+
+<p>Values are intended to balance and support each other. Improving communication helps achieve simplicity by eliminating unneeded or deferrable requirements from today&#39;s concerns.</p>
+
+<p>Values do not provide concrete advice about what to do in software development. Because of the distance between values and practices, for that <em>Principles</em> bridge the gap between them.</p>
+
+<ul>
+<li><strong>Communication</strong>
+
+<ul>
+<li>Communication is important for creating a sense of team and effective cooperation.</li>
+<li>The objective of communication is to transfer knowledge and information between the team(s).</li>
+</ul></li>
+<li><strong>Simplicity</strong>
+
+<ul>
+<li>Simplicity is the most intensely intellectual of the XP values. </li>
+<li>The objectives are to make a system simple enough to gracefully solve only today&#39;s problem and eliminate the waste of unnecessary complexity. </li>
+<li>It is also important to remember that simplicity is contextual, the design must be understandable by the team working on it, otherwise it is pointless.</li>
+</ul></li>
+<li><strong>Feedback</strong>
+
+<ul>
+<li>Change is inevitable in software development, therefore an XP team embraces change by giving high value to feedback.</li>
+<li>XP teams strive to generate as much feedback as they can handle as quickly as possible.</li>
+<li>They try to shorten the feedback cycle to minutes or hours instead of weeks or months. The sooner you know, the sooner you can <strong>adapt</strong>.</li>
+</ul></li>
+<li><strong>Courage</strong>
+
+<ul>
+<li>Courage is effective action in the face of fear.</li>
+<li>Doing something without regard for the consequences is <strong>not</strong> effective teamwork.</li>
+<li>Courage alone is dangerous, in concert with other values it is powerful.</li>
+<li>Examples: The courage to speak truths, to discard failing solutions and to seek new ones.</li>
+</ul></li>
+<li><strong>Respect</strong>
+
+<ul>
+<li>The other four values point to one that lies below the surface: respect.</li>
+<li>The contributions of each person on the team need to be respected. I am important and so are you.</li>
+<li>Every person whose life is touched by software development has equal values as a human being.</li>
+</ul></li>
+<li><strong>Others</strong>
+
+<ul>
+<li>Your organization, your team, and you yourself may choose other values. What is most important is aligning team behavior to team values.</li>
+</ul></li>
+</ul>
+
+<h3 id="toc_1">Principles of Extreme Programming</h3>
+
+<p>Principles are a set of domain-specific (in this case, software development) guidelines for finding practices in harmony with XP&#39;s values.</p>
+
+<p>Understanding the principles gives you the opportunity to create practices that work in harmony with your existing practices and your overall goals.</p>
+
+<ul>
+<li><strong>Humanity</strong>
+
+<ul>
+<li>Acknowledge human needs, frailty, and leverage human strength.</li>
+<li>Acting like software is not written by people exacts a high cost on participants. This is not good for business, with the costs and disruption of high turnover and missed opportunities for creative action.</li>
+</ul></li>
+<li><strong>Economics</strong>
+
+<ul>
+<li>Time value of money (a dollar now is worth more than a dollar later). Software is more valuable if it earns money now and spends money later, but not so late that it spends more money than what it earned.</li>
+<li>Option value of systems and teams (a system that is flexible enough to do more than its current concrete function is more valuable)</li>
+<li>The balance between the building a flexible system and building it early keeps these two in check.</li>
+</ul></li>
+<li><strong>Mutual Benefit</strong>
+
+<ul>
+<li>This is the most important and difficult principle.</li>
+<li>Every activity should benefit all concerned.</li>
+<li>Example: I write automated tests that benefit me now and future programmers as well.</li>
+<li>Counter Example: I write extensive documentation that does <em>not</em> benefit me now, but benefits an unknown person later <em>if</em> documentation is up-to-date.</li>
+<li>Example: I refactor to remove accidental complexity to achieve</li>
+<li>Giving me both satisfactions and fewer defects</li>
+<li>Making the code easier to understand for those who encounter it later</li>
+<li>Produce features faster in the short and medium term future.</li>
+</ul></li>
+<li><strong>Self-Similarity</strong>
+
+<ul>
+<li>Try copying the structure of one solution into a new context, even at different scales.</li>
+<li>This applies to work flows, design patterns and architecture styles.</li>
+<li>Examples are using writing user stories first for epics, then writing test cases first for user stories, and then write automated tests and work your way up. The pattern of test-first can be applied at all levels of abstraction (self-similarity).</li>
+</ul></li>
+<li><strong>Improvement</strong>
+
+<ul>
+<li>In software development <em>perfect</em> is a verb, not an adjective. No process, design or story is perfect. You can, however, perfect your process, design and stories.</li>
+<li>Excellence is achieved by means of continuous improvement.</li>
+<li><em>Find a reasonable starting place, get started and improve from there</em>.</li>
+</ul></li>
+<li><strong>Diversity</strong>
+
+<ul>
+<li>Teams need to bring together a variety of <strong>skills, attitudes, and perspectives to see problems and pitfalls</strong>, to think in multiple ways to solve problems, and to implement the solutions.</li>
+<li>Good Conflict is an opportunity, not a problem, as long as the team resolves it productively.</li>
+<li>Diversity is expressed in the practice of <em>Whole Team</em>, where you bring together on the team people with a variety of skills and perspectives.</li>
+</ul></li>
+<li><strong>Reflection</strong>
+
+<ul>
+<li>Good teams thinks think about <em>how</em> they are working and <em>why</em> they are working. </li>
+<li>Good teams analyze why they succeeded or failed; they don&#39;t try to hide their mistakes, but expose them and actively learn from them.</li>
+<li>Reflection are observations on a team&#39;s <strong>actions</strong>. Learning is action reflected. To maximize feedback, reflection in XP teams is mixed with doing.</li>
+<li>Reflection is the Observation and Conclusion phases of the Scientific Method. One cannot reflect without an empiric experiment (a team&#39;s actions).</li>
+</ul></li>
+<li><strong>Flow</strong>
+
+<ul>
+<li>Flow is delivering a sustainable stream of valuable software by engaging in all activities of development simultaneously.</li>
+<li>The practices of XP are biased towards a continuous flow of activities rather than discrete phases.</li>
+<li>Strive to deliver value as frequently as possible in all phases of software development.</li>
+</ul></li>
+<li><strong>Opportunity</strong>
+
+<ul>
+<li>Problems are symptoms that something needs to change. Do not take the attitude of &quot;survival&quot; and fix just enough to &#39;get by&#39;. To reach excellence, problems need to turn into opportunities for learning and improvement, not just survival.</li>
+<li>This principle helps maximize strengths and minimize weaknesses.</li>
+<li>Conciously choose to transform each problem into an opportunity: an opportunity for personal growth, deepening relationships, and improved software.</li>
+<li>This principle applies to an individual, a team, a department and an entire organization.</li>
+<li>An individual is not delivering in small chunks? Fine, have him reflect how to <em>deliver</em> a feature in small chunks and ask a more experienced developer to review the breakdown.</li>
+</ul></li>
+<li><strong>Redundancy</strong>
+
+<ul>
+<li>The critical, difficult problems in software development should be solved in several different ways; that way, even if one solution fails utterly, the other solutions will prevent <em>disaster</em>.</li>
+<li>Example: Defects are a critical and difficult problem and they are addressed by many XP Practices: pair programming, continuous integration, sitting together, real costumer involvement, daily deployment, and TDD. These practices are certainly redundant, catching some of the same defects.</li>
+<li>You cannot solve a complex and critical problem with a single practice, instead you follow redundant practices to reduce or resolve it.</li>
+</ul></li>
+<li><strong>Failure</strong>
+
+<ul>
+<li>If you are having trouble succeeding, fail. Failure is not a waste if it imparts knowledge. Knowledge is valuable and sometimes hard to come by, sometimes it requires failure.</li>
+<li>Do the cheapest thing that can gain you knowledge about the problem you don&#39;t know how to solve yet.</li>
+<li>Time is time is time. Do not waste a couple of weeks discussing, when you could have wasted a couple days programming and have the same insight.</li>
+</ul></li>
+<li><strong>Quality</strong>
+
+<ul>
+<li>Sacrificing quality is not effective as a means of control. Quality is not a control variable.</li>
+<li>Projects do not go faster by accepting lower quality. They do not go slower by demanding higher quality.</li>
+<li>Pushing quality higher often results in faster delivery; while lowering quality standards often results in later, less predictable delivery.</li>
+<li>XP chooses scope as the primary means of planning, tracking, and steering projects. The weekly and quarterly cycles provide explicit points for tracking and choosing scope, not as scriptures set in stone.</li>
+</ul></li>
+<li><strong>Baby Steps</strong>
+
+<ul>
+<li>What is the least you could do that is recognizably in the right direction?</li>
+<li>Individuals and teams can make many small steps so rapidly that they appear to be leaping.</li>
+<li>The overhead of small steps is much less than when a team wastefully recoils from aborted big changes.</li>
+</ul></li>
+<li><strong>Accepted Responsibility</strong>
+
+<ul>
+<li>Responsibility canno be assigned; it can only be embraced, by teams and individuals.</li>
+<li>With responsibility comes authority. Misalignments distort the team&#39;s communication.</li>
+<li>Example: When a process expert can tell me how to work, but does not share in that work or its consequences, authority and responsibility are misaligned.</li>
+</ul></li>
+</ul>
+
+<h3 id="toc_2"><em>Primary</em> Practices of Extreme Programming</h3>
+
+<p>The practices are a vector from where you are to where you can be with XP. In XP, you make a progress towards this ideal state of effective development. For example, daily deployment may make no sense if you only deploy once a year. Successfully deploying more frequently is an improvement, building confidence for the next step.</p>
+
+<p>The XP practices do not represent some kind of pinnacle in the evolution of software development. They are a common way station on the road to improvement. Taken one at a time you will see improvement. When they begin to compound you may see dramatic improvement. The interactions between the practices amplify their effect.</p>
+
+<ul>
+<li><strong>Sit Together</strong>
+
+<ul>
+<li>Develop in an open space big enough for the whole team. Meet the need for privacy and <em>owned</em> space by having small private spaces nearby or by limiting work hours so team members can get their privacy needs met elsewhere.</li>
+<li>No matter what the organization/department/team says the problem is, it is always a people problem. Technical fixes alone are not enough.</li>
+<li>It is extremelly important to communicate with all our senses.</li>
+</ul></li>
+<li><strong>Whole Team</strong></li>
+<li><strong>Informative Workspace</strong></li>
+<li><strong>Energized Work</strong></li>
+<li><strong>Pair Programming</strong></li>
+<li><strong>Stories</strong></li>
+<li><strong>Weekly Cycle</strong></li>
+<li><strong>Quarterly Cycle</strong></li>
+<li><strong>Slack</strong></li>
+<li><strong>Ten-Minute Build</strong></li>
+<li><strong>Continuous Integration</strong></li>
+<li><strong>Test-First Programming</strong></li>
+<li><strong>Incremental Design</strong></li>
+</ul>
+
+<h2 id="toc_3"><em>Corollary</em> Practices of Extreme Programming</h2>
+
+<ul>
+<li>Real Customer Involvement</li>
+<li>Incremental Deployment</li>
+<li>Team Continuity</li>
+<li>Shrinking Teams</li>
+<li>Root-Cause Analysis</li>
+<li>Shared Code</li>
+<li>Code and Tests</li>
+<li>Single Code Base</li>
+<li>Daily Deployment</li>
+<li>Negotiated Scope Contract</li>
+<li>Pay-Per-Use</li>
+</ul>
+
+    </div>
+    <ul class="tag_box inline">
+      <li><i class="icon-folder-open"></i></li>
+      <li>
+        <a href="/categories#extreme programming-ref">extreme programming <span>1</span></a>
+      </li>
+      <li>
+        <a href="/categories#software development-ref">software development <span>1</span></a>
+      </li>
+    </ul>
+    <ul class="tag_box inline">
+      <li><i class="icon-tags"></i></li>
+    </ul>
+    <hr>
+    <div class="pagination">
+      <ul>
+          <li class="prev"><a href="/tips/eclipse-zoom-in-on-text-with-ctrl%2B" title="Eclipse: Zoom in on text with Ctrl+">&larr; Previous</a></li>
+
+          <li><a href="/archive">Archive</a></li>
+
+          <li class="next disabled"><a>Next &rarr;</a>
+      </ul>
+    </div>
+    <hr>
+    <div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'software_overengineering'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  </div>
+</div>
+
+
+      </div>
+
+      <hr>
+      <div class="footer">
+        <p>&copy; Marcel Valdez 2013
+          with help from <a href="http://ruhoh.com" target="_blank" title="The Definitive Technical Blogging Framework">ruhoh</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- Google Prettify -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
+<script>
+  var pres = document.getElementsByTagName("pre");
+  for (var i=0; i < pres.length; ++i) {
+    pres[i].className = "prettyprint linenums";
+  }
+  prettyPrint();
+</script>
+<!-- end Google Prettify -->
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37621869-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    
+  </body>
+</html>
