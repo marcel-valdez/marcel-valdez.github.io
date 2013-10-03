@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Code analysis tools: NDepend, Nitriq, iPlasma...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A feature comparison between several code analysis tools available.">
+    <meta name="author" content="Marcel Valdez">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+<link href='/assets/stylesheets/bootstrap.min-88238289010db19359d2181e634e95cd.css' type='text/css' rel='stylesheet' media='all'>
+<link href='/assets/stylesheets/style-e81fa375b231bedf6cb2dbc6653570cc.css' type='text/css' rel='stylesheet' media='all'>
+<link href='/assets/stylesheets/google_prettify/sons-of-obsidian-afb0925bfa2d994f17dab93e13fbf999.css' type='text/css' rel='stylesheet' media='all'>
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">Software [Over]Engineering</a>
+          <ul class="nav">
+              
+                <li><a href="/archive">Archive</a></li>
+              
+              
+                <li><a href="/tags">Tags</a></li>
+              
+              
+                <li><a href="/categories">Categories</a></li>
+              
+              
+                <li><a href="/pages">Pages</a></li>
+              
+              
+                <li><a href="/about">About Me</a></li>
+              
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+
+<div class="page-header">
+  <h1>Code analysis tools: NDepend, Nitriq, iPlasma... </h1>
+</div>
+
+<div class="row-fluid post-full">
+  <div class="span12">
+    <div class="date">
+      <span>2013-10-02</strong>
+    </div>
+    <div class="content">
+      <p>My thesis project is about automatic evaluation of object-oriented design by means of automated code analysis; in other words evaluate the design of a program automatically. </p>
+
+<p>I found the need for a tool that would allow to me to extract the code model from a program and then query over that model in order to extract information and metrics about the program&#39;s design.</p>
+
+<p>The characteristics I was looking for in a code analysis tool where:</p>
+
+<ol>
+<li><h4 id="toc_0">The code model extractor must process source code or intermediary code Java or .Net</h4>
+
+<blockquote>
+<p><strong>Rationale:</strong> If we are able to analyze bytecode or MSIL we can use the same tool for any language of the given platform.<br>
+<strong>Acceptance Criteria:</strong> A proof of concept must be implemented that is able to extract the code model in the form of objects of the given platform.</p>
+</blockquote></li>
+<li><h4 id="toc_1">It must possible to invoke the tool from within the code as objects, without having to go through a GUI or CLI.</h4>
+
+<blockquote>
+<p><strong>Rationale:</strong> This is to easily integrate the tools as part of another project without hassle or strange behavior (i.e. opening a GUI, etc)<br>
+<strong>Acceptance Criteria</strong>: A proof of concept must be created that invokes the tool in a programmatic manner without using the CLI.</p>
+</blockquote></li>
+<li><h4 id="toc_2">It must be able to provide:</h4>
+
+<ul>
+<li>Number of lines of code in a method, class or namespace (package).</li>
+<li>Method calls between classes</li>
+<li>Location of method calls between classes</li>
+<li>Method and member signatures of a class</li>
+<li>Enumeration of classes, abstract classes and interfaces</li>
+</ul>
+
+<blockquote>
+<p><strong>Rationale</strong>: This features are needed in order to perform the code analysis, because that will provide the data we will measure and evaluate. With those features it is possible to obtain all the Chidamber &amp; Kemerer metric suite which are fundamental for code analysis.<br>
+<strong>Acceptance Criteria</strong>: A proof of concept that can obtain perform each and one of the features programmatically.</p>
+</blockquote></li>
+<li><h4 id="toc_3">The extracted code model must be readable in-memory, directly or indirectly.</h4>
+
+<ul>
+<li>It is allowed for the tool to generate a file first and then read that file to generate an in-memory model</li>
+</ul>
+
+<blockquote>
+<p><strong>Rationale</strong>: The code model must be representable in-memory in order to use for automatic evaluation.<br>
+<strong>Acceptance Criteria</strong>: A proof of concept must be created where the code model is fully representable in memory.</p>
+</blockquote></li>
+</ol>
+
+<h3 id="toc_4">Projects Considered</h3>
+
+<ul>
+<li>NDepend (Winner)</li>
+<li>Microsoft CCI + AST (Runner-Up)</li>
+<li>Microsoft Project Roslyn</li>
+<li>iPlasma</li>
+<li>Nitriq</li>
+</ul>
+
+<h3 id="toc_5">Nomenclature</h3>
+
+<h5 id="toc_6">Levels of compliance</h5>
+
+<ol>
+<li>Very low compliance (Very small part or nothing of the proof of concept can be implemented)</li>
+<li>Low compliance (Some parts of the proof of concept cannot be implemented)</li>
+<li>Medium compliance (Possible to the proof of concept with a lot of extra code)</li>
+<li>High compliance (Can implement the requirement the proof of concept)</li>
+<li>Very high compliance (Easy to implement the proof of concept)</li>
+</ol>
+
+<h3 id="toc_7">Overview</h3>
+
+<style>
+
+#newspaper-a
+{
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 12px;
+  margin: 45px;
+  width: 480px;
+  text-align: left;
+  border-collapse: collapse;
+  border: 1px solid #111;
+}
+#newspaper-a th
+{
+  padding: 12px 17px 12px 17px;
+  font-weight: normal;
+  font-size: 14px;
+  color: #335;
+  border-bottom: 1px dashed #111;
+}
+#newspaper-a td
+{
+  padding: 7px 17px 7px 17px;
+  color: #668;
+}
+#newspaper-a tbody tr:hover td
+{
+  color: #335;
+  background: #d0dafd;
+}
+
+</style>
+
+<table id="newspaper-a">
+<thead><tr>
+<th>Requirement</th>
+<th align="center"><a href="http://msdn.microsoft.com/en-us/vstudio/hh500769.aspx">Microsoft Project Roslyn</a></th>
+<th align="center"><a href="http://cciast.codeplex.com/">Microsoft CCI + AST</a></th>
+<th align="center"><a href="http://loose.upt.ro/reengineering/research/iplasma‎">iPlasma</a></th>
+<th align="center"><a href="http://nitriq.com">Nitriq</a></th>
+<th align="center"><a href="http://www.ndepend.com">NDepend*</a></th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Process intermediary or source code </td>
+<td align="center">1</td>
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">5</td>
+</tr>
+<tr>
+<td>Invokable programatically</td>
+<td align="center">4</td>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">5</td>
+</tr>
+<tr>
+<td>Code Information provided</td>
+<td align="center">4</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">5</td>
+</tr>
+<tr>
+<td>In-memory code model</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">3</td>
+<td align="center">5</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_8">Detailed analysis for <a href="http://www.ndepend.com">NDepend</a></h3>
+
+<ul>
+<li>It can process any strongly typed .net language: C++, C#, VB, J#, JScript.Net</li>
+<li>NDepend can be called programmatically via its NDepend.API by using the NDependProvider class and IProjectManager and IProject classes respectively.</li>
+<li>The NDepend.API exposes an easy to &#39;analyze&#39; interface that allows the programmer to write queries over code structure in a fluent way, it also comes with many extensions for filtering and navigating code structure, and calculating metrics.</li>
+<li>The code model, the analysis and results generated programmatically with the NDepend.API can be manipulated in-memory and stored to a file, by using the NDepend.API (no need to code it).</li>
+</ul>
+
+<h3 id="toc_9">Detailed analysis for <a href="http://nitriq.com">Nitriq</a></h3>
+
+<ul>
+<li>It can process any strongly typed .net language: C++, C#, VB, J#, JScript.Net</li>
+<li>Nitriq is closed source, as such, it is not meant to be used without a GUI or CLI. Neither does it expose an API to use it programmatically. The only way would be to use Reverse Engineering and .net reflection for any interaction with the engine, but this might not be legal according to their license terms.</li>
+<li>Nitriq has an easy to use language for defining &#39;nitriq queries&#39;, but at most, these can be called using the Nitriq.Console, and not programmatically, making it hard to integrate with other tools.</li>
+<li>Nitriq uses its own memory representation of the meta-model, known only by its developers.</li>
+</ul>
+
+<h3 id="toc_10">Detailed analysis for <a href="http://loose.upt.ro/reengineering/research/iplasma%E2%80%8E">iPlasma</a></h3>
+
+<ul>
+<li>It uses an intermediary meta-model representation of the design, currently there are extractors for Java, C++ and C#. It is possible to write another extractor for any other language needed.</li>
+<li>Its too complicated, a proof of concept test could not be programmed because there is not sufficient documentation on the iPlasma project to invoke it programmatically. Also, it is unknown if it is legal to do this according to their License Terms (which I did not find).</li>
+<li>The Visual Tool can obtain every specification in this requirement, and more; because the visual tool comes with previously programmed &#39;plugins&#39;.</li>
+<li>The model is extracted direcly from source code, and is represented in a modeling language called MEMORIA.</li>
+</ul>
+
+<h3 id="toc_11">Detailed analysis for <a href="http://cciast.codeplex.com/">Microsoft CCI + AST</a></h3>
+
+<ul>
+<li>It can process any static .Net language that is compiled to MSIL:C++, C#, VB, J#, JScript.Net.</li>
+<li>It can be invoked programmatically without the need of the CLI; but it requires a lot of code to do the simplest of things like the methods in a class.</li>
+<li>Complies with the requirement, and its API is written to do code analysis. The problem is that there very little or outdated documentation for its API.</li>
+<li> The model is totally generated in-memory, without an intermediary format.</li>
+</ul>
+
+<h3 id="toc_12">Detailed analysis for <a href="http://msdn.microsoft.com/en-us/vstudio/hh500769.aspx">Microsoft Project Roslyn</a></h3>
+
+<ul>
+<li>It can only process C# or VB, using directly their respective compiler and language extensions.</li>
+<li>It can be invoked programmatically without the CLI; but it requires a lot of code to do the simplest of things like get the methods of a class.</li>
+<li>Code analysis <em>can</em> be done with this tool, but detailed knowledge of Roslyn is required to do this, because Roslyn is not specifically created for code analysis.</li>
+<li>The model is totally generated in-memory, without an intermediary format.</li>
+</ul>
+
+<h2 id="toc_13">Conclusion: NDepend wins</h2>
+
+<p>NDepend is clearly the best choice for code analysis projects, thanks to its API for fluently writing queries over NDepend&#39;s extracted code model, you can start writing any code structure and code metrics based rules right away</p>
+
+<p>Now, if you don&#39;t have the $$$ to get a NDepend license, then Microsoft&#39;s CCI + AST open source project is a decent option, but get ready for writing a lot of code for any code metrics or code structure based rule, from what I determined, an extra layer of abstraction over CCI + AST is needed in order to do anything useful with it.</p>
+
+    </div>
+    <ul class="tag_box inline">
+      <li><i class="icon-folder-open"></i></li>
+    </ul>
+    <ul class="tag_box inline">
+      <li><i class="icon-tags"></i></li>
+      <li>
+        <a href="/tags#.net-ref">.net <span>1</span></a>
+      </li>
+      <li>
+        <a href="/tags#code analysis-ref">code analysis <span>1</span></a>
+      </li>
+      <li>
+        <a href="/tags#ndepend-ref">ndepend <span>1</span></a>
+      </li>
+      <li>
+        <a href="/tags#nitriq-ref">nitriq <span>1</span></a>
+      </li>
+      <li>
+        <a href="/tags#iplasma-ref">iplasma <span>1</span></a>
+      </li>
+      <li>
+        <a href="/tags#roslyn-ref">roslyn <span>1</span></a>
+      </li>
+      <li>
+        <a href="/tags#java-ref">java <span>1</span></a>
+      </li>
+      <li>
+        <a href="/tags#microsoft cci-ref">microsoft cci <span>1</span></a>
+      </li>
+      <li>
+        <a href="/tags#microsoft cci ast-ref">microsoft cci ast <span>1</span></a>
+      </li>
+    </ul>
+    <hr>
+    <div class="pagination">
+      <ul>
+          <li class="prev"><a href="/extreme-programming/extreme-programming-in-the-real-world" title="Extreme Programming in the Real World">&larr; Previous</a></li>
+
+          <li><a href="/archive">Archive</a></li>
+
+          <li class="next disabled"><a>Next &rarr;</a>
+      </ul>
+    </div>
+    <hr>
+    <div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'software-overengineering'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  </div>
+</div>
+
+
+      </div>
+
+      <hr>
+      <div class="footer">
+        <p>&copy; Marcel Valdez 2013
+          with help from <a href="http://ruhoh.com" target="_blank" title="The Definitive Technical Blogging Framework">ruhoh</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- Google Prettify -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
+<script>
+  var pres = document.getElementsByTagName("pre");
+  for (var i=0; i < pres.length; ++i) {
+    pres[i].className = "prettyprint linenums";
+  }
+  prettyPrint();
+</script>
+<!-- end Google Prettify -->
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37621869-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    
+  </body>
+</html>

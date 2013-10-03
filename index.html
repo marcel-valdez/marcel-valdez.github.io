@@ -61,6 +61,68 @@
 <div class="row-fluid">
   <div class="span12">
     <div class="post">
+  <h3 class="title"><a href="/code-analysis-tools-ndepend-nitriq-iplasma">Code analysis tools: NDepend, Nitriq, iPlasma...</a> <span class="date">2013-10-02</span></h3>
+
+  <div class="summary ellipsis">
+<p>My thesis project is about automatic evaluation of object-oriented design by means of automated code analysis; in other words evaluate the design of a program automatically. </p>
+
+<p>I found the need for a tool that would allow to me to extract the code model from a program and then query over that model in order to extract information and metrics about the program's design.</p>
+
+<p>The characteristics I was looking for in a code analysis tool where:</p>
+
+<ol>
+<li>
+<h4 id="toc_0">The code model extractor must process source code or intermediary code Java or .Net</h4>
+
+<blockquote>
+<p><strong>Rationale:</strong> If we are able to analyze bytecode or MSIL we can use the same tool for any language of the given platform.<br>
+<strong>Acceptance Criteria:</strong> A proof of concept must be implemented that is able to extract the code model in the form of objects of the given platform.</p>
+</blockquote>
+</li>
+<li>
+<h4 id="toc_1">It must possible to invoke the tool from within the code as objects, without having to go through a GUI or CLI.</h4>
+
+<blockquote>
+<p><strong>Rationale:</strong> This is to easily integrate the tools as part of another project without hassle or strange behavior (i.e. opening a GUI, etc)<br>
+<strong>Acceptance Criteria</strong>: A proof of concept must be created that invokes the tool in a programmatic manner without using the CLI.</p>
+</blockquote>
+</li>
+<li>
+<h4 id="toc_2">It must be able to provide:</h4>
+
+<ul>
+<li>Number of lines of code in a method, class or namespace (package).</li>
+<li>Method calls between classes</li>
+<li>Location of method calls between classes</li>
+<li>Method and member signatures of a class</li>
+<li>Enumeration of classes, abstract classes and interfaces</li>
+</ul>
+
+<blockquote>
+<p><strong>Rationale</strong>: This features are needed in order to perform the code analysis, because that will provide the data we will measure and evaluate. With those features it is possible to obtain all the Chidamber &amp; Kemerer metric suite which are fundamental for code analysis.<br>
+<strong>Acceptance Criteria</strong>: A proof of concept that can obtain perform each and one of the features programmatically.</p>
+</blockquote>
+</li>
+<li>
+<h4 id="toc_3">The extracted code model must be readable in-memory, directly or indirectly.</h4>
+
+<ul>
+<li>It is allowed for the tool to generate a file first and then read that file to generate an in-memory model</li>
+</ul>
+
+<blockquote>
+<p><strong>Rationale</strong>: The code model must be representable in-memory in order to use for automatic evaluation.<br>
+<strong>Acceptance Criteria</strong>: A proof of concept must be created where the code model is fully representable in memory.</p>
+</blockquote>
+</li>
+</ol>
+</div>
+
+  <div class="more">
+    <a href="/code-analysis-tools-ndepend-nitriq-iplasma" class="btn btn-small">read more..</a>
+  </div>
+</div>
+<div class="post">
   <h3 class="title"><a href="/extreme-programming/extreme-programming-in-the-real-world">Extreme Programming in the Real World</a> <span class="date">2013-09-07</span></h3>
 
   <div class="summary ellipsis">
@@ -220,40 +282,6 @@ Copyright (c) Microsoft Corporation. All rights reserved.
 
   <div class="more">
     <a href="/ironruby/ironruby-and-the-dreaded-method-not-found-error" class="btn btn-small">read more..</a>
-  </div>
-</div>
-<div class="post">
-  <h3 class="title"><a href="/software-design/introducing-dependency-locator">Introducing Dependency Locator</a> <span class="date">2012-12-18</span></h3>
-
-  <div class="summary ellipsis">
-<h2 id="toc_0">
-<a href="#what-is-dependency-locator"></a>What is Dependency Locator?</h2>
-
-<p>Dependency Locator is an implementation of the Service Locator pattern
-with a twist (aren't they all?). Dependency Locator uses a C# API for
-setting up dependencies (no more hundreds of XML configuration for your
-dependencies).</p>
-
-<h2 id="toc_1">
-<a href="#features"></a>Features</h2>
-
-<ul>
-<li>  Fluent C# API for Dependency configuration</li>
-<li>  It can setup Singletons</li>
-<li>  It can setup Configuration values</li>
-<li>  It can setup Lazy evaluated Dependencies, Singletons or
-Configuration values</li>
-<li>  It can setup Named dependencies</li>
-<li>  It understands generic interfaces and implementations</li>
-</ul>
-
-<h2 id="toc_2">
-<a href="#what-are-its-advantages"></a>What are its advantages?</h2>
-
-</div>
-
-  <div class="more">
-    <a href="/software-design/introducing-dependency-locator" class="btn btn-small">read more..</a>
   </div>
 </div>
 

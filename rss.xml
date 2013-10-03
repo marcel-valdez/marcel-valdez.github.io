@@ -4,7 +4,7 @@
     <title>Software [Over]Engineering</title>
     <description>Software [Over]Engineering</description>
     <link>http://marcel.bowlitz.com</link>
-    <pubDate>2013-09-28 14:15:48 -0400</pubDate>
+    <pubDate>2013-10-02 23:01:38 -0400</pubDate>
     <item>
       <title>About Me</title>
       <link>http://marcel.bowlitz.com/about</link>
@@ -33,6 +33,10 @@
       <link>http://marcel.bowlitz.com/archive</link>
       <pubDate/>
       <description>  &lt;h2&gt;2013&lt;/h2&gt;
+    &lt;h3&gt;October&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;span&gt;2013-10-02&lt;/span&gt; &amp;raquo; &lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
     &lt;h3&gt;September&lt;/h3&gt;
     &lt;ul&gt;
       &lt;li&gt;&lt;span&gt;2013-09-07&lt;/span&gt; &amp;raquo; &lt;a href="/extreme-programming/extreme-programming-in-the-real-world"&gt;Extreme Programming in the Real World&lt;/a&gt;&lt;/li&gt;
@@ -195,6 +199,68 @@
       <link>http://marcel.bowlitz.com/</link>
       <pubDate/>
       <description>&lt;div class="post"&gt;
+  &lt;h3 class="title"&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt; &lt;span class="date"&gt;2013-10-02&lt;/span&gt;&lt;/h3&gt;
+
+  &lt;div class="summary ellipsis"&gt;
+&lt;p&gt;My thesis project is about automatic evaluation of object-oriented design by means of automated code analysis; in other words evaluate the design of a program automatically. &lt;/p&gt;
+
+&lt;p&gt;I found the need for a tool that would allow to me to extract the code model from a program and then query over that model in order to extract information and metrics about the program's design.&lt;/p&gt;
+
+&lt;p&gt;The characteristics I was looking for in a code analysis tool where:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;h4 id="toc_0"&gt;The code model extractor must process source code or intermediary code Java or .Net&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Rationale:&lt;/strong&gt; If we are able to analyze bytecode or MSIL we can use the same tool for any language of the given platform.&lt;br&gt;
+&lt;strong&gt;Acceptance Criteria:&lt;/strong&gt; A proof of concept must be implemented that is able to extract the code model in the form of objects of the given platform.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h4 id="toc_1"&gt;It must possible to invoke the tool from within the code as objects, without having to go through a GUI or CLI.&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Rationale:&lt;/strong&gt; This is to easily integrate the tools as part of another project without hassle or strange behavior (i.e. opening a GUI, etc)&lt;br&gt;
+&lt;strong&gt;Acceptance Criteria&lt;/strong&gt;: A proof of concept must be created that invokes the tool in a programmatic manner without using the CLI.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h4 id="toc_2"&gt;It must be able to provide:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Number of lines of code in a method, class or namespace (package).&lt;/li&gt;
+&lt;li&gt;Method calls between classes&lt;/li&gt;
+&lt;li&gt;Location of method calls between classes&lt;/li&gt;
+&lt;li&gt;Method and member signatures of a class&lt;/li&gt;
+&lt;li&gt;Enumeration of classes, abstract classes and interfaces&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Rationale&lt;/strong&gt;: This features are needed in order to perform the code analysis, because that will provide the data we will measure and evaluate. With those features it is possible to obtain all the Chidamber &amp;amp; Kemerer metric suite which are fundamental for code analysis.&lt;br&gt;
+&lt;strong&gt;Acceptance Criteria&lt;/strong&gt;: A proof of concept that can obtain perform each and one of the features programmatically.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h4 id="toc_3"&gt;The extracted code model must be readable in-memory, directly or indirectly.&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It is allowed for the tool to generate a file first and then read that file to generate an in-memory model&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Rationale&lt;/strong&gt;: The code model must be representable in-memory in order to use for automatic evaluation.&lt;br&gt;
+&lt;strong&gt;Acceptance Criteria&lt;/strong&gt;: A proof of concept must be created where the code model is fully representable in memory.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+  &lt;div class="more"&gt;
+    &lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma" class="btn btn-small"&gt;read more..&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="post"&gt;
   &lt;h3 class="title"&gt;&lt;a href="/extreme-programming/extreme-programming-in-the-real-world"&gt;Extreme Programming in the Real World&lt;/a&gt; &lt;span class="date"&gt;2013-09-07&lt;/span&gt;&lt;/h3&gt;
 
   &lt;div class="summary ellipsis"&gt;
@@ -356,40 +422,6 @@ Copyright (c) Microsoft Corporation. All rights reserved.
     &lt;a href="/ironruby/ironruby-and-the-dreaded-method-not-found-error" class="btn btn-small"&gt;read more..&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="post"&gt;
-  &lt;h3 class="title"&gt;&lt;a href="/software-design/introducing-dependency-locator"&gt;Introducing Dependency Locator&lt;/a&gt; &lt;span class="date"&gt;2012-12-18&lt;/span&gt;&lt;/h3&gt;
-
-  &lt;div class="summary ellipsis"&gt;
-&lt;h2 id="toc_0"&gt;
-&lt;a href="#what-is-dependency-locator"&gt;&lt;/a&gt;What is Dependency Locator?&lt;/h2&gt;
-
-&lt;p&gt;Dependency Locator is an implementation of the Service Locator pattern
-with a twist (aren't they all?). Dependency Locator uses a C# API for
-setting up dependencies (no more hundreds of XML configuration for your
-dependencies).&lt;/p&gt;
-
-&lt;h2 id="toc_1"&gt;
-&lt;a href="#features"&gt;&lt;/a&gt;Features&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;  Fluent C# API for Dependency configuration&lt;/li&gt;
-&lt;li&gt;  It can setup Singletons&lt;/li&gt;
-&lt;li&gt;  It can setup Configuration values&lt;/li&gt;
-&lt;li&gt;  It can setup Lazy evaluated Dependencies, Singletons or
-Configuration values&lt;/li&gt;
-&lt;li&gt;  It can setup Named dependencies&lt;/li&gt;
-&lt;li&gt;  It understands generic interfaces and implementations&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id="toc_2"&gt;
-&lt;a href="#what-are-its-advantages"&gt;&lt;/a&gt;What are its advantages?&lt;/h2&gt;
-
-&lt;/div&gt;
-
-  &lt;div class="more"&gt;
-    &lt;a href="/software-design/introducing-dependency-locator" class="btn btn-small"&gt;read more..&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
 
 &lt;div class="pagination"&gt;
   &lt;ul&gt;
@@ -437,6 +469,33 @@ Configuration values&lt;/li&gt;
   &lt;li&gt;
     &lt;a href="/tags#IoC-ref"&gt;IoC &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#.net-ref"&gt;.net &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#code analysis-ref"&gt;code analysis &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#ndepend-ref"&gt;ndepend &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#nitriq-ref"&gt;nitriq &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#iplasma-ref"&gt;iplasma &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#roslyn-ref"&gt;roslyn &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#java-ref"&gt;java &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#microsoft cci-ref"&gt;microsoft cci &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#microsoft cci ast-ref"&gt;microsoft cci ast &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
   &lt;h3 id="modularity-ref"&gt;modularity&lt;/h3&gt;
@@ -445,6 +504,24 @@ Configuration values&lt;/li&gt;
     &lt;li&gt;&lt;a href="/software-design/introducing-dependency-locator"&gt;Introducing Dependency Locator&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="IoC-ref"&gt;IoC&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/software-design/introducing-dependency-locator"&gt;Introducing Dependency Locator&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id=".net-ref"&gt;.net&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="code analysis-ref"&gt;code analysis&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="ndepend-ref"&gt;ndepend&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="nitriq-ref"&gt;nitriq&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="iplasma-ref"&gt;iplasma&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="roslyn-ref"&gt;roslyn&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="java-ref"&gt;java&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="microsoft cci-ref"&gt;microsoft cci&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="microsoft cci ast-ref"&gt;microsoft cci ast&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt;&lt;/li&gt;
  
 </description>
     </item>

@@ -4,7 +4,13 @@
     <title>Software [Over]Engineering</title>
     <description>Software [Over]Engineering</description>
     <link>http://marcel.bowlitz.com</link>
-    <pubDate>2013-09-28 14:15:48 -0400</pubDate>
+    <pubDate>2013-10-02 23:01:37 -0400</pubDate>
+    <item>
+      <title>Code analysis tools: NDepend, Nitriq, iPlasma...</title>
+      <link>http://marcel.bowlitz.com/code-analysis-tools-ndepend-nitriq-iplasma</link>
+      <pubDate>2013-10-02</pubDate>
+      <description>A feature comparison between several code analysis tools available.</description>
+    </item>
     <item>
       <title>Extreme Programming in the Real World</title>
       <link>http://marcel.bowlitz.com/extreme-programming/extreme-programming-in-the-real-world</link>
@@ -28,12 +34,6 @@
       <link>http://marcel.bowlitz.com/ironruby/ironruby-and-the-dreaded-method-not-found-error</link>
       <pubDate>2013-01-12</pubDate>
       <description>How to survive the IronRuby "Method not found" error</description>
-    </item>
-    <item>
-      <title>Introducing Dependency Locator</title>
-      <link>http://marcel.bowlitz.com/software-design/introducing-dependency-locator</link>
-      <pubDate>2012-12-18</pubDate>
-      <description>Dependency Locator is an implementation of the Service Locator pattern with a twist.</description>
     </item>
   </channel>
 </rss>
