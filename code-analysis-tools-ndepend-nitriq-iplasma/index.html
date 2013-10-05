@@ -97,7 +97,7 @@
 
 <blockquote>
 <p><strong>Rationale</strong>: This features are needed in order to perform the code analysis, because that will provide the data we will measure and evaluate. With those features it is possible to obtain all the Chidamber &amp; Kemerer metric suite which are fundamental for code analysis.<br>
-<strong>Acceptance Criteria</strong>: A proof of concept that can obtain perform each and one of the features programmatically.</p>
+<strong>Acceptance Criteria</strong>: A proof of concept that can obtain each and one of the listed items programmatically.</p>
 </blockquote></li>
 <li><h4 id="toc_3">The extracted code model must be readable in-memory, directly or indirectly.</h4>
 
@@ -128,8 +128,8 @@
 <ol>
 <li>Very low compliance (Very small part or nothing of the proof of concept can be implemented)</li>
 <li>Low compliance (Some parts of the proof of concept cannot be implemented)</li>
-<li>Medium compliance (Possible to the proof of concept with a lot of extra code)</li>
-<li>High compliance (Can implement the requirement the proof of concept)</li>
+<li>Medium compliance (Possible to implement the proof of concept with a lot of extra code)</li>
+<li>High compliance (Can implement the proof of concept with <em>some</em> extra code)</li>
 <li>Very high compliance (Easy to implement the proof of concept)</li>
 </ol>
 
@@ -219,7 +219,7 @@
 <li>It can process any strongly typed .net language: C++, C#, VB, J#, JScript.Net</li>
 <li>NDepend can be called programmatically via its NDepend.API by using the NDependProvider class and IProjectManager and IProject classes respectively.</li>
 <li>The NDepend.API exposes an easy to &#39;analyze&#39; interface that allows the programmer to write queries over code structure in a fluent way, it also comes with many extensions for filtering and navigating code structure, and calculating metrics.</li>
-<li>The code model, the analysis and results generated programmatically with the NDepend.API can be manipulated in-memory and stored to a file, by using the NDepend.API (no need to code it).</li>
+<li>The code model, the analysis and results generated programmatically with the NDepend.API can be manipulated in-memory and stored to a file, by using the NDepend.API.</li>
 </ul>
 
 <h3 id="toc_9">Detailed analysis for <a href="http://nitriq.com">Nitriq</a></h3>
@@ -235,18 +235,18 @@
 
 <ul>
 <li>It uses an intermediary meta-model representation of the design, currently there are extractors for Java, C++ and C#. It is possible to write another extractor for any other language needed.</li>
-<li>Its too complicated, a proof of concept test could not be programmed because there is not sufficient documentation on the iPlasma project to invoke it programmatically. Also, it is unknown if it is legal to do this according to their License Terms (which I did not find).</li>
-<li>The Visual Tool can obtain every specification in this requirement, and more; because the visual tool comes with previously programmed &#39;plugins&#39;.</li>
-<li>The model is extracted direcly from source code, and is represented in a modeling language called MEMORIA.</li>
+<li>Its too complicated, a proof of concept test could not be programmed because there is not sufficient documentation on the iPlasma project. It is unknown if it is legal to do this according to their License Terms (which I did not find).</li>
+<li>The visual tool can obtain every specified item for requirement #3, and more; because the visual tool comes with previously programmed &#39;plugins&#39;.</li>
+<li>The model is extracted directly from source code, and is represented in a modeling language called MEMORIA.</li>
 </ul>
 
 <h3 id="toc_11">Detailed analysis for <a href="http://cciast.codeplex.com/">Microsoft CCI + AST</a></h3>
 
 <ul>
 <li>It can process any static .Net language that is compiled to MSIL:C++, C#, VB, J#, JScript.Net.</li>
-<li>It can be invoked programmatically without the need of the CLI; but it requires a lot of code to do the simplest of things like the methods in a class.</li>
-<li>Complies with the requirement, and its API is written to do code analysis. The problem is that there very little or outdated documentation for its API.</li>
-<li> The model is totally generated in-memory, without an intermediary format.</li>
+<li>It can be invoked programmatically without the need of the CLI; but it requires a lot of code to do the simplest of things like get the methods in a class.</li>
+<li>Complies with requirement #3, and its API is written to do code analysis. The problem is that there is very little or outdated documentation for its API.</li>
+<li>The model is totally generated in-memory, without an intermediary format.</li>
 </ul>
 
 <h3 id="toc_12">Detailed analysis for <a href="http://msdn.microsoft.com/en-us/vstudio/hh500769.aspx">Microsoft Project Roslyn</a></h3>
@@ -260,9 +260,9 @@
 
 <h2 id="toc_13">Conclusion: NDepend wins</h2>
 
-<p>NDepend is clearly the best choice for code analysis projects, thanks to its API for fluently writing queries over NDepend&#39;s extracted code model, you can start writing any code structure and code metrics based rules right away</p>
+<p>NDepend is clearly the best choice for a project with the requirements specified at the beginning of this article, thanks to its API for fluently writing queries over NDepend&#39;s extracted code model, you can start implementing any code structure or metrics based analysis right away.</p>
 
-<p>Now, if you don&#39;t have the $$$ to get a NDepend license, then Microsoft&#39;s CCI + AST open source project is a decent option, but get ready for writing a lot of code for any code metrics or code structure based rule, from what I determined, an extra layer of abstraction over CCI + AST is needed in order to do anything useful with it.</p>
+<p>If you don&#39;t have the $$$ to get a NDepend license, then Microsoft&#39;s CCI + AST open source project is a decent option, but get ready to write a lot of code to extract any code metrics or structure from a program (.dll), from what I determined, an extra layer of abstraction over CCI + AST is needed in order to do anything useful with it.</p>
 
     </div>
     <ul class="tag_box inline">

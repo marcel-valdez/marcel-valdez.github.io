@@ -4,7 +4,7 @@
     <title>Software [Over]Engineering</title>
     <description>Software [Over]Engineering</description>
     <link>http://marcel.bowlitz.com</link>
-    <pubDate>2013-10-02 23:01:38 -0400</pubDate>
+    <pubDate>2013-10-05 02:23:58 -0400</pubDate>
     <item>
       <title>About Me</title>
       <link>http://marcel.bowlitz.com/about</link>
@@ -238,7 +238,7 @@
 
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Rationale&lt;/strong&gt;: This features are needed in order to perform the code analysis, because that will provide the data we will measure and evaluate. With those features it is possible to obtain all the Chidamber &amp;amp; Kemerer metric suite which are fundamental for code analysis.&lt;br&gt;
-&lt;strong&gt;Acceptance Criteria&lt;/strong&gt;: A proof of concept that can obtain perform each and one of the features programmatically.&lt;/p&gt;
+&lt;strong&gt;Acceptance Criteria&lt;/strong&gt;: A proof of concept that can obtain each and one of the listed items programmatically.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
