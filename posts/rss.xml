@@ -4,7 +4,13 @@
     <title>Software [Over]Engineering</title>
     <description>Software [Over]Engineering</description>
     <link>http://marcel.bowlitz.com</link>
-    <pubDate>2013-10-05 02:23:57 -0400</pubDate>
+    <pubDate>2015-05-23</pubDate>
+    <item>
+      <title>Most practical advice on finding your passion that I have ever found</title>
+      <link>http://marcel.bowlitz.com/most-practical-advice-on-finding-your-passion-that-i-have-ever-found</link>
+      <pubDate>2015-05-23</pubDate>
+      <description>Great advice on how to find your passion</description>
+    </item>
     <item>
       <title>Code analysis tools: NDepend, Nitriq, iPlasma...</title>
       <link>http://marcel.bowlitz.com/code-analysis-tools-ndepend-nitriq-iplasma</link>
@@ -25,15 +31,9 @@
     </item>
     <item>
       <title>Custom resources in Visual Studio Test projects</title>
-      <link>http://marcel.bowlitz.com/continuous-integration/custom-resources-in-visual-studio-test-projects</link>
+      <link>http://marcel.bowlitz.com/custom-resources-in-visual-studio-test-projects</link>
       <pubDate>2013-01-24</pubDate>
-      <description>Setting up custom resources for test projects.</description>
-    </item>
-    <item>
-      <title>IronRuby and the Dreaded Method not found error</title>
-      <link>http://marcel.bowlitz.com/ironruby/ironruby-and-the-dreaded-method-not-found-error</link>
-      <pubDate>2013-01-12</pubDate>
-      <description>How to survive the IronRuby "Method not found" error</description>
+      <description>Setting up custom resources for test projects</description>
     </item>
   </channel>
 </rss>
