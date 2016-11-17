@@ -57,6 +57,39 @@
         <div class="row-fluid">
   <div class="span12">
       <div class="posts">
+        <h3 class="title"><a href="/continuous-integration/custom-resources-in-visual-studio-test-projects">Custom resources in Visual Studio Test projects</a> <span class="date">2013-01-24</span></h3>
+
+        <div class="summary">
+<p>Many times, you need custom resources for your test projects, and these resources might be needed in several test projects.  </p>
+
+<p>Now, you could simply copy all of these resources (files) to all your projects and 'include them' in the .csproj file, but you know this would break DRY principle, which is a <a href="http://en.wikipedia.org/wiki/Don't_repeat_yourself">good idea to abide to</a>.  </p>
+
+<p>Anyway, normally if you want to copy a resource to the output directory you do this:</p>
+
+<pre><code>  &lt;Target Name="CopyResources" DependsOnTargets="Build"&gt;
+    &lt;Exec Command="CALL ..\my\resources\generator.bat $(OutputPath)" /&gt;
+  &lt;/Target&gt;
+</code></pre>
+
+<blockquote>
+<p>Note: I am assuming you have a script that generates resources and then puts them on a path you give it.</p>
+</blockquote>
+
+<p>When you build your solution in your computer and execute the tests with some of the major test runners, it might work, but not with all of them; and it might fail in some cloud hosted environments, like for example AppHarbor.  </p>
+
+<p>The solution is simple, instead of using <code>$(OutputPath)</code>, use <code>$(OutDir)</code>, and this will work in local and hosted environments.</p>
+
+<pre><code>  &lt;Target Name="CopyResources" DependsOnTargets="Build"&gt;
+    &lt;Exec Command="CALL ..\my\resources\generator.bat $(OutDir)" /&gt;
+  &lt;/Target&gt;
+</code></pre>
+</div>
+
+        <div class="more">
+          <a href="/continuous-integration/custom-resources-in-visual-studio-test-projects" class="btn btn-small">read more..</a>
+        </div>
+      </div>
+      <div class="posts">
         <h3 class="title"><a href="/ironruby/ironruby-and-the-dreaded-method-not-found-error">IronRuby and the Dreaded Method not found error</a> <span class="date">2013-01-12</span></h3>
 
         <div class="summary ellipsis">

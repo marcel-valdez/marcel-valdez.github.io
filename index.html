@@ -61,6 +61,38 @@
 <div class="row-fluid">
   <div class="span12">
     <div class="post">
+  <h3 class="title"><a href="/human-development">Human Development</a> <span class="date">2016-11-16</span></h3>
+
+  <div class="summary ellipsis">
+<h1 id="toc_0">Human Development</h1>
+
+<h3 id="toc_1">What is a Human?</h3>
+
+<p>We define a human by that which a human essentially is. Humans (like everything
+else in existence) are interactions of the universe happening NOW and HERE.</p>
+
+<p>For example, a wave is an interaction of the ocean AND it IS the ocean, the
+ocean is an interaction of planet earth and also the earth, the earth is an
+interaction of the solar system and also the solar system, and so on, until we
+reach the Universe.</p>
+
+<p>In the same fashion, a nail is an interaction of your body and it is also your
+body, your nail is you, because you are defined by <em>all</em> of you (nails included).</p>
+
+<p>We can say that humans (just like everything else in this planet) are an
+interaction of the planet AND we are also the planet, the solar system, the
+milky way galaxy, the constellation and the universe.</p>
+
+<p>In conclusion, we say that a Human is, essentially, an interaction of the
+Universe and is also the Universe expressing itself in the form of a Human Now
+and Here.</p>
+</div>
+
+  <div class="more">
+    <a href="/human-development" class="btn btn-small">read more..</a>
+  </div>
+</div>
+<div class="post">
   <h3 class="title"><a href="/most-practical-advice-on-finding-your-passion-that-i-have-ever-found">Most practical advice on finding your passion that I have ever found</a> <span class="date">2015-05-23</span></h3>
 
   <div class="summary">
@@ -233,39 +265,6 @@ have a feeling that I have not found my ultimate passion, and may never will...<
 
   <div class="more">
     <a href="/tips/eclipse-zoom-in-on-text-with-ctrl%2B" class="btn btn-small">read more..</a>
-  </div>
-</div>
-<div class="post">
-  <h3 class="title"><a href="/custom-resources-in-visual-studio-test-projects">Custom resources in Visual Studio Test projects</a> <span class="date">2013-01-24</span></h3>
-
-  <div class="summary">
-<p>Many times, you need custom resources for your test projects, and these resources might be needed in several test projects.  </p>
-
-<p>Now, you could simply copy all of these resources (files) to all your projects and 'include them' in the .csproj file, but you know this would break DRY principle, which is a <a href="http://en.wikipedia.org/wiki/Don't_repeat_yourself">good idea to abide to</a>.  </p>
-
-<p>Anyway, normally if you want to copy a resource to the output directory you do this:</p>
-
-<pre><code>  &lt;Target Name="CopyResources" DependsOnTargets="Build"&gt;
-    &lt;Exec Command="CALL ..\my\resources\generator.bat $(OutputPath)" /&gt;
-  &lt;/Target&gt;
-</code></pre>
-
-<blockquote>
-<p>Note: I am assuming you have a script that generates resources and then puts them on a path you give it.</p>
-</blockquote>
-
-<p>When you build your solution in your computer and execute the tests with some of the major test runners, it might work, but not with all of them; and it might fail in some cloud hosted environments, like for example AppHarbor.  </p>
-
-<p>The solution is simple, instead of using <code>$(OutputPath)</code>, use <code>$(OutDir)</code>, and this will work in local and hosted environments.</p>
-
-<pre><code>  &lt;Target Name="CopyResources" DependsOnTargets="Build"&gt;
-    &lt;Exec Command="CALL ..\my\resources\generator.bat $(OutDir)" /&gt;
-  &lt;/Target&gt;
-</code></pre>
-</div>
-
-  <div class="more">
-    <a href="/custom-resources-in-visual-studio-test-projects" class="btn btn-small">read more..</a>
   </div>
 </div>
 

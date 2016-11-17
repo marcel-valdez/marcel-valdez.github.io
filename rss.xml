@@ -4,7 +4,7 @@
     <title>Software [Over]Engineering</title>
     <description>Software [Over]Engineering</description>
     <link>http://marcel.bowlitz.com</link>
-    <pubDate>2015-05-23</pubDate>
+    <pubDate>2016-11-16</pubDate>
     <item>
       <title>About Me</title>
       <link>http://marcel.bowlitz.com/about</link>
@@ -31,7 +31,12 @@
     <item>
       <title>Archive</title>
       <link>http://marcel.bowlitz.com/archive</link>
-      <description>  &lt;h2&gt;2015&lt;/h2&gt;
+      <description>  &lt;h2&gt;2016&lt;/h2&gt;
+    &lt;h3&gt;November&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;span&gt;2016-11-16&lt;/span&gt; &amp;raquo; &lt;a href="/human-development"&gt;Human Development&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;h2&gt;2015&lt;/h2&gt;
     &lt;h3&gt;May&lt;/h3&gt;
     &lt;ul&gt;
       &lt;li&gt;&lt;span&gt;2015-05-23&lt;/span&gt; &amp;raquo; &lt;a href="/most-practical-advice-on-finding-your-passion-that-i-have-ever-found"&gt;Most practical advice on finding your passion that I have ever found&lt;/a&gt;&lt;/li&gt;
@@ -48,7 +53,7 @@
     &lt;h3&gt;January&lt;/h3&gt;
     &lt;ul&gt;
       &lt;li&gt;&lt;span&gt;2013-01-28&lt;/span&gt; &amp;raquo; &lt;a href="/tips/eclipse-zoom-in-on-text-with-ctrl%2B"&gt;Eclipse: Zoom in on text with Ctrl+&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;span&gt;2013-01-24&lt;/span&gt; &amp;raquo; &lt;a href="/custom-resources-in-visual-studio-test-projects"&gt;Custom resources in Visual Studio Test projects&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;2013-01-24&lt;/span&gt; &amp;raquo; &lt;a href="/continuous-integration/custom-resources-in-visual-studio-test-projects"&gt;Custom resources in Visual Studio Test projects&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;span&gt;2013-01-12&lt;/span&gt; &amp;raquo; &lt;a href="/ironruby/ironruby-and-the-dreaded-method-not-found-error"&gt;IronRuby and the Dreaded Method not found error&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;h2&gt;2012&lt;/h2&gt;
@@ -88,6 +93,18 @@
   &lt;/li&gt;
   &lt;li&gt;
     &lt;a href="/categories#academic-ref"&gt;academic &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/categories#continuous integration-ref"&gt;continuous integration &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/categories#msbuild-ref"&gt;msbuild &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/categories#visual studio-ref"&gt;visual studio &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/categories#automated build-ref"&gt;automated build &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;a href="/categories#extreme programming-ref"&gt;extreme programming &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
@@ -143,6 +160,22 @@
   &lt;ul&gt;
       &lt;li&gt;&lt;a href="/notepad%2B%2B/winrdbi-syntax-highlighting-on-notepad%2B%2B"&gt;WinRDBI Syntax Highlighting on Notepad++&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
+  &lt;h3&gt;continuous integration (1)&lt;/h3&gt;
+  &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/continuous-integration/custom-resources-in-visual-studio-test-projects"&gt;Custom resources in Visual Studio Test projects&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;h3&gt;msbuild (1)&lt;/h3&gt;
+  &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/continuous-integration/custom-resources-in-visual-studio-test-projects"&gt;Custom resources in Visual Studio Test projects&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;h3&gt;visual studio (1)&lt;/h3&gt;
+  &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/continuous-integration/custom-resources-in-visual-studio-test-projects"&gt;Custom resources in Visual Studio Test projects&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;h3&gt;automated build (1)&lt;/h3&gt;
+  &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/continuous-integration/custom-resources-in-visual-studio-test-projects"&gt;Custom resources in Visual Studio Test projects&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
   &lt;h3&gt;extreme programming (1)&lt;/h3&gt;
   &lt;ul&gt;
       &lt;li&gt;&lt;a href="/extreme-programming/extreme-programming-in-the-real-world"&gt;Extreme Programming in the Real World&lt;/a&gt;&lt;/li&gt;
@@ -173,6 +206,38 @@
       <title>Home</title>
       <link>http://marcel.bowlitz.com/</link>
       <description>&lt;div class="post"&gt;
+  &lt;h3 class="title"&gt;&lt;a href="/human-development"&gt;Human Development&lt;/a&gt; &lt;span class="date"&gt;2016-11-16&lt;/span&gt;&lt;/h3&gt;
+
+  &lt;div class="summary ellipsis"&gt;
+&lt;h1 id="toc_0"&gt;Human Development&lt;/h1&gt;
+
+&lt;h3 id="toc_1"&gt;What is a Human?&lt;/h3&gt;
+
+&lt;p&gt;We define a human by that which a human essentially is. Humans (like everything
+else in existence) are interactions of the universe happening NOW and HERE.&lt;/p&gt;
+
+&lt;p&gt;For example, a wave is an interaction of the ocean AND it IS the ocean, the
+ocean is an interaction of planet earth and also the earth, the earth is an
+interaction of the solar system and also the solar system, and so on, until we
+reach the Universe.&lt;/p&gt;
+
+&lt;p&gt;In the same fashion, a nail is an interaction of your body and it is also your
+body, your nail is you, because you are defined by &lt;em&gt;all&lt;/em&gt; of you (nails included).&lt;/p&gt;
+
+&lt;p&gt;We can say that humans (just like everything else in this planet) are an
+interaction of the planet AND we are also the planet, the solar system, the
+milky way galaxy, the constellation and the universe.&lt;/p&gt;
+
+&lt;p&gt;In conclusion, we say that a Human is, essentially, an interaction of the
+Universe and is also the Universe expressing itself in the form of a Human Now
+and Here.&lt;/p&gt;
+&lt;/div&gt;
+
+  &lt;div class="more"&gt;
+    &lt;a href="/human-development" class="btn btn-small"&gt;read more..&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="post"&gt;
   &lt;h3 class="title"&gt;&lt;a href="/most-practical-advice-on-finding-your-passion-that-i-have-ever-found"&gt;Most practical advice on finding your passion that I have ever found&lt;/a&gt; &lt;span class="date"&gt;2015-05-23&lt;/span&gt;&lt;/h3&gt;
 
   &lt;div class="summary"&gt;
@@ -347,39 +412,6 @@ have a feeling that I have not found my ultimate passion, and may never will...&
     &lt;a href="/tips/eclipse-zoom-in-on-text-with-ctrl%2B" class="btn btn-small"&gt;read more..&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="post"&gt;
-  &lt;h3 class="title"&gt;&lt;a href="/custom-resources-in-visual-studio-test-projects"&gt;Custom resources in Visual Studio Test projects&lt;/a&gt; &lt;span class="date"&gt;2013-01-24&lt;/span&gt;&lt;/h3&gt;
-
-  &lt;div class="summary"&gt;
-&lt;p&gt;Many times, you need custom resources for your test projects, and these resources might be needed in several test projects.  &lt;/p&gt;
-
-&lt;p&gt;Now, you could simply copy all of these resources (files) to all your projects and 'include them' in the .csproj file, but you know this would break DRY principle, which is a &lt;a href="http://en.wikipedia.org/wiki/Don't_repeat_yourself"&gt;good idea to abide to&lt;/a&gt;.  &lt;/p&gt;
-
-&lt;p&gt;Anyway, normally if you want to copy a resource to the output directory you do this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;  &amp;lt;Target Name="CopyResources" DependsOnTargets="Build"&amp;gt;
-    &amp;lt;Exec Command="CALL ..\my\resources\generator.bat $(OutputPath)" /&amp;gt;
-  &amp;lt;/Target&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Note: I am assuming you have a script that generates resources and then puts them on a path you give it.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;When you build your solution in your computer and execute the tests with some of the major test runners, it might work, but not with all of them; and it might fail in some cloud hosted environments, like for example AppHarbor.  &lt;/p&gt;
-
-&lt;p&gt;The solution is simple, instead of using &lt;code&gt;$(OutputPath)&lt;/code&gt;, use &lt;code&gt;$(OutDir)&lt;/code&gt;, and this will work in local and hosted environments.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;  &amp;lt;Target Name="CopyResources" DependsOnTargets="Build"&amp;gt;
-    &amp;lt;Exec Command="CALL ..\my\resources\generator.bat $(OutDir)" /&amp;gt;
-  &amp;lt;/Target&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-  &lt;div class="more"&gt;
-    &lt;a href="/custom-resources-in-visual-studio-test-projects" class="btn btn-small"&gt;read more..&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
 
 &lt;div class="pagination"&gt;
   &lt;ul&gt;
@@ -417,7 +449,25 @@ have a feeling that I have not found my ultimate passion, and may never will...&
       <link>http://marcel.bowlitz.com/tags</link>
       <description>&lt;ul class="tag_box inline"&gt;
   &lt;li&gt;
+    &lt;a href="/tags#success-ref"&gt;success &lt;span&gt;2&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#zen-ref"&gt;zen &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#universe-ref"&gt;universe &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#human-ref"&gt;human &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
     &lt;a href="/tags#passion-ref"&gt;passion &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#human development-ref"&gt;human development &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#obsesion-ref"&gt;obsesion &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;a href="/tags#.net-ref"&gt;.net &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
@@ -455,22 +505,23 @@ have a feeling that I have not found my ultimate passion, and may never will...&
   &lt;li&gt;
     &lt;a href="/tags#IoC-ref"&gt;IoC &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
-  &lt;li&gt;
-    &lt;a href="/tags#continuous integration-ref"&gt;continuous integration &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;a href="/tags#msbuild-ref"&gt;msbuild &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;a href="/tags#visual studio-ref"&gt;visual studio &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;a href="/tags#automated build-ref"&gt;automated build &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
-  &lt;/li&gt;
 &lt;/ul&gt;
 
+  &lt;h3 id="success-ref"&gt;success&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/human-development"&gt;Human Development&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/obsession-is-good"&gt;Obsession is Good&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="zen-ref"&gt;zen&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/human-development"&gt;Human Development&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="universe-ref"&gt;universe&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/human-development"&gt;Human Development&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="human-ref"&gt;human&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/human-development"&gt;Human Development&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="passion-ref"&gt;passion&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/most-practical-advice-on-finding-your-passion-that-i-have-ever-found"&gt;Most practical advice on finding your passion that I have ever found&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="human development-ref"&gt;human development&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/obsession-is-good"&gt;Obsession is Good&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="obsesion-ref"&gt;obsesion&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/obsession-is-good"&gt;Obsession is Good&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id=".net-ref"&gt;.net&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="code analysis-ref"&gt;code analysis&lt;/h3&gt;
@@ -495,14 +546,6 @@ have a feeling that I have not found my ultimate passion, and may never will...&
     &lt;li&gt;&lt;a href="/software-design/introducing-dependency-locator"&gt;Introducing Dependency Locator&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="IoC-ref"&gt;IoC&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/software-design/introducing-dependency-locator"&gt;Introducing Dependency Locator&lt;/a&gt;&lt;/li&gt;
-  &lt;h3 id="continuous integration-ref"&gt;continuous integration&lt;/h3&gt;
-    &lt;li&gt;&lt;a href="/custom-resources-in-visual-studio-test-projects"&gt;Custom resources in Visual Studio Test projects&lt;/a&gt;&lt;/li&gt;
-  &lt;h3 id="msbuild-ref"&gt;msbuild&lt;/h3&gt;
-    &lt;li&gt;&lt;a href="/custom-resources-in-visual-studio-test-projects"&gt;Custom resources in Visual Studio Test projects&lt;/a&gt;&lt;/li&gt;
-  &lt;h3 id="visual studio-ref"&gt;visual studio&lt;/h3&gt;
-    &lt;li&gt;&lt;a href="/custom-resources-in-visual-studio-test-projects"&gt;Custom resources in Visual Studio Test projects&lt;/a&gt;&lt;/li&gt;
-  &lt;h3 id="automated build-ref"&gt;automated build&lt;/h3&gt;
-    &lt;li&gt;&lt;a href="/custom-resources-in-visual-studio-test-projects"&gt;Custom resources in Visual Studio Test projects&lt;/a&gt;&lt;/li&gt;
  
 </description>
     </item>
