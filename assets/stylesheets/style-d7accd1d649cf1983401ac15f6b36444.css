@@ -69,3 +69,9 @@
   border:1px solid #4C964D;
   color:#FFF;
 }
+
+a.fn-link {
+  vertical-align: super;
+  font-size: 0.8em;
+  line-height: 0;
+}

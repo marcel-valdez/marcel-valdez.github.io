@@ -4,7 +4,7 @@
     <title>Software [Over]Engineering</title>
     <description>Software [Over]Engineering</description>
     <link>http://marcel.bowlitz.com</link>
-    <pubDate>2016-11-16</pubDate>
+    <pubDate>2016-12-11</pubDate>
     <item>
       <title>About Me</title>
       <link>http://marcel.bowlitz.com/about</link>
@@ -32,6 +32,10 @@
       <title>Archive</title>
       <link>http://marcel.bowlitz.com/archive</link>
       <description>  &lt;h2&gt;2016&lt;/h2&gt;
+    &lt;h3&gt;December&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;span&gt;2016-12-11&lt;/span&gt; &amp;raquo; &lt;a href="/software-goodness"&gt;Software Goodness&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
     &lt;h3&gt;November&lt;/h3&gt;
     &lt;ul&gt;
       &lt;li&gt;&lt;span&gt;2016-11-16&lt;/span&gt; &amp;raquo; &lt;a href="/human-development"&gt;Human Development&lt;/a&gt;&lt;/li&gt;
@@ -206,6 +210,39 @@
       <title>Home</title>
       <link>http://marcel.bowlitz.com/</link>
       <description>&lt;div class="post"&gt;
+  &lt;h3 class="title"&gt;&lt;a href="/software-goodness"&gt;Software Goodness&lt;/a&gt; &lt;span class="date"&gt;2016-12-11&lt;/span&gt;&lt;/h3&gt;
+
+  &lt;div class="summary ellipsis"&gt;
+&lt;h1 id="toc_0"&gt;Software Goodness&lt;/h1&gt;
+
+&lt;p&gt;The &lt;em&gt;Ultimate Purpose of Software&lt;/em&gt; is to &lt;em&gt;help somebody achieve a greater goal&lt;/em&gt;
+&lt;a id="ref1" href="#fn1" class="fn-link"&gt;1&lt;/a&gt;. The degree of &lt;em&gt;Software
+Goodness&lt;/em&gt; of a piece of software is &lt;em&gt;the degree to which the software realizes
+its ultimate purpose&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;For example, software that helps 1M people learn algebra can be said to have
+greater Software Goodness &lt;a id="ref2" href="#fn2" class="fn-link"&gt;2&lt;/a&gt; than
+another software that helps only 100 people learn algebra.&lt;/p&gt;
+
+&lt;p&gt;Note that people who benefit from software can be anyone impacted by the
+software, other software engineers, for example. If a library is a joy to use
+(due to its -ilities [readability, simplicity, robustness, etc]), then it can be
+said that it achieves greater Software Goodness than a library that is a pain to
+use (due to its lack of -ilities).&lt;/p&gt;
+
+&lt;h2 id="toc_1"&gt;What drives a person to pursue Software Goodness?&lt;/h2&gt;
+
+&lt;p&gt;I believe that what drives a peson to write software with a high degree of
+Goodness is that person's Care &lt;a id="ref3" href="#fn3" class="fn-link"&gt;3&lt;/a&gt;
+&lt;a id="ref4" href="#fn4" class="fn-link"&gt;4&lt;/a&gt; for others and the greater goal
+the software is helping achieve.&lt;/p&gt;
+&lt;/div&gt;
+
+  &lt;div class="more"&gt;
+    &lt;a href="/software-goodness" class="btn btn-small"&gt;read more..&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="post"&gt;
   &lt;h3 class="title"&gt;&lt;a href="/human-development"&gt;Human Development&lt;/a&gt; &lt;span class="date"&gt;2016-11-16&lt;/span&gt;&lt;/h3&gt;
 
   &lt;div class="summary ellipsis"&gt;
@@ -214,7 +251,7 @@
 &lt;h3 id="toc_1"&gt;What is a Human?&lt;/h3&gt;
 
 &lt;p&gt;We define a human by that which a human essentially is. Humans (like everything
-else in existence) are interactions of the universe happening NOW and HERE.&lt;/p&gt;
+else in existence) are interactions of the universe happening &lt;em&gt;here&lt;/em&gt; and &lt;em&gt;now&lt;/em&gt;.&lt;/p&gt;
 
 &lt;p&gt;For example, a wave is an interaction of the ocean AND it IS the ocean, the
 ocean is an interaction of planet earth and also the earth, the earth is an
@@ -229,8 +266,8 @@ interaction of the planet AND we are also the planet, the solar system, the
 milky way galaxy, the constellation and the universe.&lt;/p&gt;
 
 &lt;p&gt;In conclusion, we say that a Human is, essentially, an interaction of the
-Universe and is also the Universe expressing itself in the form of a Human Now
-and Here.&lt;/p&gt;
+Universe and is also the Universe expressing itself in the form of a Human
+&lt;em&gt;here&lt;/em&gt; and &lt;em&gt;now&lt;/em&gt;.&lt;/p&gt;
 &lt;/div&gt;
 
   &lt;div class="more"&gt;
@@ -395,28 +432,12 @@ have a feeling that I have not found my ultimate passion, and may never will...&
     &lt;a href="/extreme-programming/extreme-programming-in-the-real-world" class="btn btn-small"&gt;read more..&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="post"&gt;
-  &lt;h3 class="title"&gt;&lt;a href="/tips/eclipse-zoom-in-on-text-with-ctrl%2B"&gt;Eclipse: Zoom in on text with Ctrl+&lt;/a&gt; &lt;span class="date"&gt;2013-01-28&lt;/span&gt;&lt;/h3&gt;
-
-  &lt;div class="summary"&gt;
-&lt;p&gt;This is quick post to inform people how to get zoom in and out of text in eclipse, since alot of coders want it, but it is not easily found.&lt;/p&gt;
-
-&lt;p&gt;Well, &lt;strong&gt;here is your holy grail&lt;/strong&gt;: There is a project from a guy called 'tarlog' that made a plugin for eclipse at this, you can find information about it in  &lt;a href="http://stackoverflow.com/questions/6948374/how-to-change-font-size-quickly-in-eclipse/7816385#7816385"&gt;this StackOverflow question&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;It has some other features for eclipse, amongst which is Ctrl++ and Ctrl+- to change the font size, it's frickin' awesome.&lt;/p&gt;
-
-&lt;p&gt;Happy coding!&lt;/p&gt;
-&lt;/div&gt;
-
-  &lt;div class="more"&gt;
-    &lt;a href="/tips/eclipse-zoom-in-on-text-with-ctrl%2B" class="btn btn-small"&gt;read more..&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
 
 &lt;div class="pagination"&gt;
   &lt;ul&gt;
       &lt;li class="active"&gt;&lt;a href="/"&gt;1&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href="/posts/index/2"&gt;2&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/posts/index/3"&gt;3&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/div&gt;</description>
     </item>
@@ -452,7 +473,7 @@ have a feeling that I have not found my ultimate passion, and may never will...&
     &lt;a href="/tags#success-ref"&gt;success &lt;span&gt;2&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;a href="/tags#zen-ref"&gt;zen &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+    &lt;a href="/tags#zen-ref"&gt;zen &lt;span&gt;2&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;a href="/tags#universe-ref"&gt;universe &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
@@ -505,6 +526,15 @@ have a feeling that I have not found my ultimate passion, and may never will...&
   &lt;li&gt;
     &lt;a href="/tags#IoC-ref"&gt;IoC &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#software-ref"&gt;software &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#form of the good-ref"&gt;form of the good &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#philosophy-ref"&gt;philosophy &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
   &lt;h3 id="success-ref"&gt;success&lt;/h3&gt;
@@ -512,6 +542,7 @@ have a feeling that I have not found my ultimate passion, and may never will...&
     &lt;li&gt;&lt;a href="/obsession-is-good"&gt;Obsession is Good&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="zen-ref"&gt;zen&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/human-development"&gt;Human Development&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/software-goodness"&gt;Software Goodness&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="universe-ref"&gt;universe&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/human-development"&gt;Human Development&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="human-ref"&gt;human&lt;/h3&gt;
@@ -546,6 +577,12 @@ have a feeling that I have not found my ultimate passion, and may never will...&
     &lt;li&gt;&lt;a href="/software-design/introducing-dependency-locator"&gt;Introducing Dependency Locator&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="IoC-ref"&gt;IoC&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/software-design/introducing-dependency-locator"&gt;Introducing Dependency Locator&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="software-ref"&gt;software&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/software-goodness"&gt;Software Goodness&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="form of the good-ref"&gt;form of the good&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/software-goodness"&gt;Software Goodness&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="philosophy-ref"&gt;philosophy&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/software-goodness"&gt;Software Goodness&lt;/a&gt;&lt;/li&gt;
  
 </description>
     </item>

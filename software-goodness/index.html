@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Custom resources in Visual Studio Test projects</title>
+    <title>Software Goodness</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Setting up custom resources for test projects.">
+    <meta name="description" content="The ultimate purpose of software">
     <meta name="author" content="Marcel Valdez">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -57,66 +57,107 @@
       <div class="content">
         
 <div class="page-header">
-  <h1>Custom resources in Visual Studio Test projects </h1>
+  <h1>Software Goodness </h1>
 </div>
 
 <div class="row-fluid post-full">
   <div class="span12">
     <div class="date">
-      <span>2013-01-24</strong>
+      <span>2016-12-11</strong>
     </div>
     <div class="content">
-      <p>Many times, you need custom resources for your test projects, and these resources might be needed in several test projects.  </p>
+      <h1 id="toc_0">Software Goodness</h1>
 
-<p>Now, you could simply copy all of these resources (files) to all your projects and &#39;include them&#39; in the .csproj file, but you know this would break DRY principle, which is a <a href="http://en.wikipedia.org/wiki/Don&#x27;t_repeat_yourself">good idea to abide to</a>.  </p>
+<p>The <em>Ultimate Purpose of Software</em> is to <em>help somebody achieve a greater goal</em>
+<a id="ref1" href="#fn1" class="fn-link">1</a>. The degree of <em>Software
+Goodness</em> of a piece of software is <em>the degree to which the software realizes
+its ultimate purpose</em>.</p>
 
-<p>Anyway, normally if you want to copy a resource to the output directory you do this:</p>
+<p>For example, software that helps 1M people learn algebra can be said to have
+greater Software Goodness <a id="ref2" href="#fn2" class="fn-link">2</a> than
+another software that helps only 100 people learn algebra.</p>
 
-<pre><code>  &lt;Target Name=&quot;CopyResources&quot; DependsOnTargets=&quot;Build&quot;&gt;
-    &lt;Exec Command=&quot;CALL ..\my\resources\generator.bat $(OutputPath)&quot; /&gt;
-  &lt;/Target&gt;
-</code></pre>
+<p>Note that people who benefit from software can be anyone impacted by the
+software, other software engineers, for example. If a library is a joy to use
+(due to its -ilities [readability, simplicity, robustness, etc]), then it can be
+said that it achieves greater Software Goodness than a library that is a pain to
+use (due to its lack of -ilities).</p>
 
-<blockquote>
-<p>Note: I am assuming you have a script that generates resources and then puts them on a path you give it.</p>
-</blockquote>
+<h2 id="toc_1">What drives a person to pursue Software Goodness?</h2>
 
-<p>When you build your solution in your computer and execute the tests with some of the major test runners, it might work, but not with all of them; and it might fail in some cloud hosted environments, like for example AppHarbor.  </p>
+<p>I believe that what drives a peson to write software with a high degree of
+Goodness is that person&#39;s Care <a id="ref3" href="#fn3" class="fn-link">3</a>
+<a id="ref4"href="#fn4" class="fn-link">4</a> for others and the greater goal
+the software is helping achieve.</p>
 
-<p>The solution is simple, instead of using <code>$(OutputPath)</code>, use <code>$(OutDir)</code>, and this will work in local and hosted environments.</p>
+<p>That is why an engineer writes Better Software when she works for a company
+whose goal she Cares about. However, a Care for other software engineers (and
+her future self) will also increase her motivation to produce software with a
+high degree of internal quality (the -ilities [maintainability, readability,
+extensibility, etc]).</p>
 
-<pre><code>  &lt;Target Name=&quot;CopyResources&quot; DependsOnTargets=&quot;Build&quot;&gt;
-    &lt;Exec Command=&quot;CALL ..\my\resources\generator.bat $(OutDir)&quot; /&gt;
-  &lt;/Target&gt;
-</code></pre>
+<h4 id="toc_2">Sources</h4>
+
+<ul>
+<li>Code Simplicity: The Fundamentals of Software by Max Kanat-Alexander</li>
+<li>Zen and the Art of Motorcycle Maintenance: An inquiry into values by Robert
+M. Pirsig</li>
+</ul>
+
+<h4 id="toc_3">Footnotes</h4>
+
+<ol>
+  <li id="fn1">
+    <a href="#ref1">&uarr;</a> This is a modified version of
+    Max Kanat-Alexander's definition in his book Code Simplicity: The
+    Fundamentals of Software: "The purpose of software is to help people".
+  </li>
+
+  <li id="fn2">
+    <a href="#ref2">&uarr;</a> I am using the word Goodness to refer to
+    Socrate's Form of the Good
+  </li>
+
+  <li id="fn3">
+    <a href="#ref2">&uarr;</a>
+    Care as Robert M. Pirsig refers to it in Zen and the Art of Motorcycle
+    Maintenance.
+  </li>
+
+  <li id="fn4">
+    <a href="#ref2">&uarr;</a>
+    I write with capitalized words when I use a word to convey a different
+    meaning than that which you would find in a dictionary or convention.
+  </li>
+</ol>
 
     </div>
     <ul class="tag_box inline">
       <li><i class="icon-folder-open"></i></li>
-      <li>
-        <a href="/categories#continuous integration-ref">continuous integration <span>1</span></a>
-      </li>
-      <li>
-        <a href="/categories#msbuild-ref">msbuild <span>1</span></a>
-      </li>
-      <li>
-        <a href="/categories#visual studio-ref">visual studio <span>1</span></a>
-      </li>
-      <li>
-        <a href="/categories#automated build-ref">automated build <span>1</span></a>
-      </li>
     </ul>
     <ul class="tag_box inline">
       <li><i class="icon-tags"></i></li>
+      <li>
+        <a href="/tags#software-ref">software <span>1</span></a>
+      </li>
+      <li>
+        <a href="/tags#zen-ref">zen <span>2</span></a>
+      </li>
+      <li>
+        <a href="/tags#form of the good-ref">form of the good <span>1</span></a>
+      </li>
+      <li>
+        <a href="/tags#philosophy-ref">philosophy <span>1</span></a>
+      </li>
     </ul>
     <hr>
     <div class="pagination">
       <ul>
-          <li class="prev"><a href="/ironruby/ironruby-and-the-dreaded-method-not-found-error" title="IronRuby and the Dreaded Method not found error">&larr; Previous</a></li>
+          <li class="prev"><a href="/human-development" title="Human Development">&larr; Previous</a></li>
 
           <li><a href="/archive">Archive</a></li>
 
-          <li class="next"><a href="/tips/eclipse-zoom-in-on-text-with-ctrl%2B" title="Eclipse: Zoom in on text with Ctrl+">Next &rarr;</a></li>
+          <li class="next disabled"><a>Next &rarr;</a>
       </ul>
     </div>
     <hr>
