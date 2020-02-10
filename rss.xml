@@ -4,18 +4,27 @@
     <title>Software [Over]Engineering</title>
     <description>Software [Over]Engineering</description>
     <link>http://marcel.bowlitz.com</link>
-    <pubDate>2016-12-11</pubDate>
+    <pubDate>2020-02-09</pubDate>
     <item>
       <title>About Me</title>
       <link>http://marcel.bowlitz.com/about</link>
       <pubDate>2013-07-02</pubDate>
-      <description>&lt;p&gt;Hello, my name is Marcel Valdez Orozco. I graduated with a BSc in Computer Science, and I&#x2019;m currently (Sep 2011 &#x2013; May 2013) a candidate graduate for a MSc in Software and Information Technology program at &lt;a href="http://www.itesm.edu/"&gt;ITESM&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;Hello, my name is Marcel Valdez Orozco. I graduated with a BSc in Computer
+Science, and I&#x2019;m currently (Sep 2011 &#x2013; May 2013) a graduate of a MSc in Software
+and Information Technology program at &lt;a href="http://www.itesm.edu/"&gt;ITESM&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;I&#x2019;m the kind of dev who likes to use and learn the best possible practices, but is pragmatic enough to know that it is not always possible to use them.&lt;/p&gt;
+&lt;p&gt;I&#x2019;m the kind of dev who likes to use and learn the best possible practices, but
+is pragmatic enough to know that it is not always possible to use them.&lt;/p&gt;
 
-&lt;p&gt;I&#x2019;m a curious software engineering with a serious case of:  &#x201C;want-to-learn-it-all&#x201D;. I&#x2019;m also an out of the closet mega-nerd, and just let all the knowledge flow.&lt;/p&gt;
+&lt;p&gt;I&#x2019;m a curious software engineering with a serious case of: &#x201C;want-to-learn-it-all&#x201D;.
+I&#x2019;m also an out of the closet mega-nerd and just want to let all the knowledge
+flow.&lt;/p&gt;
 
-&lt;p&gt;With interest in cool algorithms, popular software practices and sexy bleeding edge tech. &lt;/p&gt;
+&lt;p&gt;With interest in cool algorithms, popular software practices and sexy bleeding
+edge tech.&lt;/p&gt;
+
+&lt;p&gt;Recently I&amp;#39;ve become interested in the philosophy and metaphysics of developing
+software and of being human.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Ohloh Profile:&lt;/strong&gt;  &lt;a href="https://www.ohloh.net/accounts/142060?ref=Detailed"&gt;&lt;img src="https://www.ohloh.net/accounts/142060/widgets/account_detailed.gif" alt="Ohloh profile for marcelvaldez"&gt;&lt;/a&gt; &lt;/p&gt;
 
@@ -31,7 +40,18 @@
     <item>
       <title>Archive</title>
       <link>http://marcel.bowlitz.com/archive</link>
-      <description>  &lt;h2&gt;2016&lt;/h2&gt;
+      <description>  &lt;h2&gt;2020&lt;/h2&gt;
+    &lt;h3&gt;February&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;span&gt;2020-02-08&lt;/span&gt; &amp;raquo; &lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;h2&gt;2019&lt;/h2&gt;
+    &lt;h3&gt;May&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;span&gt;2019-05-27&lt;/span&gt; &amp;raquo; &lt;a href="/dear-strength"&gt;Dear Strength&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;2019-05-27&lt;/span&gt; &amp;raquo; &lt;a href="/dear-hardship"&gt;Dear Hardship&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;h2&gt;2016&lt;/h2&gt;
     &lt;h3&gt;December&lt;/h3&gt;
     &lt;ul&gt;
       &lt;li&gt;&lt;span&gt;2016-12-11&lt;/span&gt; &amp;raquo; &lt;a href="/software-goodness"&gt;Software Goodness&lt;/a&gt;&lt;/li&gt;
@@ -210,6 +230,79 @@
       <title>Home</title>
       <link>http://marcel.bowlitz.com/</link>
       <description>&lt;div class="post"&gt;
+  &lt;h3 class="title"&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt; &lt;span class="date"&gt;2020-02-08&lt;/span&gt;&lt;/h3&gt;
+
+  &lt;div class="summary ellipsis"&gt;
+&lt;h1 id="toc_0"&gt;Basic Agile Execution Template&lt;/h1&gt;
+
+&lt;p&gt;I propose a starting point for teams to begin their Agile journey, I believe this is a good place to
+start from but absolutely not a good end-goal. Teams should use this template and iterate on it
+until they have their own agile process that enables them to execute with peak throughput.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/media/basic_agile_template.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;The primary design principle for this template is to maximize the amount of value a team can deliver
+during a "cycle" (e.g. a sprint), in other words, it maximizes for throughput, with the
+understanding that once a team starts applying it they'll find improvement opportunities for their
+particular domain.&lt;/p&gt;
+
+&lt;p&gt;The most important thing to remember while using this approach is that every decision and action
+that the team does should maximize throughput (amount value delivered over time).&lt;/p&gt;
+
+&lt;p&gt;By value I mean &lt;em&gt;working software that helps stakeholders achieve a goal&lt;/em&gt;. If the software is not
+&lt;strong&gt;already&lt;/strong&gt; helping the stakeholder(s) achieve their goal, then the team has NOT delivered value.
+The degree by which the software helps the stakeholder(s) achieve their goal(s) and how important
+that goal(s) determines how valuable the software is.&lt;/p&gt;
+
+&lt;/div&gt;
+
+  &lt;div class="more"&gt;
+    &lt;a href="/basic-agile-execution-template" class="btn btn-small"&gt;read more..&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="post"&gt;
+  &lt;h3 class="title"&gt;&lt;a href="/dear-strength"&gt;Dear Strength&lt;/a&gt; &lt;span class="date"&gt;2019-05-27&lt;/span&gt;&lt;/h3&gt;
+
+  &lt;div class="summary"&gt;&lt;p&gt;Dear Strength,
+Thank you, I love you. I am you and you are me.&lt;/p&gt;&lt;/div&gt;
+
+  &lt;div class="more"&gt;
+    &lt;a href="/dear-strength" class="btn btn-small"&gt;read more..&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="post"&gt;
+  &lt;h3 class="title"&gt;&lt;a href="/dear-hardship"&gt;Dear Hardship&lt;/a&gt; &lt;span class="date"&gt;2019-05-27&lt;/span&gt;&lt;/h3&gt;
+
+  &lt;div class="summary ellipsis"&gt;
+&lt;p&gt;Dear Hardship,&lt;/p&gt;
+
+&lt;p&gt;Do you remember when you made it hard to walk? You taught me that not all pain comes from
+voluntary actions, yet I can find the strength in me to walk while in the company of pain.&lt;/p&gt;
+
+&lt;p&gt;Do you remember when you wouldn't let me sleep? So I could learn that the floor can be just
+as good a place to sleep as any bed, that pain can be pacified with meditation.&lt;/p&gt;
+
+&lt;p&gt;You're an eager teacher, looking for worthy students without discrimination, you embrace
+whomever finds you or stumbles unto you. In your eyes we're all equal and I love you for it.&lt;/p&gt;
+
+&lt;p&gt;Whenever I come knocking at your door, you open it for me, always ready to teach me a lesson,
+to remind me of my limits and how to surpass them, to remind me that everything I need to
+surpass my limits is within me.&lt;/p&gt;
+
+&lt;p&gt;You make every success that much sweeter, for nothing great is ever achieved without you,
+and knowing that only very few embrace you as part of themselves makes success all that much more
+unique.&lt;/p&gt;
+
+&lt;p&gt;If it weren't for you, I would not be able to climb high, for you are the mountain upon which I
+climb. If it weren't for you, I would not be able to learn, for you are the lesson from which I
+learn.&lt;/p&gt;
+&lt;/div&gt;
+
+  &lt;div class="more"&gt;
+    &lt;a href="/dear-hardship" class="btn btn-small"&gt;read more..&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="post"&gt;
   &lt;h3 class="title"&gt;&lt;a href="/software-goodness"&gt;Software Goodness&lt;/a&gt; &lt;span class="date"&gt;2016-12-11&lt;/span&gt;&lt;/h3&gt;
 
   &lt;div class="summary ellipsis"&gt;
@@ -250,186 +343,27 @@ the software is helping achieve.&lt;/p&gt;
 
 &lt;h3 id="toc_1"&gt;What is a Human?&lt;/h3&gt;
 
-&lt;p&gt;We define a human by that which a human essentially is. Humans (like everything
-else in existence) are interactions of the universe happening &lt;em&gt;here&lt;/em&gt; and &lt;em&gt;now&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;We define a human by that which a human essentially is. Humans (like everything else in existence)
+are interactions of the universe happening &lt;em&gt;here&lt;/em&gt; and &lt;em&gt;now&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;For example, a wave is an interaction of the ocean AND it IS the ocean, the
-ocean is an interaction of planet earth and also the earth, the earth is an
-interaction of the solar system and also the solar system, and so on, until we
-reach the Universe.&lt;/p&gt;
+&lt;p&gt;For example, a wave is an interaction of the ocean &lt;em&gt;and&lt;/em&gt; it &lt;em&gt;is&lt;/em&gt; the ocean, the ocean is an
+interaction of planet earth and also the earth, the earth is an interaction of the solar system and
+also the solar system, and so on, until we reach the Universe.&lt;/p&gt;
 
-&lt;p&gt;In the same fashion, a nail is an interaction of your body and it is also your
-body, your nail is you, because you are defined by &lt;em&gt;all&lt;/em&gt; of you (nails included).&lt;/p&gt;
+&lt;p&gt;In the same fashion, a nail is an interaction of your body and it is also your body, your nail is
+you, because you are defined by &lt;em&gt;all&lt;/em&gt; of you (nails included).&lt;/p&gt;
 
-&lt;p&gt;We can say that humans (just like everything else in this planet) are an
-interaction of the planet AND we are also the planet, the solar system, the
-milky way galaxy, the constellation and the universe.&lt;/p&gt;
+&lt;p&gt;We can say that humans (just like everything else in this planet) are an interaction of the planet
+&lt;em&gt;and&lt;/em&gt; we are also the planet, the solar system, the milky way galaxy, the constellation and the
+Universe.&lt;/p&gt;
 
-&lt;p&gt;In conclusion, we say that a Human is, essentially, an interaction of the
-Universe and is also the Universe expressing itself in the form of a Human
-&lt;em&gt;here&lt;/em&gt; and &lt;em&gt;now&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;In conclusion, we say that a Human is, essentially, an interaction of the Universe and is also the
+Universe itself expressing in the form of a Human.&lt;/p&gt;
+
 &lt;/div&gt;
 
   &lt;div class="more"&gt;
     &lt;a href="/human-development" class="btn btn-small"&gt;read more..&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="post"&gt;
-  &lt;h3 class="title"&gt;&lt;a href="/most-practical-advice-on-finding-your-passion-that-i-have-ever-found"&gt;Most practical advice on finding your passion that I have ever found&lt;/a&gt; &lt;span class="date"&gt;2015-05-23&lt;/span&gt;&lt;/h3&gt;
-
-  &lt;div class="summary"&gt;
-&lt;p&gt;This is a quote-of-aquote I found in quora. It is the absolute most practical advice
-I have read in my life about how to go about finding your passion.&lt;/p&gt;
-
-&lt;p&gt;&lt;span class="quora-content-embed" data-name="How-do-you-know-you-are-on-the-right-path-in-your-life/answer/Tara-Hagan/quote/3950176"&gt;Read &lt;a data-width="541" data-height="346" class="quora-content-link" href="http://www.quora.com/How-do-you-know-you-are-on-the-right-path-in-your-life/answer/Tara-Hagan/quote/3950176" data-embed="ufljktn" data-type="quote" data-id="3950176" data-key="ba50f6b176ba2b4660c946a3720139f2" load-full-answer="False"&gt;Quote of Tara Hagan's answer to How do you know you are on the right path in your life?&lt;/a&gt; on &lt;a href="http://www.quora.com"&gt;Quora&lt;/a&gt;&lt;script type="text/javascript" src="http://www.quora.com/widgets/content"&gt;&lt;/script&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;I have found that I have always gone out of my way in life, to do that which excites
-me the most, even if that has meant making my life 'harder' from an outsider's perspective,
-so this advice really resonates with me.&lt;/p&gt;
-
-&lt;p&gt;Some of the worst things that have happened to me in my life, have been because of me following my
-passion, but also, the absolute best achievements in my life have been due to me following my passion.
-So I would never change any of my decisions, because now that I look at it that way, all of those
-decisions are what have led me closer and closer to my true passion, and I say closer, because I still
-have a feeling that I have not found my ultimate passion, and may never will...&lt;/p&gt;
-
-&lt;p&gt;In the meantime, I'll just keep looking.&lt;/p&gt;
-&lt;/div&gt;
-
-  &lt;div class="more"&gt;
-    &lt;a href="/most-practical-advice-on-finding-your-passion-that-i-have-ever-found" class="btn btn-small"&gt;read more..&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="post"&gt;
-  &lt;h3 class="title"&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt; &lt;span class="date"&gt;2013-10-02&lt;/span&gt;&lt;/h3&gt;
-
-  &lt;div class="summary ellipsis"&gt;
-&lt;p&gt;My thesis project is about automatic evaluation of object-oriented design by means of automated code analysis; in other words evaluate the design of a program automatically. &lt;/p&gt;
-
-&lt;p&gt;I found the need for a tool that would allow to me to extract the code model from a program and then query over that model in order to extract information and metrics about the program's design.&lt;/p&gt;
-
-&lt;p&gt;The characteristics I was looking for in a code analysis tool where:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;
-&lt;h4 id="toc_0"&gt;The code model extractor must process source code or intermediary code Java or .Net&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Rationale:&lt;/strong&gt; If we are able to analyze bytecode or MSIL we can use the same tool for any language of the given platform.&lt;br&gt;&lt;strong&gt;Acceptance Criteria:&lt;/strong&gt; A proof of concept must be implemented that is able to extract the code model in the form of objects of the given platform.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h4 id="toc_1"&gt;It must possible to invoke the tool from within the code as objects, without having to go through a GUI or CLI.&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Rationale:&lt;/strong&gt; This is to easily integrate the tools as part of another project without hassle or strange behavior (i.e. opening a GUI, etc)&lt;br&gt;&lt;strong&gt;Acceptance Criteria&lt;/strong&gt;: A proof of concept must be created that invokes the tool in a programmatic manner without using the CLI.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h4 id="toc_2"&gt;It must be able to provide:&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Number of lines of code in a method, class or namespace (package).&lt;/li&gt;
-&lt;li&gt;Method calls between classes&lt;/li&gt;
-&lt;li&gt;Location of method calls between classes&lt;/li&gt;
-&lt;li&gt;Method and member signatures of a class&lt;/li&gt;
-&lt;li&gt;Enumeration of classes, abstract classes and interfaces&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Rationale&lt;/strong&gt;: This features are needed in order to perform the code analysis, because that will provide the data we will measure and evaluate. With those features it is possible to obtain all the Chidamber &amp;amp; Kemerer metric suite which are fundamental for code analysis.&lt;br&gt;&lt;strong&gt;Acceptance Criteria&lt;/strong&gt;: A proof of concept that can obtain each and one of the listed items programmatically.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h4 id="toc_3"&gt;The extracted code model must be readable in-memory, directly or indirectly.&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;It is allowed for the tool to generate a file first and then read that file to generate an in-memory model&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Rationale&lt;/strong&gt;: The code model must be representable in-memory in order to use for automatic evaluation.&lt;br&gt;&lt;strong&gt;Acceptance Criteria&lt;/strong&gt;: A proof of concept must be created where the code model is fully representable in memory.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-
-  &lt;div class="more"&gt;
-    &lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma" class="btn btn-small"&gt;read more..&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="post"&gt;
-  &lt;h3 class="title"&gt;&lt;a href="/extreme-programming/extreme-programming-in-the-real-world"&gt;Extreme Programming in the Real World&lt;/a&gt; &lt;span class="date"&gt;2013-09-07&lt;/span&gt;&lt;/h3&gt;
-
-  &lt;div class="summary ellipsis"&gt;
-&lt;p&gt;This post is primarily to remind me of the concepts behind Extreme Programming. This post will help me remember that Extreme Programming is not just pair programming, TDD, reduced documentation, evolutionary design and reduced planning.&lt;/p&gt;
-
-&lt;p&gt;XP practices are actually the &lt;em&gt;smallest&lt;/em&gt; piece in the puzzle, the guiding values and principles are what made Kent Beck come up with those practices.&lt;/p&gt;
-
-&lt;p&gt;(Human) Values &lt;strong&gt;=&amp;gt;&lt;/strong&gt; (Domain Specific) Principles &lt;strong&gt;=&amp;gt;&lt;/strong&gt; (Software Specific) Practices&lt;/p&gt;
-
-&lt;h3 id="toc_0"&gt;Values of Extreme Programming&lt;/h3&gt;
-
-&lt;p&gt;Values are intended to balance and support each other. Improving communication helps achieve simplicity by eliminating unneeded or deferrable requirements from today's concerns.&lt;/p&gt;
-
-&lt;p&gt;Values do not provide concrete advice about what to do in software development. Because of the distance between values and practices, for that &lt;em&gt;Principles&lt;/em&gt; bridge the gap between them.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;
-&lt;strong&gt;Communication&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Communication is important for creating a sense of team and effective cooperation.&lt;/li&gt;
-&lt;li&gt;The objective of communication is to transfer knowledge and information between the team(s).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;strong&gt;Simplicity&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Simplicity is the most intensely intellectual of the XP values. &lt;/li&gt;
-&lt;li&gt;The objectives are to make a system simple enough to gracefully solve only today's problem and eliminate the waste of unnecessary complexity. &lt;/li&gt;
-&lt;li&gt;It is also important to remember that simplicity is contextual, the design must be understandable by the team working on it, otherwise it is pointless.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;strong&gt;Feedback&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Change is inevitable in software development, therefore an XP team embraces change by giving high value to feedback.&lt;/li&gt;
-&lt;li&gt;XP teams strive to generate as much feedback as they can handle as quickly as possible.&lt;/li&gt;
-&lt;li&gt;They try to shorten the feedback cycle to minutes or hours instead of weeks or months. The sooner you know, the sooner you can &lt;strong&gt;adapt&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;strong&gt;Courage&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Courage is effective action in the face of fear.&lt;/li&gt;
-&lt;li&gt;Doing something without regard for the consequences is &lt;strong&gt;not&lt;/strong&gt; effective teamwork.&lt;/li&gt;
-&lt;li&gt;Courage alone is dangerous, in concert with other values it is powerful.&lt;/li&gt;
-&lt;li&gt;Examples: The courage to speak truths, to discard failing solutions and to seek new ones.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;strong&gt;Respect&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The other four values point to one that lies below the surface: respect.&lt;/li&gt;
-&lt;li&gt;The contributions of each person on the team need to be respected. I am important and so are you.&lt;/li&gt;
-&lt;li&gt;Every person whose life is touched by software development has equal values as a human being.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;strong&gt;Others&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Your organization, your team, and you yourself may choose other values. What is most important is aligning team behavior to team values.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-  &lt;div class="more"&gt;
-    &lt;a href="/extreme-programming/extreme-programming-in-the-real-world" class="btn btn-small"&gt;read more..&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -485,6 +419,18 @@ have a feeling that I have not found my ultimate passion, and may never will...&
     &lt;a href="/tags#passion-ref"&gt;passion &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
   &lt;li&gt;
+    &lt;a href="/tags#software-engineering-ref"&gt;software-engineering &lt;span&gt;3&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#agile-ref"&gt;agile &lt;span&gt;2&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#software-ref"&gt;software &lt;span&gt;3&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#planning-ref"&gt;planning &lt;span&gt;2&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
     &lt;a href="/tags#human development-ref"&gt;human development &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -527,7 +473,7 @@ have a feeling that I have not found my ultimate passion, and may never will...&
     &lt;a href="/tags#IoC-ref"&gt;IoC &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;a href="/tags#software-ref"&gt;software &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+    &lt;a href="/tags#poem-ref"&gt;poem &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;a href="/tags#form of the good-ref"&gt;form of the good &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
@@ -549,6 +495,20 @@ have a feeling that I have not found my ultimate passion, and may never will...&
     &lt;li&gt;&lt;a href="/human-development"&gt;Human Development&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="passion-ref"&gt;passion&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/most-practical-advice-on-finding-your-passion-that-i-have-ever-found"&gt;Most practical advice on finding your passion that I have ever found&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="software-engineering-ref"&gt;software-engineering&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/elements-of-the-light-teamwork-model"&gt;Elements of the Light Teamwork Model&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="agile-ref"&gt;agile&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="software-ref"&gt;software&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/software-goodness"&gt;Software Goodness&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="planning-ref"&gt;planning&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="human development-ref"&gt;human development&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/obsession-is-good"&gt;Obsession is Good&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="obsesion-ref"&gt;obsesion&lt;/h3&gt;
@@ -577,8 +537,8 @@ have a feeling that I have not found my ultimate passion, and may never will...&
     &lt;li&gt;&lt;a href="/software-design/introducing-dependency-locator"&gt;Introducing Dependency Locator&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="IoC-ref"&gt;IoC&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/software-design/introducing-dependency-locator"&gt;Introducing Dependency Locator&lt;/a&gt;&lt;/li&gt;
-  &lt;h3 id="software-ref"&gt;software&lt;/h3&gt;
-    &lt;li&gt;&lt;a href="/software-goodness"&gt;Software Goodness&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="poem-ref"&gt;poem&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/dear-hardship"&gt;Dear Hardship&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="form of the good-ref"&gt;form of the good&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/software-goodness"&gt;Software Goodness&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="philosophy-ref"&gt;philosophy&lt;/h3&gt;

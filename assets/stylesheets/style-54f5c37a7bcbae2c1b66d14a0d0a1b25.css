@@ -75,3 +75,10 @@ a.fn-link {
   font-size: 0.8em;
   line-height: 0;
 }
+
+/* custom */
+
+.wide img {
+  max-width: 100%;
+  max-height: 100%;
+}

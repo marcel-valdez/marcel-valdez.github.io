@@ -13,7 +13,7 @@
 
     <!-- Le styles -->
 <link href='/assets/stylesheets/bootstrap.min-5d63e2c10cb10bbc1edc21a48322aee3.css' type='text/css' rel='stylesheet' media='all'>
-<link href='/assets/stylesheets/style-d7accd1d649cf1983401ac15f6b36444.css' type='text/css' rel='stylesheet' media='all'>
+<link href='/assets/stylesheets/style-54f5c37a7bcbae2c1b66d14a0d0a1b25.css' type='text/css' rel='stylesheet' media='all'>
 <link href='/assets/stylesheets/google_prettify/sons-of-obsidian-f34dcaac447aadab6dcd9f9e5273cd37.css' type='text/css' rel='stylesheet' media='all'>
     <!-- Le fav and touch icons -->
   <!-- Update these with your own images
@@ -56,6 +56,116 @@
       <div class="content">
         <div class="row-fluid">
   <div class="span12">
+      <div class="posts">
+        <h3 class="title"><a href="/ironruby/ironruby-and-the-dreaded-method-not-found-error">IronRuby and the Dreaded Method not found error</a> <span class="date">2013-01-12</span></h3>
+
+        <div class="summary ellipsis">
+<p>This post is related to this <a href="http://stackoverflow.com/q/13392178/697862">StackOverflow question</a>.</p>
+
+<p><strong>UPDATE</strong>: This is fixed in the master branch if IronLanguages repo, check the footer <a href="#note">note</a>.</p>
+
+<p>Maybe you've had it, and maybe not, but if you have, then you know how horrible it is when IronRuby gives you this totally unrelated error, for no apparent reason:</p>
+
+<p>To put things in context imagine you create a very basic IronRuby application, a very simple Ruby script:</p>
+
+<pre><code>obj = Object.new
+</code></pre>
+
+<p>And then Boom! You get something like this:</p>
+
+<pre><code>Method not found: 'Microsoft.Scripting.Actions.Calls.OverloadInfo[] 
+Microsoft.Scripting.Actions.Calls.ReflectionOverloadInfo.CreateArray
+(System.Reflection.MemberInfo[])
+</code></pre>
+
+<p>WTF is going on? It seems IronRuby 1.1.3 came with a strange bug where you can't call Object.new even though if you run ir.exe it says System::Object clearly has a .new class method:</p>
+
+<pre><code>IronRuby 1.1.3.0 on .NET 4.0.30319.17929
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+&gt;&gt;&gt; Object.methods
+=&gt; [:Equals, :ReferenceEquals, :allocate, :clr_constructor, :clr_ctor, :clr_new, :new, ...]
+</code></pre>
+</div>
+
+        <div class="more">
+          <a href="/ironruby/ironruby-and-the-dreaded-method-not-found-error" class="btn btn-small">read more..</a>
+        </div>
+      </div>
+      <div class="posts">
+        <h3 class="title"><a href="/software-design/introducing-dependency-locator">Introducing Dependency Locator</a> <span class="date">2012-12-18</span></h3>
+
+        <div class="summary ellipsis">
+<h2 id="toc_0">
+<a href="#what-is-dependency-locator"></a>What is Dependency Locator?</h2>
+
+<p>Dependency Locator is an implementation of the Service Locator pattern
+with a twist (aren't they all?). Dependency Locator uses a C# API for
+setting up dependencies (no more hundreds of XML configuration for your
+dependencies).</p>
+
+<h2 id="toc_1">
+<a href="#features"></a>Features</h2>
+
+<ul>
+<li>  Fluent C# API for Dependency configuration</li>
+<li>  It can setup Singletons</li>
+<li>  It can setup Configuration values</li>
+<li>  It can setup Lazy evaluated Dependencies, Singletons or
+Configuration values</li>
+<li>  It can setup Named dependencies</li>
+<li>  It understands generic interfaces and implementations</li>
+</ul>
+<h2 id="toc_2">
+<a href="#what-are-its-advantages"></a>What are its advantages?</h2>
+
+<ul>
+<li>  Almost no XML configuration (the example given here is your
+template, you just have to change 1 line)</li>
+<li>  Uninvasive changes necessary to refactor out dependencies</li>
+<li>  Can be used for integration testing, by setting up a combination of
+dummy and real implementations under test</li>
+<li>  Promotes the use of modularity in the system structure</li>
+<li>  Its perfect for refactoring legacy code</li>
+<li>  Its perfect for making legacy code more testable</li>
+</ul>
+</div>
+
+        <div class="more">
+          <a href="/software-design/introducing-dependency-locator" class="btn btn-small">read more..</a>
+        </div>
+      </div>
+      <div class="posts">
+        <h3 class="title"><a href="/notepad%2B%2B/winrdbi-syntax-highlighting-on-notepad%2B%2B">WinRDBI Syntax Highlighting on Notepad++</a> <span class="date">2012-12-18</span></h3>
+
+        <div class="summary ellipsis">
+<p>In this small guide, you will be guided in the steps to add Syntax
+Highlighting and Auto-Complete features for WinRDBI Relational Algebra
+for Notepad++.</p>
+
+<p><strong>Step 1:</strong> Create a new file called userDefineLang.xml
+in <code>%APPDATA%\Notepad++\</code>, and add to it the content of this
+<a href="https://gist.github.com/3764935#file_user_define_lang.xml">gist</a>.</p>
+
+<p><strong>Step2:</strong> Create a new file called winrdbi.xml in
+<code>%PROGRAMFILES%\Notepad++\plugins\APIs\</code>, and add to it the content of
+this <a href="https://gist.github.com/3764935#file_winrdbi.xml">gist</a>.</p>
+
+<p><strong>Step3:</strong> If your background is white, the highlighting will look ugly,
+for that you need a dark theme for notepad, in order to activate a theme
+compatible with this Syntax Highlighter, you&rsquo;ll have to create a file
+called <code>Obsidian_mod.xml</code> in <code>%PROGRAMFILES%\Notepad++\themes\</code>, and add
+to it the content of this
+<a href="https://gist.github.com/3764935#file_obsidian_mod.xml">gist</a>.</p>
+
+<p>Then enable Obsidian_mod in Notepad++: Settings -&gt; Style Configurator -&gt;
+Select theme: Obsidian_Mod </p>
+</div>
+
+        <div class="more">
+          <a href="/notepad%2B%2B/winrdbi-syntax-highlighting-on-notepad%2B%2B" class="btn btn-small">read more..</a>
+        </div>
+      </div>
       <div class="posts">
         <h3 class="title"><a href="/testing/tutorial-de-nunit">Tutorial de NUnit</a> <span class="date">2012-12-18</span></h3>
 
