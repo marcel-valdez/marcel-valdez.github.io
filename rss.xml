@@ -239,7 +239,9 @@ software and of being human.&lt;/p&gt;
 start from but absolutely not a good end-goal. Teams should use this template and iterate on it
 until they have their own agile process that enables them to execute with peak throughput.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="/assets/media/basic_agile_template.png" alt=""&gt;&lt;/p&gt;
+&lt;div class="wideimg-container"&gt;
+&lt;img class="wideimg" src="/assets/media/basic_agile_template.png"&gt;
+&lt;/div&gt;
 
 &lt;p&gt;The primary design principle for this template is to maximize the amount of value a team can deliver
 during a "cycle" (e.g. a sprint), in other words, it maximizes for throughput, with the
@@ -253,7 +255,6 @@ that the team does should maximize throughput (amount value delivered over time)
 &lt;strong&gt;already&lt;/strong&gt; helping the stakeholder(s) achieve their goal, then the team has NOT delivered value.
 The degree by which the software helps the stakeholder(s) achieve their goal(s) and how important
 that goal(s) determines how valuable the software is.&lt;/p&gt;
-
 &lt;/div&gt;
 
   &lt;div class="more"&gt;
@@ -419,16 +420,7 @@ Universe itself expressing in the form of a Human.&lt;/p&gt;
     &lt;a href="/tags#passion-ref"&gt;passion &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;a href="/tags#software-engineering-ref"&gt;software-engineering &lt;span&gt;3&lt;/span&gt;&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;a href="/tags#agile-ref"&gt;agile &lt;span&gt;2&lt;/span&gt;&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;a href="/tags#software-ref"&gt;software &lt;span&gt;3&lt;/span&gt;&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;a href="/tags#planning-ref"&gt;planning &lt;span&gt;2&lt;/span&gt;&lt;/a&gt;
+    &lt;a href="/tags#software-engineering-ref"&gt;software-engineering &lt;span&gt;2&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;a href="/tags#human development-ref"&gt;human development &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
@@ -462,6 +454,15 @@ Universe itself expressing in the form of a Human.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;a href="/tags#microsoft cci ast-ref"&gt;microsoft cci ast &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#agile-ref"&gt;agile &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#software-ref"&gt;software &lt;span&gt;2&lt;/span&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/tags#planning-ref"&gt;planning &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;a href="/tags#modularity-ref"&gt;modularity &lt;span&gt;1&lt;/span&gt;&lt;/a&gt;
@@ -498,17 +499,6 @@ Universe itself expressing in the form of a Human.&lt;/p&gt;
   &lt;h3 id="software-engineering-ref"&gt;software-engineering&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/elements-of-the-light-teamwork-model"&gt;Elements of the Light Teamwork Model&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
-  &lt;h3 id="agile-ref"&gt;agile&lt;/h3&gt;
-    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
-  &lt;h3 id="software-ref"&gt;software&lt;/h3&gt;
-    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="/software-goodness"&gt;Software Goodness&lt;/a&gt;&lt;/li&gt;
-  &lt;h3 id="planning-ref"&gt;planning&lt;/h3&gt;
-    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="human development-ref"&gt;human development&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/obsession-is-good"&gt;Obsession is Good&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="obsesion-ref"&gt;obsesion&lt;/h3&gt;
@@ -531,6 +521,13 @@ Universe itself expressing in the form of a Human.&lt;/p&gt;
     &lt;li&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="microsoft cci ast-ref"&gt;microsoft cci ast&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/code-analysis-tools-ndepend-nitriq-iplasma"&gt;Code analysis tools: NDepend, Nitriq, iPlasma...&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="agile-ref"&gt;agile&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="software-ref"&gt;software&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/software-goodness"&gt;Software Goodness&lt;/a&gt;&lt;/li&gt;
+  &lt;h3 id="planning-ref"&gt;planning&lt;/h3&gt;
+    &lt;li&gt;&lt;a href="/basic-agile-execution-template"&gt;Basic Agile Execution Template&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="modularity-ref"&gt;modularity&lt;/h3&gt;
     &lt;li&gt;&lt;a href="/software-design/introducing-dependency-locator"&gt;Introducing Dependency Locator&lt;/a&gt;&lt;/li&gt;
   &lt;h3 id="design-ref"&gt;design&lt;/h3&gt;
