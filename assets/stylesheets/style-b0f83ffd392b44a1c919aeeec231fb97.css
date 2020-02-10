@@ -78,7 +78,15 @@ a.fn-link {
 
 /* custom */
 
-.wide img {
-  max-width: 100%;
-  max-height: 100%;
+.wideimg-container {
+  text-align: center;
+  display: table-cell;
+}
+
+.wideimg {
+  max-height: fit-content;
+  max-width: 1040px;
+  width: auto;
+
+  margin-left: calc(100% / -4);
 }
