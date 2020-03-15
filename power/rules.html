@@ -1,0 +1,76 @@
+<h1 id="power-the-strategy-game">Power: The strategy game</h1>
+<p>Power is a turn-based strategy game where the goal is to kill the enemy King.</p>
+<p>It has some similarities to chess, except when you &quot;kill&quot; a piece there is a probability that you lose the &quot;battle&quot; and lose your attacking piece.</p>
+<p><img src="https://github.com/marcel-valdez/power/workflows/Node.js%20CI/badge.svg?branch=master&amp;event=push" alt="Node.js CI"></p>
+<h2 id="types-of-moves">Types of Moves</h2>
+<ul>
+<li><strong>Move</strong>: The piece moves from one square to another. Different pieces have different movement patterns.</li>
+<li><strong>Attack</strong>: The piece attacks an enemy piece, if it &quot;wins&quot; the battle, it will occupy the enemy&#39;s position. If it loses, the enemy stays put and becomes &quot;weak&quot;. Different pieces have different attack patterns (directions in which they can attack).<ul>
+<li>If a weak piece attacks an equally weak or strong piece, then the odds of beating each other is 50%.</li>
+<li>If a weak piece is attacked (or attacks) a healthy enemy piece, then it has 25% chance of winning the battle.<ul>
+<li>If the weak piece survives and attacks yet again, it will have 12.5% chance of winning another battle against another healthy enemy.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Sacrifice</strong>: A piece can sacrifice an ally to make itself stronger in battles, this takes up a<br>turn and the sacrificed piece goes away. The King can&#39;t sacrifice anyone.<ul>
+<li>If a weak piece sacrifices an ally to make itself healthy, it will again have 50% chance of<br>beating a healthy enemy.</li>
+<li>If a healthy piece sacrifices an ally to make itself strong, it will have 75% chance of beating<br>a healthy enemy.<ul>
+<li>If the strong piece survives the battle, it will go back to having 50% chance of beating a<br>healthy enemy.</li>
+</ul>
+</li>
+<li>If a strong piece sacrifices yet another ally, it will have 87.5% chance of beating a healthy<br>enemy.<ul>
+<li>If the stronger piece survives the battle, it will go back to having 75% chance of beating a<br>healthy enemy.</li>
+<li>If the stronger piece attacks a strong piece, it will have 75% chance of beating it.</li>
+<li>If the stronger piece attacks a weak piece, it will have 93.75% chance of beating it.</li>
+<li>And so forth...</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="pieces">Pieces</h2>
+<ul>
+<li><p><strong>Pawn (♙)</strong>:</p>
+<ul>
+<li>It can move forwards 1 or 2 of squares.</li>
+<li>It can only attack an enemy that is directly next to it in a front diagonal.<ul>
+<li>If it passes an enemy pawn when moving 2 squares, the enemy pawn can attack it &quot;en passant&quot;,<br>meaning the enemy can attack the pawn as if it had only moved 1 square forwards, if the enemy<br>wins the battle, then the enemy moves 1 square diagonally forwards as if it had done a normal<br>attack.</li>
+</ul>
+</li>
+<li>It can only sacrifice an ally that is directly next to it in diagonal.</li>
+<li>If it reaches the other end of the board, it can be converted into a Knight or Rook.</li>
+</ul>
+</li>
+<li><p><strong>Knight (♘)</strong>:</p>
+<ul>
+<li>It can move one square in any direction.</li>
+<li>It can move 2 squares in any direction if there is a piece in the direction it is moved and the destination square is empty.</li>
+<li>It can attack an enemy that is behind a piece in any direction.</li>
+<li>It can sacrifice an ally that is behind a piece in any direction.</li>
+</ul>
+</li>
+<li><p><strong>Rook (♖)</strong>:</p>
+<ul>
+<li>It can move any numbers of squares vertically or horizontally (without skipping pieces).</li>
+<li>It can attack enemies at any distance vertically or horizontally (without skipping pieces).</li>
+<li>It can sacrifice an ally at any distance vertically or horizontally (without skipping pieces).</li>
+</ul>
+</li>
+<li><p><strong>King (♔)</strong>:</p>
+<ul>
+<li>It can move one square in any direction.</li>
+<li>It can attack enemies one square in any direction.<ul>
+<li>When attacked by an enemy, the probability of winning is <em>purely</em> determined by the health of the king, the health of the attacking piece does not matter.</li>
+<li>For example: A healthy king has 50% chance of defeating a strong enemy, but also has 50% chance of defeating a weak enemy.</li>
+<li>For example: A weak king has 25% chance of defeating a weaker enemy.</li>
+</ul>
+</li>
+<li>It cannot sacrifice allies.</li>
+</ul>
+</li>
+</ul>
+<h2 id="board">Board</h2>
+<ul>
+<li>The board is a 5x8 square board.</li>
+</ul>
